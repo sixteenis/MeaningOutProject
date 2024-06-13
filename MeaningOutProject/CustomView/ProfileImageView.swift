@@ -11,7 +11,7 @@ import SnapKit
 
 class SelcetProfileImageView: UIView{
     fileprivate let mainImageView = UIImageView()
-    init(profile: String) {
+    init(profile: String = "profile_0") {
         super.init(frame: .zero)
         setUpMainImage(profile)
     }
@@ -33,7 +33,14 @@ class SelcetProfileImageView: UIView{
         }
         
     }
-    
+    func selectedProfile(_ data: String, select: Bool) {
+        if !select {
+            self.mainImageView.layer.borderWidth = 1
+            self.alpha = 0.5
+            
+        }
+        self.mainImageView.image = UIImage(named: data)
+    }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

@@ -17,6 +17,7 @@
 		064914962C1B529500B05833 /* ViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064914952C1B529500B05833 /* ViewController+.swift */; };
 		064914982C1B5D8000B05833 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064914972C1B5D8000B05833 /* MainViewController.swift */; };
 		0649149A2C1B5E1700B05833 /* SelectProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064914992C1B5E1700B05833 /* SelectProfileViewController.swift */; };
+		0649149D2C1B6EA700B05833 /* SelectProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0649149C2C1B6EA700B05833 /* SelectProfileCollectionViewCell.swift */; };
 		06F530932C1B085300487212 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F530922C1B085300487212 /* AppDelegate.swift */; };
 		06F530952C1B085300487212 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F530942C1B085300487212 /* SceneDelegate.swift */; };
 		06F5309C2C1B085500487212 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06F5309B2C1B085500487212 /* Assets.xcassets */; };
@@ -41,6 +42,7 @@
 		064914952C1B529500B05833 /* ViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+.swift"; sourceTree = "<group>"; };
 		064914972C1B5D8000B05833 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		064914992C1B5E1700B05833 /* SelectProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectProfileViewController.swift; sourceTree = "<group>"; };
+		0649149C2C1B6EA700B05833 /* SelectProfileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectProfileCollectionViewCell.swift; sourceTree = "<group>"; };
 		06F5308F2C1B085300487212 /* MeaningOutProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeaningOutProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06F530922C1B085300487212 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		06F530942C1B085300487212 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -84,6 +86,15 @@
 			path = Enum;
 			sourceTree = "<group>";
 		};
+		0649149B2C1B6E7800B05833 /* SelectProfile */ = {
+			isa = PBXGroup;
+			children = (
+				064914992C1B5E1700B05833 /* SelectProfileViewController.swift */,
+				0649149C2C1B6EA700B05833 /* SelectProfileCollectionViewCell.swift */,
+			);
+			path = SelectProfile;
+			sourceTree = "<group>";
+		};
 		06F530862C1B085300487212 = {
 			isa = PBXGroup;
 			children = (
@@ -123,7 +134,7 @@
 			children = (
 				06F530A92C1B0F8300487212 /* OnboardingViewController.swift */,
 				064914862C1B27D300B05833 /* ProfileSetViewController.swift */,
-				064914992C1B5E1700B05833 /* SelectProfileViewController.swift */,
+				0649149B2C1B6E7800B05833 /* SelectProfile */,
 				064914972C1B5D8000B05833 /* MainViewController.swift */,
 			);
 			path = ViewController;
@@ -238,6 +249,7 @@
 				064914852C1B1D8500B05833 /* SelcetButton.swift in Sources */,
 				064914892C1B282200B05833 /* ReuseIdentifier+.swift in Sources */,
 				064914832C1B18F700B05833 /* Color+.swift in Sources */,
+				0649149D2C1B6EA700B05833 /* SelectProfileCollectionViewCell.swift in Sources */,
 				064914962C1B529500B05833 /* ViewController+.swift in Sources */,
 				0649149A2C1B5E1700B05833 /* SelectProfileViewController.swift in Sources */,
 				06F530BA2C1B104400487212 /* Image+.swift in Sources */,

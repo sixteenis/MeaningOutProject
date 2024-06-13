@@ -28,10 +28,9 @@ class UserModel {
     private init() {}
     
     // MARK: - 랜덤 프로필 가져와주는 함수
-    func getRandomProfile() -> String {
+    func getRandomProfile(){
         let profile = self.profileList[Int.random(in: 0..<profileList.count)]
         self.beforProfile = profile
-        return profile
     }
     
 }

@@ -8,7 +8,7 @@
 import UIKit
 
 class ProfileSetViewController: UIViewController {
-    private lazy var profileImage = MainProfileImageView(profile: userModel.getRandomProfile())
+    private lazy var profileImage = MainProfileImageView(profile: userModel.beforProfile)
     private let nicknameTextField = UITextField()
     private let line = UIView()
     private let nicknameFilterLabel = UILabel()
@@ -107,14 +107,12 @@ class ProfileSetViewController: UIViewController {
     }
     
     func reset() {
-        profileImage.changeImage(userModel.getRandomProfile())
         nicknameTextField.text = ""
         textfilter = .start
     }
     // MARK: - 버튼 함수 부분
     @objc func nvBackButtonTapped() {
         navigationController?.popViewController(animated: true)
-        sleep(1 )
         reset()
         
         

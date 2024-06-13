@@ -13,6 +13,8 @@ class OnboardingViewController: UIViewController {
     let mainLabel = UILabel()
     let mainImage = UIImageView()
     let startButton = SelcetButton(title: "시작하기")
+    
+    let userModel = UserModel.shared
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpHierarch()
@@ -64,6 +66,7 @@ class OnboardingViewController: UIViewController {
         
     }
     @objc func startButtonTapped() {
+        userModel.getRandomProfile()
         navigationController?.pushViewController(ProfileSetViewController(), animated: true)
     }
 

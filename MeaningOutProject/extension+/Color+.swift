@@ -9,6 +9,7 @@ import UIKit
 
 extension UIColor {
     static let mainOragieColor = UIColor(red: 239/255, green: 137/255, blue: 71/255, alpha: 1)
+    static let notSelectProfileColor = UIColor(red: 239/255, green: 137/255, blue: 71/255, alpha: 0.5)
     static let textColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
     static let settingSeperatorColor = UIColor(red: 130/255, green: 130/255, blue: 130/255, alpha: 1)
     static let buttonSelectColor = UIColor(red: 76/255, green: 76/255, blue: 76/255, alpha: 1)
