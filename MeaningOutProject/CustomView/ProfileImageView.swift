@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 
 class SelcetProfileImageView: UIView{
-    private let mainImageView = UIImageView()
+    fileprivate let mainImageView = UIImageView()
     init(profile: String) {
         super.init(frame: .zero)
         setUpMainImage(profile)
@@ -33,6 +33,8 @@ class SelcetProfileImageView: UIView{
         }
         
     }
+    
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -56,6 +58,9 @@ final class MainProfileImageView: SelcetProfileImageView {
         subImageView.layer.cornerRadius = subImageView.frame.width / 2
     }
     
+    func changeImage(_ image: String) {
+        self.mainImageView.image = UIImage(named: image)
+    }
     // MARK: - 서브 이미지 셋업 부분
     private func setUpSubImage() {
         self.addSubview(subImageView)
