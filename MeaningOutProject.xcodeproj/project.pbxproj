@@ -11,6 +11,8 @@
 		064914852C1B1D8500B05833 /* SelcetButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064914842C1B1D8500B05833 /* SelcetButton.swift */; };
 		064914872C1B27D300B05833 /* ProfileSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064914862C1B27D300B05833 /* ProfileSetViewController.swift */; };
 		064914892C1B282200B05833 /* ReuseIdentifier+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064914882C1B282200B05833 /* ReuseIdentifier+.swift */; };
+		064914902C1B325400B05833 /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0649148F2C1B325400B05833 /* ProfileImageView.swift */; };
+		064914922C1B33DC00B05833 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064914912C1B33DC00B05833 /* UserModel.swift */; };
 		06F530932C1B085300487212 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F530922C1B085300487212 /* AppDelegate.swift */; };
 		06F530952C1B085300487212 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F530942C1B085300487212 /* SceneDelegate.swift */; };
 		06F5309C2C1B085500487212 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06F5309B2C1B085500487212 /* Assets.xcassets */; };
@@ -29,6 +31,8 @@
 		064914842C1B1D8500B05833 /* SelcetButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelcetButton.swift; sourceTree = "<group>"; };
 		064914862C1B27D300B05833 /* ProfileSetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSetViewController.swift; sourceTree = "<group>"; };
 		064914882C1B282200B05833 /* ReuseIdentifier+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReuseIdentifier+.swift"; sourceTree = "<group>"; };
+		0649148F2C1B325400B05833 /* ProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageView.swift; sourceTree = "<group>"; };
+		064914912C1B33DC00B05833 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		06F5308F2C1B085300487212 /* MeaningOutProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeaningOutProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06F530922C1B085300487212 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		06F530942C1B085300487212 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -59,8 +63,16 @@
 			isa = PBXGroup;
 			children = (
 				064914842C1B1D8500B05833 /* SelcetButton.swift */,
+				0649148F2C1B325400B05833 /* ProfileImageView.swift */,
 			);
 			path = CustomView;
+			sourceTree = "<group>";
+		};
+		0649148E2C1B309600B05833 /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Enum;
 			sourceTree = "<group>";
 		};
 		06F530862C1B085300487212 = {
@@ -85,6 +97,7 @@
 			children = (
 				06F530922C1B085300487212 /* AppDelegate.swift */,
 				06F530942C1B085300487212 /* SceneDelegate.swift */,
+				0649148E2C1B309600B05833 /* Enum */,
 				064914812C1B187D00B05833 /* CustomView */,
 				06F530AC2C1B0FA000487212 /* extension+ */,
 				06F530AB2C1B0F9400487212 /* Model */,
@@ -108,6 +121,7 @@
 		06F530AB2C1B0F9400487212 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				064914912C1B33DC00B05833 /* UserModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -211,7 +225,9 @@
 				064914892C1B282200B05833 /* ReuseIdentifier+.swift in Sources */,
 				064914832C1B18F700B05833 /* Color+.swift in Sources */,
 				06F530BA2C1B104400487212 /* Image+.swift in Sources */,
+				064914902C1B325400B05833 /* ProfileImageView.swift in Sources */,
 				06F530AA2C1B0F8300487212 /* OnboardingViewController.swift in Sources */,
+				064914922C1B33DC00B05833 /* UserModel.swift in Sources */,
 				06F530952C1B085300487212 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
