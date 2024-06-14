@@ -7,7 +7,7 @@
 
 import UIKit
 
-class UserModel {
+final class UserModel {
     static let shared = UserModel()
     var beforProfile = "" //고르기 직전
     let profileList = ["profile_0","profile_1","profile_2","profile_3","profile_4","profile_5","profile_6","profile_7","profile_8","profile_9","profile_10","profile_11"]
@@ -25,12 +25,27 @@ class UserModel {
             UserDefaults.standard.setValue(newValue, forKey: "userNickname")
         }
     }
+    var userJoinDate: String {
+        get{
+            return UserDefaults.standard.string(forKey: "joinDate") ?? "??"
+        }
+        set{
+            UserDefaults.standard.setValue(newValue, forKey: "joinDate")
+        }
+    }
     private init() {}
     
     // MARK: - 랜덤 프로필 가져와주는 함수
     func getRandomProfile(){
         let profile = self.profileList[Int.random(in: 0..<profileList.count)]
         self.beforProfile = profile
+    }
+    func setUserJoinDate() {
+        let date = Date()
+        let myFormatter = DateFormatter()
+        myFormatter.dateFormat = "yyyy.MM.dd 가입"
+        let dateString = myFormatter.string(from: date)
+        self.userJoinDate = dateString
     }
     
     

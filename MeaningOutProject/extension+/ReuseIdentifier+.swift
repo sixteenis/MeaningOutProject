@@ -6,6 +6,7 @@
 //
 
 import UIKit
+
 protocol ReuseIdentifierProtocol {
     static var id: String { get }
 }

@@ -10,8 +10,8 @@ import UIKit
 class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        tabBar.tintColor = .red
-        tabBar.unselectedItemTintColor = .gray
+        tabBar.tintColor = .mainOragieColor
+        tabBar.unselectedItemTintColor = .textFieldBackgroundColor
         
         let searchVC = SearchViewController()
         let nav1 = UINavigationController(rootViewController: searchVC)

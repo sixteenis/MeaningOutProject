@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SelcetButton: UIButton {
+final class SelcetButton: UIButton {
     init(title: String) {
         super.init(frame: .zero)
         setTitle(title, for: .normal)

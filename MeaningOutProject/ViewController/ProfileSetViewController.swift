@@ -139,6 +139,7 @@ class ProfileSetViewController: UIViewController {
         if self.textfilter == .ok && !nicknameTextField.text!.isEmpty {
             userModel.userProfile = userModel.beforProfile
             userModel.userNickname = nicknameTextField.text!
+            userModel.setUserJoinDate()
             nextView()
             return
         }else{
