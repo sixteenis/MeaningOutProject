@@ -14,6 +14,10 @@ class SearchTableViewCell: UITableViewCell {
     let searchTitle = UILabel()
     let delectButton = UIButton(type: .custom)
     
+    var didDelete: () -> ()  = { }
+    
+    let searchDataModel = SearchDataModel.shared
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setUpHierarch()
@@ -43,7 +47,7 @@ class SearchTableViewCell: UITableViewCell {
         searchTitle.snp.makeConstraints { make in
             make.centerY.equalTo(contentView.safeAreaLayoutGuide)
             make.leading.equalTo(recentImage.snp.trailing).offset(15)
-            make.trailing.equalTo(delectButton.snp.leading).offset(15)
+            make.trailing.equalTo(contentView.safeAreaLayoutGuide).inset(45)
         }
         delectButton.snp.makeConstraints { make in
             make.centerY.equalTo(contentView.safeAreaLayoutGuide)
@@ -59,11 +63,11 @@ class SearchTableViewCell: UITableViewCell {
         recentImage.tintColor = .textColor
         
         searchTitle.font = .systemFont(ofSize: 14)
+        searchTitle.numberOfLines = 1
         
         delectButton.setImage(.searchCellXmarkImage, for: .normal)
         delectButton.tintColor = .textColor
-        
-        
+        delectButton.addTarget(self, action: #selector(delectButtonTapped), for: .touchUpInside)
     }
     
     // MARK: - 동적인 세팅 부분
@@ -71,5 +75,10 @@ class SearchTableViewCell: UITableViewCell {
         searchTitle.text = data
         
     }
+    // MARK: - 버튼 기능 부분
+    @objc func delectButtonTapped() {
+        didDelete()
+    }
 
 }
+

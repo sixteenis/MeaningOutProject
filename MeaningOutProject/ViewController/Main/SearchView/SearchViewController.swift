@@ -25,6 +25,12 @@ class SearchViewController: UIViewController {
     
     let userModel = UserModel.shared
     let searchData = SearchDataModel.shared
+    lazy var searchlist = searchData.searchItem {
+        didSet {
+            print("1")
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpHierarch()
@@ -177,6 +183,14 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = searchTableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.id, for: indexPath) as! SearchTableViewCell
         let data = searchData.searchItem[indexPath.row]
         cell.setUpData(data: data)
+        cell.selectionStyle = .none
+        
+        cell.didDelete = { [weak self] in
+            guard let self = self else { return }
+            self.searchData.removeSearchItem(indexPath.row)
+            self.searchTableView.reloadData()
+            
+        }
         return cell
     }
     

@@ -22,6 +22,11 @@ final class SearchDataModel {
         befor.insert(item, at: 0)
         UserDefaults.standard.setValue(befor, forKey: "searchItem")
     }
-    
+    func removeSearchItem(_ itemIndex: Int) {
+        var befor = UserDefaults.standard.array(forKey: "searchItem") as? [String] ?? [String]()
+        //befor.append(item)
+        befor.remove(at: itemIndex)
+        UserDefaults.standard.setValue(befor, forKey: "searchItem")
+    }
     private init() {}
 }
