@@ -188,6 +188,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         cell.didDelete = { [weak self] in
             guard let self = self else { return }
             self.searchData.removeSearchItem(indexPath.row)
+            noDataChang()
             self.searchTableView.reloadData()
             
         }
