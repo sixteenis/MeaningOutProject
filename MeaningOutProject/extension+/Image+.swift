@@ -13,4 +13,6 @@ extension UIImage {
     
     static let searchCellClockImage = UIImage(systemName: "clock")
     static let searchCellXmarkImage = UIImage(systemName: "xmark")
+    
+    static let shoppingImage = UIImage(named: "like_selected")
 }

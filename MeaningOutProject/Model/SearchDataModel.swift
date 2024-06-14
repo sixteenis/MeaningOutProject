@@ -17,6 +17,12 @@ final class SearchDataModel {
             UserDefaults.standard.setValue(newValue, forKey: "searchItem")
         }
     }
+    var shoppingData: SearchDataModel?
+    
+
+    private init() {}
+    
+    
     func appendSearchItem(_ item: String) {
         var befor = UserDefaults.standard.array(forKey: "searchItem") as? [String] ?? [String]()
         if let index = befor.firstIndex(of: item) {
@@ -32,5 +38,4 @@ final class SearchDataModel {
         befor.remove(at: itemIndex)
         UserDefaults.standard.setValue(befor, forKey: "searchItem")
     }
-    private init() {}
 }

@@ -121,8 +121,8 @@
 			isa = PBXGroup;
 			children = (
 				064914972C1B5D8000B05833 /* SearchViewController.swift */,
-				0650C62E2C1CB02500BDC4D1 /* SearchResultViewController.swift */,
 				0650C6292C1C7C5800BDC4D1 /* SearchTableViewCell.swift */,
+				0650C62E2C1CB02500BDC4D1 /* SearchResultViewController.swift */,
 				0650C6342C1CB8E200BDC4D1 /* SearchResultCollectionViewCell.swift */,
 			);
 			path = SearchView;

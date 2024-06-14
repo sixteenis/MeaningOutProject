@@ -35,7 +35,12 @@ class SearchResultViewController: UIViewController {
     }
     
     let searchDataModel = SearchDataModel.shared
-    var filterData: NetWorkFilterEnum = .accuracy
+    var data: [Item] = []
+    var filterData: NetWorkFilterEnum = .accuracy {
+        willSet {
+            callRequset()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -164,7 +169,7 @@ class SearchResultViewController: UIViewController {
             .responseDecodable(of: ShoppingModel.self) {respons in
                 switch respons.result{
                 case .success(let value):
-                    print(#function)
+                    self.succesNetWork(value)
                     //isEnd = value.meta.is_end
 //                    print("SUCCESS")
 //                    if page == 1 || self.searchBar.text! != bookname{
@@ -183,6 +188,13 @@ class SearchResultViewController: UIViewController {
         
         
     }
+    func succesNetWork(_ result: ShoppingModel) {
+        guard let total = result.total, let items = result.items else { return }
+        allcountLabel.text = "\(total.formatted())개의 검색 결과"
+        data = items
+        collectionView.reloadData()
+    }
+    // MARK: - 버튼 부분
     @objc func nvBackButtonTapped() {
         navigationController?.popViewController(animated: true)
     }
@@ -195,17 +207,15 @@ class SearchResultViewController: UIViewController {
 extension SearchResultViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         print(#function)
-        return 10
+        print(data.count)
+        return data.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchResultCollectionViewCell.id, for: indexPath) as! SearchResultCollectionViewCell
-//        let data = userModel.profileList[indexPath.row]
-//        let selectBool = data == userModel.beforProfile
-//        cell.backgroundColor = .backgroundColor
-//        cell.setUpData(data, select: selectBool)
-        print(#function)
-        cell.backgroundColor = .red
+        let data = data[indexPath.row]
+        cell.backgroundColor = .backgroundColor
+        cell.setUpData(data)
         return cell
     }
 //    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
