@@ -90,7 +90,6 @@ extension SelectProfileViewController: UICollectionViewDelegate, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SelectProfileCollectionViewCell.id, for: indexPath) as! SelectProfileCollectionViewCell
         let data = userModel.profileList[indexPath.row]
         let selectBool = data == userModel.beforProfile

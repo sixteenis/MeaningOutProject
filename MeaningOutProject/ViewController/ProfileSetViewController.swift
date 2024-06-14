@@ -118,13 +118,12 @@ class ProfileSetViewController: UIViewController {
     @objc func nvBackButtonTapped() {
         navigationController?.popViewController(animated: true)
         reset()
-        
-        
     }
     @objc func profileImageTapped() {
         navigationController?.pushViewController(SelectProfileViewController(), animated: true)
     }
     @objc func okButtonTapped() {
+        print(userModel.beforProfile)
         checkTextFiled()
     }
     // MARK: - 다음뷰로 이동하는 부분

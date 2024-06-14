@@ -38,6 +38,9 @@ class SelcetProfileImageView: UIView{
             self.mainImageView.layer.borderWidth = 1
             self.alpha = 0.5
             
+        }else{
+            self.mainImageView.layer.borderWidth = 3
+            self.alpha = 1
         }
         self.mainImageView.image = UIImage(named: data)
     }
