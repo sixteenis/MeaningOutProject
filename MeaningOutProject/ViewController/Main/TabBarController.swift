@@ -9,6 +9,7 @@ import UIKit
 
 class TabBarController: UITabBarController {
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         tabBar.tintColor = .mainOragieColor
         tabBar.unselectedItemTintColor = .textFieldBackgroundColor
@@ -20,6 +21,8 @@ class TabBarController: UITabBarController {
         let settingVC = SettingViewController()
         let nav2 = UINavigationController(rootViewController: settingVC)
         nav2.tabBarItem = UITabBarItem(title: "설정", image: UIImage(systemName: "person"), tag: 1)
+    
+        
         
         setViewControllers([nav1,nav2], animated: true)
     }

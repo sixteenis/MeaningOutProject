@@ -9,6 +9,7 @@ import Foundation
 
 final class SearchDataModel {
     static let shared = SearchDataModel()
+    var nowItem = ""
     var searchItem: [String] {
         get{
             return UserDefaults.standard.array(forKey: "searchItem") as? [String] ?? [String]()

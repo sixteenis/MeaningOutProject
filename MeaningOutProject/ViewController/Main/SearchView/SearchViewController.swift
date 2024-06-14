@@ -10,6 +10,7 @@ import UIKit
 import SnapKit
 
 class SearchViewController: UIViewController {
+    // TODO: 네이게이션 밑에 라인 없애기
     let searchBar = UISearchBar()
     let line = UIView()
     
@@ -25,11 +26,6 @@ class SearchViewController: UIViewController {
     
     let userModel = UserModel.shared
     let searchData = SearchDataModel.shared
-    lazy var searchlist = searchData.searchItem {
-        didSet {
-            print("1")
-        }
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +43,7 @@ class SearchViewController: UIViewController {
     func setUpHierarch() {
         view.addSubview(searchBar)
         view.addSubview(line)
-        
+
         view.addSubview(recentLabel)
         view.addSubview(allRemoveButton)
         view.addSubview(searchTableView)
@@ -165,9 +161,11 @@ extension SearchViewController: UISearchBarDelegate {
         if !searchBar.text!.isEmpty && searchBar.text!.count > 1 {
             searchData.appendSearchItem(searchBar.text!)
             noDataChang()
+            searchData.nowItem = searchBar.text!
             searchTableView.reloadData()
             searchBar.text = nil
             view.endEditing(true)
+            navigationController?.pushViewController(SearchResultViewController(), animated: true)
         }
         
     }

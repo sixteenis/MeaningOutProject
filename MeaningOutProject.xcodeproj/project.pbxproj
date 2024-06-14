@@ -23,6 +23,11 @@
 		0650C6232C1C6BA400BDC4D1 /* Placeholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0650C6222C1C6BA400BDC4D1 /* Placeholder.swift */; };
 		0650C6252C1C720700BDC4D1 /* SearchDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0650C6242C1C720700BDC4D1 /* SearchDataModel.swift */; };
 		0650C62A2C1C7C5800BDC4D1 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0650C6292C1C7C5800BDC4D1 /* SearchTableViewCell.swift */; };
+		0650C62C2C1CAED800BDC4D1 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0650C62B2C1CAED800BDC4D1 /* APIKey.swift */; };
+		0650C62F2C1CB02500BDC4D1 /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0650C62E2C1CB02500BDC4D1 /* SearchResultViewController.swift */; };
+		0650C6312C1CB0FC00BDC4D1 /* NetWorkFilterEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0650C6302C1CB0FC00BDC4D1 /* NetWorkFilterEnum.swift */; };
+		0650C6332C1CB28A00BDC4D1 /* ShoppingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0650C6322C1CB28A00BDC4D1 /* ShoppingModel.swift */; };
+		0650C6352C1CB8E200BDC4D1 /* SearchResultCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0650C6342C1CB8E200BDC4D1 /* SearchResultCollectionViewCell.swift */; };
 		06F530932C1B085300487212 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F530922C1B085300487212 /* AppDelegate.swift */; };
 		06F530952C1B085300487212 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F530942C1B085300487212 /* SceneDelegate.swift */; };
 		06F5309C2C1B085500487212 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06F5309B2C1B085500487212 /* Assets.xcassets */; };
@@ -53,6 +58,11 @@
 		0650C6222C1C6BA400BDC4D1 /* Placeholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Placeholder.swift; sourceTree = "<group>"; };
 		0650C6242C1C720700BDC4D1 /* SearchDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDataModel.swift; sourceTree = "<group>"; };
 		0650C6292C1C7C5800BDC4D1 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
+		0650C62B2C1CAED800BDC4D1 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
+		0650C62E2C1CB02500BDC4D1 /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
+		0650C6302C1CB0FC00BDC4D1 /* NetWorkFilterEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetWorkFilterEnum.swift; sourceTree = "<group>"; };
+		0650C6322C1CB28A00BDC4D1 /* ShoppingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingModel.swift; sourceTree = "<group>"; };
+		0650C6342C1CB8E200BDC4D1 /* SearchResultCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCollectionViewCell.swift; sourceTree = "<group>"; };
 		06F5308F2C1B085300487212 /* MeaningOutProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeaningOutProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06F530922C1B085300487212 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		06F530942C1B085300487212 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -93,6 +103,7 @@
 			children = (
 				064914932C1B508400B05833 /* NickNameFilter.swift */,
 				0650C6222C1C6BA400BDC4D1 /* Placeholder.swift */,
+				0650C6302C1CB0FC00BDC4D1 /* NetWorkFilterEnum.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -110,7 +121,9 @@
 			isa = PBXGroup;
 			children = (
 				064914972C1B5D8000B05833 /* SearchViewController.swift */,
+				0650C62E2C1CB02500BDC4D1 /* SearchResultViewController.swift */,
 				0650C6292C1C7C5800BDC4D1 /* SearchTableViewCell.swift */,
+				0650C6342C1CB8E200BDC4D1 /* SearchResultCollectionViewCell.swift */,
 			);
 			path = SearchView;
 			sourceTree = "<group>";
@@ -118,6 +131,7 @@
 		0650C6272C1C7C1F00BDC4D1 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				0649149E2C1C235300B05833 /* TabBarController.swift */,
 				0650C6262C1C7C0300BDC4D1 /* SearchView */,
 				0650C6282C1C7C2D00BDC4D1 /* SettingView */,
 			);
@@ -130,6 +144,14 @@
 				064914A02C1C23A200B05833 /* SettingViewController.swift */,
 			);
 			path = SettingView;
+			sourceTree = "<group>";
+		};
+		0650C62D2C1CAEF500BDC4D1 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				0650C62B2C1CAED800BDC4D1 /* APIKey.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 		06F530862C1B085300487212 = {
@@ -154,6 +176,7 @@
 			children = (
 				06F530922C1B085300487212 /* AppDelegate.swift */,
 				06F530942C1B085300487212 /* SceneDelegate.swift */,
+				0650C62D2C1CAEF500BDC4D1 /* Service */,
 				0649148E2C1B309600B05833 /* Enum */,
 				064914812C1B187D00B05833 /* CustomView */,
 				06F530AC2C1B0FA000487212 /* extension+ */,
@@ -170,7 +193,6 @@
 			isa = PBXGroup;
 			children = (
 				0650C6272C1C7C1F00BDC4D1 /* Main */,
-				0649149E2C1C235300B05833 /* TabBarController.swift */,
 				06F530A92C1B0F8300487212 /* OnboardingViewController.swift */,
 				064914862C1B27D300B05833 /* ProfileSetViewController.swift */,
 				0649149B2C1B6E7800B05833 /* SelectProfile */,
@@ -183,6 +205,7 @@
 			children = (
 				064914912C1B33DC00B05833 /* UserModel.swift */,
 				0650C6242C1C720700BDC4D1 /* SearchDataModel.swift */,
+				0650C6322C1CB28A00BDC4D1 /* ShoppingModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -282,12 +305,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				06F530932C1B085300487212 /* AppDelegate.swift in Sources */,
+				0650C62C2C1CAED800BDC4D1 /* APIKey.swift in Sources */,
 				0649149F2C1C235300B05833 /* TabBarController.swift in Sources */,
 				064914982C1B5D8000B05833 /* SearchViewController.swift in Sources */,
 				064914872C1B27D300B05833 /* ProfileSetViewController.swift in Sources */,
 				064914942C1B508400B05833 /* NickNameFilter.swift in Sources */,
 				064914A12C1C23A200B05833 /* SettingViewController.swift in Sources */,
+				0650C6332C1CB28A00BDC4D1 /* ShoppingModel.swift in Sources */,
 				064914852C1B1D8500B05833 /* SelcetButton.swift in Sources */,
+				0650C62F2C1CB02500BDC4D1 /* SearchResultViewController.swift in Sources */,
+				0650C6312C1CB0FC00BDC4D1 /* NetWorkFilterEnum.swift in Sources */,
 				064914892C1B282200B05833 /* ReuseIdentifier+.swift in Sources */,
 				064914832C1B18F700B05833 /* Color+.swift in Sources */,
 				0650C62A2C1C7C5800BDC4D1 /* SearchTableViewCell.swift in Sources */,
@@ -301,6 +328,7 @@
 				0650C6252C1C720700BDC4D1 /* SearchDataModel.swift in Sources */,
 				06F530952C1B085300487212 /* SceneDelegate.swift in Sources */,
 				0650C6232C1C6BA400BDC4D1 /* Placeholder.swift in Sources */,
+				0650C6352C1CB8E200BDC4D1 /* SearchResultCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
