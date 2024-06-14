@@ -45,6 +45,8 @@ class SelectProfileCollectionViewCell: UICollectionViewCell {
     
     // MARK: - 동적인 세팅 부분
     func setUpData(_ data: String, select: Bool) {
+        print(#function)
+        print(select)
         profileImage.selectedProfile(data, select: select)
 
     }

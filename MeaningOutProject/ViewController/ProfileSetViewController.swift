@@ -29,6 +29,10 @@ class ProfileSetViewController: UIViewController {
         setUpUI()
         setUpChangeUI()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        profileImage.changeImage(userModel.beforProfile) 
+    }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         profileImage.layer.cornerRadius = profileImage.frame.width / 2

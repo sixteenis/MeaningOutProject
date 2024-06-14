@@ -99,13 +99,9 @@ extension SelectProfileViewController: UICollectionViewDelegate, UICollectionVie
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(#function)
-        print(indexPath.row)
         userModel.beforProfile = userModel.profileList[indexPath.row]
         self.profileImage.changeImage(userModel.beforProfile)
         collectionView.reloadData()
-        print(userModel.beforProfile)
-        //print(profileImage)
         
     }
     
