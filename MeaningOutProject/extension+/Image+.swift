@@ -9,4 +9,5 @@ import UIKit
 
 extension UIImage {
     static let splashImage = UIImage(named: "launch")
+    static let noDataImage = UIImage(named: "empty")
 }

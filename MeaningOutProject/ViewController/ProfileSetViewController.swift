@@ -90,7 +90,7 @@ class ProfileSetViewController: UIViewController {
         navigationItem.leftBarButtonItem = backButton
         navigationItem.title = "PROFILE SETTING"
         
-        nicknameTextField.placeholder = "닉네임을 입력해주세요 :)"
+        nicknameTextField.placeholder = PlaceholderEnum.nickName
         nicknameTextField.textColor = .textColor
         nicknameTextField.contentMode = .left
         
@@ -123,21 +123,16 @@ class ProfileSetViewController: UIViewController {
         navigationController?.pushViewController(SelectProfileViewController(), animated: true)
     }
     @objc func okButtonTapped() {
-        print(userModel.beforProfile)
         checkTextFiled()
     }
     // MARK: - 다음뷰로 이동하는 부분
     func nextView() {
-        let vc = MainViewController()
-        let nav = UINavigationController(rootViewController: vc)
-        nav.modalPresentationStyle = .fullScreen
-        present(nav, animated: false)
         let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
         let sceneDelegate = windowScene?.delegate as? SceneDelegate
         
-        let navigationController = UINavigationController(rootViewController: MainViewController())
+        //let navigationController = UINavigationController(rootViewController: TabBarController())
         
-        sceneDelegate?.window?.rootViewController = navigationController
+        sceneDelegate?.window?.rootViewController = TabBarController()
         sceneDelegate?.window?.makeKeyAndVisible()
     }
     func checkTextFiled(){
