@@ -22,6 +22,10 @@ class SearchResultViewController: UIViewController {
     let priceUpButton = UIButton()
     let priceDownButton = UIButton()
     
+    let noDataView = UIView()
+    let noDataImage = UIImageView()
+    let noDataLabel = UILabel()
+    
     private let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout())
     static func collectionViewLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewFlowLayout()
@@ -61,6 +65,10 @@ class SearchResultViewController: UIViewController {
         super.viewWillLayoutSubviews()
         setUpFilterButton()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        noDataView.isHidden = true
+    }
     
     // MARK: - connect 부분
     func setUpHierarch() {
@@ -74,6 +82,9 @@ class SearchResultViewController: UIViewController {
         
         view.addSubview(collectionView)
         
+        view.addSubview(noDataView)
+        noDataView.addSubview(noDataImage)
+        noDataView.addSubview(noDataLabel)
     }
     
     // MARK: - Layout 부분
@@ -111,6 +122,23 @@ class SearchResultViewController: UIViewController {
             make.horizontalEdges.bottom.equalTo(view.safeAreaLayoutGuide)
             make.top.equalTo(priceDownButton.snp.bottom).offset(10)
             
+        }
+        
+        noDataView.snp.makeConstraints { make in
+            make.top.equalTo(line.snp.bottom)
+            make.horizontalEdges.bottom.equalTo(view.safeAreaLayoutGuide)
+        }
+        
+        noDataImage.snp.makeConstraints { make in
+            make.centerX.equalTo(noDataView.safeAreaLayoutGuide)
+            make.centerY.equalTo(noDataView.safeAreaLayoutGuide)
+            make.width.equalTo(view.snp.width).multipliedBy(0.75)
+            make.height.equalTo(noDataImage.snp.width).multipliedBy(0.8)
+            
+        }
+        noDataLabel.snp.makeConstraints { make in
+            make.centerX.equalTo(view.safeAreaLayoutGuide)
+            make.top.equalTo(noDataImage.snp.bottom).offset(10)
         }
     }
     
@@ -161,6 +189,13 @@ class SearchResultViewController: UIViewController {
         priceDownButton.layer.borderColor = UIColor.textFieldBackgroundColor.cgColor
         priceDownButton.tag = 3
         priceDownButton.addTarget(self, action: #selector(filterButtonTapped), for: .touchUpInside)
+        
+        noDataView.backgroundColor = .backgroundColor
+        
+        noDataImage.image = .noDataImage
+        
+        noDataLabel.text = "\(searchDataModel.nowItem)의 대한 정보가 없습니다!"
+        noDataLabel.font = .systemFont(ofSize: 15, weight: .heavy)
     }
     // MARK: - collection 세팅 부분
     func setUpcollection() {
@@ -208,6 +243,11 @@ class SearchResultViewController: UIViewController {
             data = items
         }else{
             data.append(contentsOf: items)
+        }
+        if data.isEmpty {
+            noDataView.isHidden = false
+        }else{
+            noDataView.isHidden = true
         }
         
         collectionView.reloadData()
