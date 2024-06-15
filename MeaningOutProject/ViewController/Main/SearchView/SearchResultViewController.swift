@@ -9,10 +9,7 @@ import UIKit
 
 import Alamofire
 import SnapKit
-//case accuracy = "sim"
-//case date = "date"
-//case priceUp = "asc"
-//case priceDown = "dsc"
+
 class SearchResultViewController: UIViewController {
     let line = UIView()
     let allcountLabel = UILabel()
@@ -194,7 +191,6 @@ class SearchResultViewController: UIViewController {
         
         noDataImage.image = .noDataImage
         
-        noDataLabel.text = "\(searchDataModel.nowItem)의 대한 정보가 없습니다!"
         noDataLabel.font = .systemFont(ofSize: 15, weight: .heavy)
     }
     // MARK: - collection 세팅 부분
@@ -225,10 +221,12 @@ class SearchResultViewController: UIViewController {
                 switch respons.result{
                 case .success(let value):
                     self.succesNetWork(value)
-                    //isEnd = value.meta.is_end
                     
-                case .failure(let error):
-                    print(error)
+                    
+                case .failure(_):
+                    self.noDataView.isHidden = false
+                    self.noDataLabel.text = "네트워크 오류가 발생했습니다!"
+                    
                 }
             }
         
@@ -245,7 +243,8 @@ class SearchResultViewController: UIViewController {
             data.append(contentsOf: items)
         }
         if data.isEmpty {
-            noDataView.isHidden = false
+            self.noDataView.isHidden = false
+            self.noDataLabel.text = "\(searchDataModel.nowItem)의 대한 정보가 없습니다!"
         }else{
             noDataView.isHidden = true
         }
@@ -309,11 +308,23 @@ extension SearchResultViewController: UICollectionViewDelegate, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchResultCollectionViewCell.id, for: indexPath) as! SearchResultCollectionViewCell
-        let data = data[indexPath.row]
+        let data = data[indexPath.item]
         cell.backgroundColor = .backgroundColor
         cell.setUpData(data)
+        
+        cell.likeTapped = {[weak self] in
+            guard let self = self else { return }
+            searchDataModel.LikeListFunc(data.productId)
+            collectionView.reloadItems(at: [indexPath])
+            print(searchDataModel.likeList)
+            //collectionView.reloadData()
+            
+        }
+        
+        
         return cell
     }
+
     
 }
 extension SearchResultViewController: UICollectionViewDataSourcePrefetching {

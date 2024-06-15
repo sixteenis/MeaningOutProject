@@ -19,6 +19,13 @@ final class SearchDataModel {
             UserDefaults.standard.setValue(newValue, forKey: "searchItem")
         }
     }
+    var likeList: [String] {
+        get{
+            return UserDefaults.standard.array(forKey: "like") as? [String] ?? [String]()
+        }set{
+            UserDefaults.standard.setValue(newValue, forKey: "like")
+        }
+    }
     var shoppingData: SearchDataModel?
     
 
@@ -40,4 +47,19 @@ final class SearchDataModel {
         befor.remove(at: itemIndex)
         UserDefaults.standard.setValue(befor, forKey: "searchItem")
     }
+    func LikeListFunc(_ item: String){
+        var befor = UserDefaults.standard.array(forKey: "like") as? [String] ?? [String]()
+        if let index = befor.firstIndex(of: item) { // 원래 좋아요 눌러있던 값일 경우
+            befor.remove(at: index)
+            UserDefaults.standard.setValue(befor, forKey: "like")
+            return
+        }else{ // 좋아요가 안눌러저 있던 것 
+            befor.append(item)
+            UserDefaults.standard.setValue(befor, forKey: "like")
+            return
+        }
+        
+        
+    }
+    
 }

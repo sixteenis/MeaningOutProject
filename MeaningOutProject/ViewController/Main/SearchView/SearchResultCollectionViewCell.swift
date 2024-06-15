@@ -17,6 +17,9 @@ class SearchResultCollectionViewCell: UICollectionViewCell {
     let titleLabel = UILabel()
     let lpriceLabel = UILabel()
     
+    var likeTapped: () -> () = {}
+    
+    let searchDataModel = SearchDataModel.shared
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUpHierarch()
@@ -29,7 +32,7 @@ class SearchResultCollectionViewCell: UICollectionViewCell {
     // MARK: - connect 부분
     func setUpHierarch() {
         contentView.addSubview(image)
-        image.addSubview(likeButton)
+        contentView.addSubview(likeButton)
         contentView.addSubview(mallNameLabel)
         contentView.addSubview(titleLabel)
         contentView.addSubview(lpriceLabel)
@@ -72,7 +75,9 @@ class SearchResultCollectionViewCell: UICollectionViewCell {
         image.clipsToBounds = true
 //        image.layer.cornerRadius = 10
         
-        likeButton.setImage(.shoppingImage, for: .normal)
+        //likeButton.setImage(.shoppingImage, for: .normal)
+        likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
+        likeButton.layer.cornerRadius = 10
         
         mallNameLabel.font = .systemFont(ofSize: 13)
         mallNameLabel.textColor = .textFieldBackgroundColor
@@ -100,8 +105,22 @@ class SearchResultCollectionViewCell: UICollectionViewCell {
         titleLabel.text = data.title
         
         lpriceLabel.text = "\(data.lprice)원"
-
+        if searchDataModel.likeList.contains(data.productId){
+            likeButton.setImage(.shoppingImage, for: .normal)
+            likeButton.backgroundColor = .backgroundColor
+            likeButton.layer.opacity = 1
+            
+        }else{
+            likeButton.setImage(.unshoppingImage, for: .normal)
+            likeButton.backgroundColor = .settingSeperatorColor
+            likeButton.layer.opacity = 0.7
+            
+            
+        }
     }
     // TODO: 쇼핑이미지 클릭시 색 변경 및 어쩌구
+    @objc func likeButtonTapped() {
+        likeTapped()
+    }
 }
 

@@ -15,4 +15,5 @@ extension UIImage {
     static let searchCellXmarkImage = UIImage(systemName: "xmark")
     
     static let shoppingImage = UIImage(named: "like_selected")
+    static let unshoppingImage = UIImage(named: "like_unselected")
 }
