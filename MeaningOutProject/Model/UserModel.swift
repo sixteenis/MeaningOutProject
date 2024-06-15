@@ -47,6 +47,10 @@ final class UserModel {
         let dateString = myFormatter.string(from: date)
         self.userJoinDate = dateString
     }
-    
+    func reset() {
+        UserDefaults.standard.setValue(nil, forKey: "userProfile")
+        UserDefaults.standard.setValue(nil, forKey: "userNickname")
+        UserDefaults.standard.setValue(nil, forKey: "joinDate")
+    }
     
 }

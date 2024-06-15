@@ -16,4 +16,6 @@ extension UIImage {
     
     static let shoppingImage = UIImage(named: "like_selected")
     static let unshoppingImage = UIImage(named: "like_unselected")
+    
+    static let nextSymbol = UIImage(systemName: "chevron.right")
 }

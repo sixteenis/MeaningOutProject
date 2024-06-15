@@ -7,8 +7,9 @@
 
 import UIKit
 
-class TabBarController: UITabBarController {
+class TabBarController: UITabBarController, UITabBarControllerDelegate {
     override func viewDidLoad() {
+        self.delegate = self
         
         super.viewDidLoad()
         tabBar.tintColor = .mainOragieColor
@@ -23,7 +24,13 @@ class TabBarController: UITabBarController {
         nav2.tabBarItem = UITabBarItem(title: "설정", image: UIImage(systemName: "person"), tag: 1)
     
         
-        
         setViewControllers([nav1,nav2], animated: true)
+    }
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        if let nav = viewController as? UINavigationController{
+            if nav.topViewController is SettingViewController {
+                viewController.viewWillAppear(true)
+            }
+        }
     }
 }

@@ -43,7 +43,6 @@ final class SearchDataModel {
     }
     func removeSearchItem(_ itemIndex: Int) {
         var befor = UserDefaults.standard.array(forKey: "searchItem") as? [String] ?? [String]()
-        //befor.append(item)
         befor.remove(at: itemIndex)
         UserDefaults.standard.setValue(befor, forKey: "searchItem")
     }
@@ -61,6 +60,10 @@ final class SearchDataModel {
         }
         
         
+    }
+    func reset() {
+        UserDefaults.standard.setValue(nil, forKey: "searchItem")
+        UserDefaults.standard.setValue(nil, forKey: "like")
     }
     
 }
