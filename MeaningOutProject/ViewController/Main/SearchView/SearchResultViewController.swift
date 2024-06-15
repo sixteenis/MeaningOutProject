@@ -41,9 +41,13 @@ class SearchResultViewController: UIViewController {
             setUpFilterButton()
         }
         willSet {
+            page = 1
+            self.collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
             callRequset()
         }
     }
+    var page = 1
+    var isEnd = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -162,6 +166,7 @@ class SearchResultViewController: UIViewController {
     func setUpcollection() {
         collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView.prefetchDataSource = self
         collectionView.register(SearchResultCollectionViewCell.self, forCellWithReuseIdentifier: SearchResultCollectionViewCell.id)
         collectionView.backgroundColor = .backgroundColor
     }
@@ -176,26 +181,16 @@ class SearchResultViewController: UIViewController {
         let param: Parameters = [
             "query": searchDataModel.nowItem,
             "sort": filterData.rawValue,
-            "display": 30,
-            "start": 1,
+            "display": searchDataModel.display,
+            "start": page,
         ]
         
         AF.request(url,method: .get,parameters: param, headers: header)
             .responseDecodable(of: ShoppingModel.self) {respons in
                 switch respons.result{
                 case .success(let value):
-                    print(self.filterData.rawValue)
                     self.succesNetWork(value)
                     //isEnd = value.meta.is_end
-//                    print("SUCCESS")
-//                    if page == 1 || self.searchBar.text! != bookname{
-//                        self.list = value.documents
-//                        
-//                        
-//                    }else{
-//                        self.list.append(contentsOf: value.documents)
-//                    }
-//                    self.tableView.reloadData()
                     
                 case .failure(let error):
                     print(error)
@@ -207,7 +202,14 @@ class SearchResultViewController: UIViewController {
     func succesNetWork(_ result: ShoppingModel) {
         guard let total = result.total, let items = result.items else { return }
         allcountLabel.text = "\(total.formatted())개의 검색 결과"
-        data = items
+        isEnd = total
+        print(page)
+        if page == 1{
+            data = items
+        }else{
+            data.append(contentsOf: items)
+        }
+        
         collectionView.reloadData()
     }
     // MARK: - 필터 버튼 뷰 세팅하는 함수
@@ -272,14 +274,18 @@ extension SearchResultViewController: UICollectionViewDelegate, UICollectionView
         cell.setUpData(data)
         return cell
     }
-    // TODO: 그 머냐 30개 이후 로딩 어쩌구 구현하기
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        userModel.beforProfile = userModel.profileList[indexPath.row]
-//        self.profileImage.changeImage(userModel.beforProfile)
-//        collectionView.reloadData()
-//        
-//    }
     
-    
+}
+extension SearchResultViewController: UICollectionViewDataSourcePrefetching {
+    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+        for item in indexPaths {
+            if data.count - 4 == item.row && page + searchDataModel.display < isEnd {
+                page += searchDataModel.display
+                callRequset()
+            }
+        }
+    }
+    func collectionView(_ collectionView: UICollectionView, cancelPrefetchingForItemsAt indexPaths: [IndexPath]) {
+    }
     
 }

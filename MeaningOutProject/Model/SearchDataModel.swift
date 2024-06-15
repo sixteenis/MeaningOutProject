@@ -10,6 +10,7 @@ import Foundation
 final class SearchDataModel {
     // TODO: 쇼핑(라이크) 카운팅 해주기
     static let shared = SearchDataModel()
+    let display = 30
     var nowItem = ""
     var searchItem: [String] {
         get{
