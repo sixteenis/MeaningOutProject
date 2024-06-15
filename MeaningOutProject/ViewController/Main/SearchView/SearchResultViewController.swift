@@ -37,6 +37,9 @@ class SearchResultViewController: UIViewController {
     let searchDataModel = SearchDataModel.shared
     var data: [Item] = []
     var filterData: NetWorkFilterEnum = .accuracy {
+        didSet {
+            setUpFilterButton()
+        }
         willSet {
             callRequset()
         }
@@ -49,6 +52,10 @@ class SearchResultViewController: UIViewController {
         setUpUI()
         setUpcollection()
         callRequset()
+    }
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        setUpFilterButton()
     }
     
     // MARK: - connect 부분
@@ -121,27 +128,35 @@ class SearchResultViewController: UIViewController {
         accuracyButton.setTitle("정확도", for: .normal)
         accuracyButton.titleLabel?.font = .systemFont(ofSize: 14)
         accuracyButton.layer.cornerRadius = 15
-        accuracyButton.tintColor = .black
-        accuracyButton.backgroundColor = .red
+        accuracyButton.layer.borderWidth = 1
+        accuracyButton.layer.borderColor = UIColor.textFieldBackgroundColor.cgColor
+        accuracyButton.tag = 0
+        accuracyButton.addTarget(self, action: #selector(filterButtonTapped), for: .touchUpInside)
         
         dateButton.setTitle("날짜순", for: .normal)
         dateButton.titleLabel?.font = .systemFont(ofSize: 14)
         dateButton.layer.cornerRadius = 15
-        dateButton.tintColor = .black
-        dateButton.backgroundColor = .red
+        dateButton.layer.borderWidth = 1
+        dateButton.layer.borderColor = UIColor.textFieldBackgroundColor.cgColor
+        dateButton.tag = 1
+        dateButton.addTarget(self, action: #selector(filterButtonTapped), for: .touchUpInside)
         
         priceUpButton.setTitle("가격높은순", for: .normal)
         priceUpButton.titleLabel?.font = .systemFont(ofSize: 14)
         priceUpButton.layer.cornerRadius = 15
-        priceUpButton.tintColor = .black
-        priceUpButton.backgroundColor = .red
+        priceUpButton.layer.borderWidth = 1
+        priceUpButton.layer.borderColor = UIColor.textFieldBackgroundColor.cgColor
+        priceUpButton.tag = 2
+        priceUpButton.addTarget(self, action: #selector(filterButtonTapped), for: .touchUpInside)
         
         priceDownButton.setTitle("가격낮은순", for: .normal)
+        priceDownButton.titleLabel?.textColor = .black
         priceDownButton.titleLabel?.font = .systemFont(ofSize: 14)
         priceDownButton.layer.cornerRadius = 15
-        priceDownButton.tintColor = .black
-        priceDownButton.backgroundColor = .red
-        
+        priceDownButton.layer.borderWidth = 1
+        priceDownButton.layer.borderColor = UIColor.textFieldBackgroundColor.cgColor
+        priceDownButton.tag = 3
+        priceDownButton.addTarget(self, action: #selector(filterButtonTapped), for: .touchUpInside)
     }
     // MARK: - collection 세팅 부분
     func setUpcollection() {
@@ -169,6 +184,7 @@ class SearchResultViewController: UIViewController {
             .responseDecodable(of: ShoppingModel.self) {respons in
                 switch respons.result{
                 case .success(let value):
+                    print(self.filterData.rawValue)
                     self.succesNetWork(value)
                     //isEnd = value.meta.is_end
 //                    print("SUCCESS")
@@ -194,9 +210,49 @@ class SearchResultViewController: UIViewController {
         data = items
         collectionView.reloadData()
     }
+    // MARK: - 필터 버튼 뷰 세팅하는 함수
+    func setUpFilterButton() {
+        accuracyButton.titleLabel?.textColor = .textColor
+        accuracyButton.backgroundColor = .backgroundColor
+        dateButton.titleLabel?.textColor = .textColor
+        dateButton.backgroundColor = .backgroundColor
+        priceUpButton.titleLabel?.textColor = .textColor
+        priceUpButton.backgroundColor = .backgroundColor
+        priceDownButton.titleLabel?.textColor = .textColor
+        priceDownButton.backgroundColor = .backgroundColor
+        switch filterData {
+        case .accuracy:
+            accuracyButton.titleLabel?.textColor = .backgroundColor
+            accuracyButton.backgroundColor = .buttonSelectColor
+        case .date:
+            dateButton.titleLabel?.textColor = .backgroundColor
+            dateButton.backgroundColor = .buttonSelectColor
+        case .priceUp:
+            priceUpButton.titleLabel?.textColor = .backgroundColor
+            priceUpButton.backgroundColor = .buttonSelectColor
+        case .priceDown:
+            priceDownButton.titleLabel?.textColor = .backgroundColor
+            priceDownButton.backgroundColor = .buttonSelectColor
+        }
+    }
     // MARK: - 버튼 부분
     @objc func nvBackButtonTapped() {
         navigationController?.popViewController(animated: true)
+    }
+    @objc func filterButtonTapped(_ sender: UIButton) {
+        // TODO: 이미 선택된 필터일 경우 통신을 막아야되나? 안막아도 되나? 고민해보자
+        switch sender.tag {
+        case 0:
+            filterData = .accuracy
+        case 1:
+            filterData = .date
+        case 2:
+            filterData = .priceUp
+        case 3:
+            filterData = .priceDown
+        default:
+            filterData = .accuracy
+        }
     }
     
 
@@ -206,8 +262,6 @@ class SearchResultViewController: UIViewController {
 
 extension SearchResultViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(#function)
-        print(data.count)
         return data.count
     }
     
@@ -218,6 +272,7 @@ extension SearchResultViewController: UICollectionViewDelegate, UICollectionView
         cell.setUpData(data)
         return cell
     }
+    // TODO: 그 머냐 30개 이후 로딩 어쩌구 구현하기
 //    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 //        userModel.beforProfile = userModel.profileList[indexPath.row]
 //        self.profileImage.changeImage(userModel.beforProfile)

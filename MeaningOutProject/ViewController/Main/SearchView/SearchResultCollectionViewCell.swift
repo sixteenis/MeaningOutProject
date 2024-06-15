@@ -102,6 +102,6 @@ class SearchResultCollectionViewCell: UICollectionViewCell {
         lpriceLabel.text = "\(data.lprice)원"
 
     }
-    
+    // TODO: 쇼핑이미지 클릭시 색 변경 및 어쩌구
 }
 
