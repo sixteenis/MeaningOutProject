@@ -65,6 +65,7 @@ class SearchResultViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         noDataView.isHidden = true
+        collectionView.reloadData()
     }
     
     // MARK: - connect 부분
@@ -316,13 +317,20 @@ extension SearchResultViewController: UICollectionViewDelegate, UICollectionView
             guard let self = self else { return }
             searchDataModel.LikeListFunc(data.productId)
             collectionView.reloadItems(at: [indexPath])
-            print(searchDataModel.likeList)
-            //collectionView.reloadData()
-            
         }
         
         
         return cell
+    }
+    // MARK: - 네트워크 컨트롤러 이동하는 부분
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let vc = NetworkViewController()
+        vc.shoppingTitle = data[indexPath.item].title
+        vc.url = data[indexPath.item].link
+        vc.id = data[indexPath.item].productId
+        navigationController?.pushViewController(vc, animated: true)
+        
     }
 
     

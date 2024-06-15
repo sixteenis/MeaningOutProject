@@ -42,6 +42,7 @@ class SearchResultCollectionViewCell: UICollectionViewCell {
         super.layoutSublayers(of: layer)
         image.layer.cornerRadius = 10
     }
+    
     // MARK: - Layout 부분
     func setUpLayout() {
         image.snp.makeConstraints { make in
@@ -104,7 +105,7 @@ class SearchResultCollectionViewCell: UICollectionViewCell {
         
         titleLabel.text = data.title
         
-        lpriceLabel.text = "\(data.lprice)원"
+        lpriceLabel.text = "\(Int(data.lprice)!.formatted())원"
         if searchDataModel.likeList.contains(data.productId){
             likeButton.setImage(.shoppingImage, for: .normal)
             likeButton.backgroundColor = .backgroundColor

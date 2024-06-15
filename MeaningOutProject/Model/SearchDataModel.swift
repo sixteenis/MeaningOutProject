@@ -47,6 +47,7 @@ final class SearchDataModel {
         befor.remove(at: itemIndex)
         UserDefaults.standard.setValue(befor, forKey: "searchItem")
     }
+    
     func LikeListFunc(_ item: String){
         var befor = UserDefaults.standard.array(forKey: "like") as? [String] ?? [String]()
         if let index = befor.firstIndex(of: item) { // 원래 좋아요 눌러있던 값일 경우
