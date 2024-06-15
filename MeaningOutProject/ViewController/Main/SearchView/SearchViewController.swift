@@ -37,7 +37,9 @@ class SearchViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        searchBar.text = nil
         noDataChang()
+        searchTableView.reloadData()
     }
     // MARK: - connect 부분
     func setUpHierarch() {
@@ -160,10 +162,7 @@ extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if !searchBar.text!.isEmpty && searchBar.text!.count > 1 {
             searchData.appendSearchItem(searchBar.text!)
-            noDataChang()
             searchData.nowItem = searchBar.text!
-            searchTableView.reloadData()
-            searchBar.text = nil
             view.endEditing(true)
             navigationController?.pushViewController(SearchResultViewController(), animated: true)
         }
@@ -192,6 +191,11 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         }
         return cell
     }
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let data = searchData.searchItem[indexPath.row]
+        searchData.nowItem = data
+        searchData.appendSearchItem(data)
+        navigationController?.pushViewController(SearchResultViewController(), animated: true)
+    }
     
 }
