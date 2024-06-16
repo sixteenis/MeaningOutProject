@@ -183,6 +183,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = searchTableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.id, for: indexPath) as! SearchTableViewCell
         let data = searchData.searchItem[indexPath.row]
+        print(#function)
         cell.setUpData(data: data)
         cell.selectionStyle = .none
         
@@ -195,6 +196,12 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         }
         return cell
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+           let data = searchData.searchItem[indexPath.row]
+           searchData.nowItem = data
+           searchData.appendSearchItem(data)
+           navigationController?.pushViewController(SearchResultViewController(), animated: true)
+       }
     
     
 }
