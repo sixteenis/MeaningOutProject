@@ -143,7 +143,13 @@ class ProfileSetViewController: UIViewController {
         checkTextFiled()
     }
     @objc func saveButtonTapped() {
-        checkTextFiled()
+        if nicknameTextField.text == "" {
+            userModel.userProfile = userModel.beforProfile
+            navigationController?.popViewController(animated: true)
+        }else{
+            checkTextFiled()
+        }
+        
     }
     // MARK: - 다음뷰로 이동하는 부분
     func nextView() {
