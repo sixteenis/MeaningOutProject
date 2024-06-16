@@ -37,13 +37,11 @@ class SearchViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationItem.title = "\(userModel.userNickname)'s MEANING OUT"
-        searchBar.text = nil
         noDataChang()
-        searchTableView.reloadData()
     }
     // MARK: - connect 부분
     func setUpHierarch() {
+        
         view.addSubview(searchBar)
         view.addSubview(line)
 
@@ -108,9 +106,11 @@ class SearchViewController: UIViewController {
         view.backgroundColor = .backgroundColor
         
         searchBar.placeholder = PlaceholderEnum.searchBar
+        searchBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
         
         navigationItem.title = "\(userModel.userNickname)'s MEANING OUT"
         
+        line.backgroundColor = .placeholderText
         recentLabel.text = "최근 검색"
         recentLabel.font = .systemFont(ofSize: 14, weight: .heavy)
         
@@ -163,7 +163,10 @@ extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if !searchBar.text!.isEmpty && searchBar.text!.count > 1 {
             searchData.appendSearchItem(searchBar.text!)
+            noDataChang()
             searchData.nowItem = searchBar.text!
+            searchTableView.reloadData()
+            searchBar.text = nil
             view.endEditing(true)
             navigationController?.pushViewController(SearchResultViewController(), animated: true)
         }
@@ -192,11 +195,6 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         }
         return cell
     }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let data = searchData.searchItem[indexPath.row]
-        searchData.nowItem = data
-        searchData.appendSearchItem(data)
-        navigationController?.pushViewController(SearchResultViewController(), animated: true)
-    }
+    
     
 }

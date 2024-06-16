@@ -22,18 +22,10 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         let settingVC = SettingViewController()
         let nav2 = UINavigationController(rootViewController: settingVC)
         nav2.tabBarItem = UITabBarItem(title: "설정", image: UIImage(systemName: "person"), tag: 1)
-    
         
         setViewControllers([nav1,nav2], animated: true)
     }
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        if let nav = viewController as? UINavigationController{
-            viewController.viewWillAppear(true)
-//            if nav.topViewController is SettingViewController {
-//                viewController.viewWillAppear(true)
-//            }else if nav.topViewController is SearchViewController {
-//                viewController.viewWillAppear(true)
-//            }
-        }
+        viewController.viewWillAppear(true)
     }
 }
