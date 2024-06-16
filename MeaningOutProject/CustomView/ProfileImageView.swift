@@ -44,6 +44,9 @@ class SelcetProfileImageView: UIView{
         }
         self.mainImageView.image = UIImage(named: data)
     }
+    func changeProfile(image: String) {
+        mainImageView.image = UIImage(named: image)
+    }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

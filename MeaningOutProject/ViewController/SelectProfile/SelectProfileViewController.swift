@@ -13,6 +13,9 @@ class SelectProfileViewController: UIViewController {
     private lazy var profileImage = MainProfileImageView(profile: userModel.beforProfile)
     
     private let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout())
+    
+    var profileSetType: ProfileSetType = .first
+    
     static func collectionViewLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewFlowLayout()
         let width = UIScreen.main.bounds.width - 50 // 20 + 30
@@ -62,7 +65,7 @@ class SelectProfileViewController: UIViewController {
         navigationController?.navigationBar.tintColor = .buttonSelectColor
         let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(nvBackButtonTapped))
         navigationItem.leftBarButtonItem = backButton
-        navigationItem.title = "PROFILE SETTING"
+        navigationItem.title = profileSetType.rawValue
         
     }
     // MARK: - Collection 세팅 부분

@@ -28,9 +28,12 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
     }
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         if let nav = viewController as? UINavigationController{
-            if nav.topViewController is SettingViewController {
-                viewController.viewWillAppear(true)
-            }
+            viewController.viewWillAppear(true)
+//            if nav.topViewController is SettingViewController {
+//                viewController.viewWillAppear(true)
+//            }else if nav.topViewController is SearchViewController {
+//                viewController.viewWillAppear(true)
+//            }
         }
     }
 }

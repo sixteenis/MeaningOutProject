@@ -30,6 +30,7 @@
 		0650C6352C1CB8E200BDC4D1 /* SearchResultCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0650C6342C1CB8E200BDC4D1 /* SearchResultCollectionViewCell.swift */; };
 		0658AF1D2C1DD98D00C65E3E /* NetworkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0658AF1C2C1DD98D00C65E3E /* NetworkViewController.swift */; };
 		0658AF1F2C1DF55F00C65E3E /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0658AF1E2C1DF55F00C65E3E /* SettingTableViewCell.swift */; };
+		0658AF212C1E12F300C65E3E /* ProfileSetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0658AF202C1E12F300C65E3E /* ProfileSetType.swift */; };
 		06F530932C1B085300487212 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F530922C1B085300487212 /* AppDelegate.swift */; };
 		06F530952C1B085300487212 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F530942C1B085300487212 /* SceneDelegate.swift */; };
 		06F5309C2C1B085500487212 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06F5309B2C1B085500487212 /* Assets.xcassets */; };
@@ -67,6 +68,7 @@
 		0650C6342C1CB8E200BDC4D1 /* SearchResultCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCollectionViewCell.swift; sourceTree = "<group>"; };
 		0658AF1C2C1DD98D00C65E3E /* NetworkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkViewController.swift; sourceTree = "<group>"; };
 		0658AF1E2C1DF55F00C65E3E /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
+		0658AF202C1E12F300C65E3E /* ProfileSetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSetType.swift; sourceTree = "<group>"; };
 		06F5308F2C1B085300487212 /* MeaningOutProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeaningOutProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06F530922C1B085300487212 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		06F530942C1B085300487212 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 				064914932C1B508400B05833 /* NickNameFilter.swift */,
 				0650C6222C1C6BA400BDC4D1 /* Placeholder.swift */,
 				0650C6302C1CB0FC00BDC4D1 /* NetWorkFilterEnum.swift */,
+				0658AF202C1E12F300C65E3E /* ProfileSetType.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -328,6 +331,7 @@
 				0649149D2C1B6EA700B05833 /* SelectProfileCollectionViewCell.swift in Sources */,
 				064914962C1B529500B05833 /* ViewController+.swift in Sources */,
 				0649149A2C1B5E1700B05833 /* SelectProfileViewController.swift in Sources */,
+				0658AF212C1E12F300C65E3E /* ProfileSetType.swift in Sources */,
 				06F530BA2C1B104400487212 /* Image+.swift in Sources */,
 				064914902C1B325400B05833 /* ProfileImageView.swift in Sources */,
 				06F530AA2C1B0F8300487212 /* OnboardingViewController.swift in Sources */,

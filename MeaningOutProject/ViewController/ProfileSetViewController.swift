@@ -20,6 +20,7 @@ class ProfileSetViewController: UIViewController {
     }
     
     let userModel = UserModel.shared
+    var profileSetType: ProfileSetType = .first
     
     
     override func viewDidLoad() {
@@ -31,7 +32,14 @@ class ProfileSetViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        profileImage.changeImage(userModel.beforProfile) 
+        switch profileSetType {
+        case .first:
+            profileImage.changeImage(userModel.beforProfile)
+        case .edit:
+            profileImage.changeImage(userModel.beforProfile)
+        }
+        
+            
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -88,7 +96,14 @@ class ProfileSetViewController: UIViewController {
         navigationController?.navigationBar.tintColor = .buttonSelectColor
         let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(nvBackButtonTapped))
         navigationItem.leftBarButtonItem = backButton
-        navigationItem.title = "PROFILE SETTING"
+        
+        if profileSetType == .edit{
+            let saveButton = UIBarButtonItem(title: "저장", style: .plain, target: self, action: #selector(saveButtonTapped))
+            navigationItem.rightBarButtonItem = saveButton
+            okButton.isHidden = true
+        }
+        navigationItem.title = profileSetType.rawValue
+        
         
         nicknameTextField.placeholder = PlaceholderEnum.nickName
         nicknameTextField.textColor = .textColor
@@ -120,9 +135,14 @@ class ProfileSetViewController: UIViewController {
         reset()
     }
     @objc func profileImageTapped() {
-        navigationController?.pushViewController(SelectProfileViewController(), animated: true)
+        let vc = SelectProfileViewController()
+        vc.profileSetType = self.profileSetType
+        navigationController?.pushViewController(vc, animated: true)
     }
     @objc func okButtonTapped() {
+        checkTextFiled()
+    }
+    @objc func saveButtonTapped() {
         checkTextFiled()
     }
     // MARK: - 다음뷰로 이동하는 부분
@@ -139,9 +159,14 @@ class ProfileSetViewController: UIViewController {
         if self.textfilter == .ok && !nicknameTextField.text!.isEmpty {
             userModel.userProfile = userModel.beforProfile
             userModel.userNickname = nicknameTextField.text!
-            userModel.setUserJoinDate()
-            nextView()
-            return
+            if profileSetType == .first {
+                userModel.setUserJoinDate()
+                nextView()
+                return
+            }else{
+                navigationController?.popViewController(animated: true)
+                return
+            }
         }else{
             let alert = UIAlertController(
                 title: "닉네임을 확인해주세요.",

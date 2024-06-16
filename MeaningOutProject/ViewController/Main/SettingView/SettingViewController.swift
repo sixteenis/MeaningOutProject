@@ -30,6 +30,8 @@ class SettingViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        profile.changeProfile(image: userModel.userProfile)
+        nickName.text = userModel.userNickname
         tableView.reloadData()
     }
     // MARK: - connect 부분
@@ -97,7 +99,9 @@ class SettingViewController: UIViewController {
     
     // MARK: - 버튼 함수 부분
     @objc func profileViewTapped() {
-        print(#function)
+        let nv = ProfileSetViewController()
+        nv.profileSetType = .edit
+        navigationController?.pushViewController(nv, animated: true)
     }
 }
 

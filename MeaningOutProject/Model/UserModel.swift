@@ -9,7 +9,7 @@ import UIKit
 
 final class UserModel {
     static let shared = UserModel()
-    var beforProfile = "" //고르기 직전
+    lazy var beforProfile = self.userProfile
     let profileList = ["profile_0","profile_1","profile_2","profile_3","profile_4","profile_5","profile_6","profile_7","profile_8","profile_9","profile_10","profile_11"]
     var userProfile: String {
         get{

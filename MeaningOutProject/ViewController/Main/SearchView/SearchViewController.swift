@@ -37,6 +37,7 @@ class SearchViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationItem.title = "\(userModel.userNickname)'s MEANING OUT"
         searchBar.text = nil
         noDataChang()
         searchTableView.reloadData()
