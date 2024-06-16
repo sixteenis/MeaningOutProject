@@ -7,13 +7,17 @@
 
 import UIKit
 
+import SnapKit
 class TabBarController: UITabBarController, UITabBarControllerDelegate {
+    
+    let line = UIView()
     override func viewDidLoad() {
         self.delegate = self
-        
+
         super.viewDidLoad()
         tabBar.tintColor = .mainOragieColor
         tabBar.unselectedItemTintColor = .textFieldBackgroundColor
+        
         
         let searchVC = SearchViewController()
         let nav1 = UINavigationController(rootViewController: searchVC)
@@ -23,9 +27,22 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         let nav2 = UINavigationController(rootViewController: settingVC)
         nav2.tabBarItem = UITabBarItem(title: "설정", image: UIImage(systemName: "person"), tag: 1)
         
+        setUpline()
         setViewControllers([nav1,nav2], animated: true)
     }
+    
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         viewController.viewWillAppear(true)
     }
+    func setUpline() {
+        view.addSubview(line)
+        line.snp.makeConstraints { make in
+            make.bottom.equalTo(tabBar.snp.top)
+            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
+            make.height.equalTo(1)
+            
+        }
+        line.backgroundColor = .textFieldBackgroundColor
+    }
+    
 }

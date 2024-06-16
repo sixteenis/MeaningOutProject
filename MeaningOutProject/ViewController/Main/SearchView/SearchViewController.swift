@@ -110,7 +110,7 @@ class SearchViewController: UIViewController {
         
         navigationItem.title = "\(userModel.userNickname)'s MEANING OUT"
         
-        line.backgroundColor = .placeholderText
+        line.backgroundColor = .textFieldBackgroundColor
         recentLabel.text = "최근 검색"
         recentLabel.font = .systemFont(ofSize: 14, weight: .heavy)
         

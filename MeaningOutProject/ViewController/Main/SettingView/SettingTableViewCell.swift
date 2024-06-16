@@ -32,7 +32,7 @@ class SettingTableViewCell: UITableViewCell {
     // MARK: - Layout 부분
     func setUpLayout() {
         mainLabel.snp.makeConstraints { make in
-            make.leading.equalTo(contentView.safeAreaLayoutGuide)
+            make.leading.equalTo(contentView.safeAreaLayoutGuide).inset(20)
             make.centerY.equalTo(contentView)
         }
         subLabel.snp.makeConstraints { make in

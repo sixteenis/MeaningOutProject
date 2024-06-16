@@ -48,7 +48,7 @@ class SettingViewController: UIViewController {
     // MARK: - Layout 부분
     func setUpLayout() {
         profileView.snp.makeConstraints { make in
-            make.top.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
+            make.top.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(10)
             make.height.equalTo(120)
         }
         profile.snp.makeConstraints { make in
@@ -72,7 +72,8 @@ class SettingViewController: UIViewController {
         }
         tableView.snp.makeConstraints { make in
             make.top.equalTo(profileView.snp.bottom)
-            make.horizontalEdges.bottom.equalTo(view.safeAreaLayoutGuide).inset(15)
+            make.leading.bottom.equalTo(view.safeAreaLayoutGuide).inset(5)
+            make.trailing.equalTo(view.safeAreaLayoutGuide).inset(20)
         }
     }
     
@@ -82,10 +83,15 @@ class SettingViewController: UIViewController {
         profileView.backgroundColor = .backgroundColor
         let tap = UITapGestureRecognizer(target: self, action: #selector(profileViewTapped))
         profileView.addGestureRecognizer(tap)
+        profileView.layer.borderWidth = 1
+        profileView.layer.borderColor = UIColor.textFieldBackgroundColor.cgColor
         navigationItem.title = "SETTING"
         
         nickName.text = userModel.userNickname
+        nickName.font = .boldSystemFont(ofSize: 20)
         userJoinDate.text = userModel.userJoinDate
+        userJoinDate.font = .systemFont(ofSize: 14)
+        userJoinDate.textColor = .textFieldBackgroundColor
         nextSymbol.image = .nextSymbol
         nextSymbol.tintColor = .settingSeperatorColor
     }
@@ -94,6 +100,7 @@ class SettingViewController: UIViewController {
         tableView.delegate = self
         tableView.register(SettingTableViewCell.self, forCellReuseIdentifier: SettingTableViewCell.id)
         tableView.rowHeight = 50
+        tableView.isScrollEnabled = false
     }
 
     
