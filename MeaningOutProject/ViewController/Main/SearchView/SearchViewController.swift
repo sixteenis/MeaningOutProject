@@ -37,6 +37,7 @@ class SearchViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        searchTableView.reloadData()
         noDataChang()
     }
     // MARK: - connect 부분
