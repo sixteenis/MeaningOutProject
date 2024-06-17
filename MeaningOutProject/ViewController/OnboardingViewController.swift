@@ -11,6 +11,7 @@ import SnapKit
 
 class OnboardingViewController: UIViewController {
     let mainLabel = UILabel()
+    let logoImage = UIImageView()
     let mainImage = UIImageView()
     let startButton = SelcetButton(title: "시작하기")
     
@@ -26,14 +27,14 @@ class OnboardingViewController: UIViewController {
     
     // MARK: - connect 부분
     func setUpHierarch() {
-        view.addSubview(mainLabel)
+        view.addSubview(logoImage)
         view.addSubview(mainImage)
         view.addSubview(startButton)
     }
     
     // MARK: - Layout 부분
     func setUpLayout() {
-        mainLabel.snp.makeConstraints { make in
+        logoImage.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).inset(50)
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(25)
             make.bottom.equalTo(mainImage.snp.top).offset(-55)
@@ -55,11 +56,12 @@ class OnboardingViewController: UIViewController {
     func setUpUI() {
         view.backgroundColor = .backgroundColor
         
-        mainLabel.text = "MeaningOut"
-        mainLabel.font = .systemFont(ofSize: 55, weight: .heavy)
-        mainLabel.textAlignment = .center
-        mainLabel.textColor = .mainOragieColor
-        
+//        mainLabel.text = "MeaningOut"
+//        mainLabel.font = .systemFont(ofSize: 55, weight: .heavy)
+//        mainLabel.textAlignment = .center
+//        mainLabel.textColor = .mainOragieColor
+        logoImage.image = .logo
+        logoImage.contentMode = .scaleAspectFill
         mainImage.image = .launch
         mainImage.contentMode = .scaleAspectFill
         
