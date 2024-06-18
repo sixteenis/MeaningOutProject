@@ -36,10 +36,12 @@ class SelcetProfileImageView: UIView{
     func selectedProfile(_ data: String, select: Bool) {
         if !select {
             self.mainImageView.layer.borderWidth = 1
+            self.mainImageView.layer.borderColor = UIColor.textFieldBackgroundColor.cgColor
             self.alpha = 0.5
             
         }else{
             self.mainImageView.layer.borderWidth = 3
+            self.mainImageView.layer.borderColor = UIColor.mainOragieColor.cgColor
             self.alpha = 1
         }
         self.mainImageView.image = UIImage(named: data)
