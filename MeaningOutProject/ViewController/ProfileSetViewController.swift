@@ -131,8 +131,13 @@ class ProfileSetViewController: UIViewController {
     }
     // MARK: - 버튼 함수 부분
     @objc func nvBackButtonTapped() {
+        if profileSetType == .edit {
+            userModel.beforProfile = userModel.userProfile
+        }else{
+            reset()
+        }
         navigationController?.popViewController(animated: true)
-        reset()
+        
     }
     @objc func profileImageTapped() {
         let vc = SelectProfileViewController()
@@ -206,7 +211,6 @@ extension ProfileSetViewController: UITextFieldDelegate {
             textfilter = .lineNumber
             return
         }
-        
         if containsSpecialChar(text) {
             textfilter = .specialcharacters
             return

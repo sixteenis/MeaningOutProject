@@ -233,6 +233,7 @@ class SearchResultViewController: UIViewController {
         
         
     }
+    
     func succesNetWork(_ result: ShoppingModel) {
         guard let total = result.total, let items = result.items else { return }
         allcountLabel.text = "\(total.formatted())개의 검색 결과"

@@ -487,7 +487,7 @@
 				DEVELOPMENT_TEAM = G9LS4YQCM2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MeaningOutProject/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = MeaningOut;
+				INFOPLIST_KEY_CFBundleDisplayName = "박성민";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
@@ -521,7 +521,7 @@
 				DEVELOPMENT_TEAM = G9LS4YQCM2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MeaningOutProject/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = MeaningOut;
+				INFOPLIST_KEY_CFBundleDisplayName = "박성민";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
