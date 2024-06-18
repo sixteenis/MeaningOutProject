@@ -9,7 +9,7 @@ import UIKit
 
 import SnapKit
 
-class SearchTableViewCell: UITableViewCell {
+final class SearchTableViewCell: UITableViewCell {
     let recentImage = UIImageView()
     let searchTitle = UILabel()
     let delectButton = UIButton(type: .custom)
@@ -29,7 +29,7 @@ class SearchTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     // MARK: - connect 부분
-    func setUpHierarch() {
+    private func setUpHierarch() {
         contentView.addSubview(recentImage)
         contentView.addSubview(searchTitle)
         contentView.addSubview(delectButton)
@@ -37,7 +37,7 @@ class SearchTableViewCell: UITableViewCell {
     }
     
     // MARK: - Layout 부분
-    func setUpLayout() {
+    private func setUpLayout() {
         recentImage.snp.makeConstraints { make in
             make.leading.equalTo(contentView.safeAreaLayoutGuide)
             make.centerY.equalTo(contentView.safeAreaLayoutGuide)
@@ -58,7 +58,7 @@ class SearchTableViewCell: UITableViewCell {
     }
     
     // MARK: - UI 세팅 부분 (정적)
-    func setUpUI() {
+    private func setUpUI() {
         recentImage.image = .searchCellClockImage
         recentImage.tintColor = .textColor
         

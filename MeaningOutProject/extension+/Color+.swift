@@ -20,6 +20,7 @@ extension UIColor {
     static let backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
     static let whitetitleColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
     
+    static let lineColor = UIColor(red: 205/255, green: 205/255, blue: 205/255, alpha: 1)
 }
 
 

@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Kingfisher
 
-class SearchResultCollectionViewCell: UICollectionViewCell {
+final class SearchResultCollectionViewCell: UICollectionViewCell {
     let image = UIImageView()
     let likeButton = UIButton()
     let mallNameLabel = UILabel()
@@ -74,9 +74,7 @@ class SearchResultCollectionViewCell: UICollectionViewCell {
         contentView.backgroundColor = .backgroundColor
         
         image.clipsToBounds = true
-//        image.layer.cornerRadius = 10
-        
-        //likeButton.setImage(.shoppingImage, for: .normal)
+
         likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
         likeButton.layer.cornerRadius = 10
         
@@ -103,7 +101,11 @@ class SearchResultCollectionViewCell: UICollectionViewCell {
         
         mallNameLabel.text = data.mallName
         
-        titleLabel.text = data.title
+        var beforText = data.title.replacingOccurrences(of: "<b>", with: "")
+        beforText = beforText.replacingOccurrences(of: "</b>", with: "")
+    
+        titleLabel.text = beforText
+        
         
         lpriceLabel.text = "\(Int(data.lprice)!.formatted())원"
         if searchDataModel.likeList.contains(data.productId){
@@ -119,7 +121,7 @@ class SearchResultCollectionViewCell: UICollectionViewCell {
             
         }
     }
-    // TODO: 쇼핑이미지 클릭시 색 변경 및 어쩌구
+    // MARK: - 라이크 버튼 기능
     @objc func likeButtonTapped() {
         likeTapped()
     }

@@ -9,11 +9,11 @@ import UIKit
 
 import SnapKit
 
-class OnboardingViewController: UIViewController {
-    let mainLabel = UILabel()
-    let logoImage = UIImageView()
-    let mainImage = UIImageView()
-    let startButton = SelcetButton(title: "시작하기")
+final class OnboardingViewController: UIViewController {
+    private let mainLabel = UILabel()
+    private let logoImage = UIImageView()
+    private let mainImage = UIImageView()
+    private let startButton = SelcetButton(title: "시작하기")
     
     let userModel = UserModel.shared
     override func viewDidLoad() {
@@ -26,14 +26,14 @@ class OnboardingViewController: UIViewController {
     }
     
     // MARK: - connect 부분
-    func setUpHierarch() {
+    private func setUpHierarch() {
         view.addSubview(logoImage)
         view.addSubview(mainImage)
         view.addSubview(startButton)
     }
     
     // MARK: - Layout 부분
-    func setUpLayout() {
+    private func setUpLayout() {
         logoImage.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).inset(50)
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(25)
@@ -53,7 +53,7 @@ class OnboardingViewController: UIViewController {
     }
     
     // MARK: - UI 세팅 부분
-    func setUpUI() {
+    private func setUpUI() {
         view.backgroundColor = .backgroundColor
         
 //        mainLabel.text = "MeaningOut"

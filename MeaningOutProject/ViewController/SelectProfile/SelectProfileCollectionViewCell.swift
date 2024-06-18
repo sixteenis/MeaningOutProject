@@ -9,7 +9,7 @@ import UIKit
 
 import SnapKit
 
-class SelectProfileCollectionViewCell: UICollectionViewCell {
+final class SelectProfileCollectionViewCell: UICollectionViewCell {
     let profileImage = SelcetProfileImageView()
     override init(frame: CGRect) {
         super.init(frame: frame)

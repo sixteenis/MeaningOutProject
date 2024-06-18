@@ -8,9 +8,9 @@
 import UIKit
 
 import SnapKit
-class TabBarController: UITabBarController, UITabBarControllerDelegate {
+final class TabBarController: UITabBarController, UITabBarControllerDelegate {
     
-    let line = UIView()
+    private let line = UIView()
     override func viewDidLoad() {
         self.delegate = self
 
@@ -42,7 +42,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
             make.height.equalTo(1)
             
         }
-        line.backgroundColor = .textFieldBackgroundColor
+        line.backgroundColor = .lineColor
     }
     
 }

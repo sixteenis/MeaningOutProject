@@ -9,7 +9,8 @@ import UIKit
 
 import SnapKit
 
-class SelectProfileViewController: UIViewController {
+final class SelectProfileViewController: UIViewController {
+    private let line = UIView()
     private lazy var profileImage = MainProfileImageView(profile: userModel.beforProfile)
     
     private let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout())
@@ -41,12 +42,17 @@ class SelectProfileViewController: UIViewController {
     
     // MARK: - connect 부분
     func setUpHierarch() {
+        view.addSubview(line)
         view.addSubview(profileImage)
         view.addSubview(collectionView)
     }
     
     // MARK: - Layout 부분
     func setUpLayout() {
+        line.snp.makeConstraints { make in
+            make.horizontalEdges.top.equalTo(view.safeAreaLayoutGuide)
+            make.height.equalTo(1)
+        }
         profileImage.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).inset(20)
             make.centerX.equalTo(view.safeAreaLayoutGuide)
@@ -61,7 +67,7 @@ class SelectProfileViewController: UIViewController {
     // MARK: - UI 세팅 부분
     func setUpUI() {
         view.backgroundColor = .backgroundColor
-        
+        line.backgroundColor = .lineColor
         navigationController?.navigationBar.tintColor = .buttonSelectColor
         let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(nvBackButtonTapped))
         navigationItem.leftBarButtonItem = backButton

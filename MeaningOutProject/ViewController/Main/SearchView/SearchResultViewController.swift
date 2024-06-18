@@ -10,18 +10,19 @@ import UIKit
 import Alamofire
 import SnapKit
 
-class SearchResultViewController: UIViewController {
-    let line = UIView()
-    let allcountLabel = UILabel()
+final class SearchResultViewController: UIViewController {
+    let activityIndicator = UIActivityIndicatorView(style: .large)
+    private let line = UIView()
+    private let allcountLabel = UILabel()
     
-    let accuracyButton = UIButton()
-    let dateButton = UIButton()
-    let priceUpButton = UIButton()
-    let priceDownButton = UIButton()
+    private let accuracyButton = UIButton()
+    private let dateButton = UIButton()
+    private let priceUpButton = UIButton()
+    private let priceDownButton = UIButton()
     
-    let noDataView = UIView()
-    let noDataImage = UIImageView()
-    let noDataLabel = UILabel()
+    private let noDataView = UIView()
+    private let noDataImage = UIImageView()
+    private let noDataLabel = UILabel()
     
     private let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout())
     static func collectionViewLayout() -> UICollectionViewLayout {
@@ -35,8 +36,8 @@ class SearchResultViewController: UIViewController {
         return layout
     }
     
-    let searchDataModel = SearchDataModel.shared
-    var data: [Item] = []
+    private let searchDataModel = SearchDataModel.shared
+    private var data: [Item] = []
     var filterData: NetWorkFilterEnum = .accuracy {
         didSet {
             setUpFilterButton()
@@ -69,7 +70,7 @@ class SearchResultViewController: UIViewController {
     }
     
     // MARK: - connect 부분
-    func setUpHierarch() {
+    private func setUpHierarch() {
         view.addSubview(line)
         view.addSubview(allcountLabel)
         
@@ -86,7 +87,7 @@ class SearchResultViewController: UIViewController {
     }
     
     // MARK: - Layout 부분
-    func setUpLayout() {
+    private func setUpLayout() {
         line.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide)
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
@@ -141,7 +142,10 @@ class SearchResultViewController: UIViewController {
     }
     
     // MARK: - UI 세팅 부분
-    func setUpUI() {
+    private func setUpUI() {
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        self.view.addSubview(activityIndicator)
         view.backgroundColor = .backgroundColor
         
         navigationController?.navigationBar.tintColor = .buttonSelectColor
@@ -149,9 +153,9 @@ class SearchResultViewController: UIViewController {
         navigationItem.leftBarButtonItem = backButton
         navigationItem.title = searchDataModel.nowItem
         
-        line.backgroundColor = .textFieldBackgroundColor
+        line.backgroundColor = .lineColor
         
-        allcountLabel.text = "99999999개의 검색 결과"
+        //allcountLabel.text = ""
         allcountLabel.font = .systemFont(ofSize: 14, weight: .heavy)
         allcountLabel.textColor = .mainOragieColor
         
@@ -195,7 +199,7 @@ class SearchResultViewController: UIViewController {
         noDataLabel.font = .systemFont(ofSize: 15, weight: .heavy)
     }
     // MARK: - collection 세팅 부분
-    func setUpcollection() {
+    private func setUpcollection() {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.prefetchDataSource = self
@@ -204,7 +208,8 @@ class SearchResultViewController: UIViewController {
     }
     
     // MARK: - 통신 부분
-    func callRequset() {
+    private func callRequset() {
+        showLoadingIndicator()
         let url = "https://openapi.naver.com/v1/search/shop.json"
         let header: HTTPHeaders = [
             "X-Naver-Client-Id": APIKey.id,
@@ -219,8 +224,10 @@ class SearchResultViewController: UIViewController {
         
         AF.request(url,method: .get,parameters: param, headers: header)
             .responseDecodable(of: ShoppingModel.self) {respons in
+                self.hideLoadingIndicator()
                 switch respons.result{
                 case .success(let value):
+                
                     self.succesNetWork(value)
                     
                     
@@ -234,8 +241,9 @@ class SearchResultViewController: UIViewController {
         
     }
     
-    func succesNetWork(_ result: ShoppingModel) {
+    private func succesNetWork(_ result: ShoppingModel) {
         guard let total = result.total, let items = result.items else { return }
+        
         allcountLabel.text = "\(total.formatted())개의 검색 결과"
         isEnd = total
         print(page)
@@ -254,7 +262,7 @@ class SearchResultViewController: UIViewController {
         collectionView.reloadData()
     }
     // MARK: - 필터 버튼 뷰 세팅하는 함수
-    func setUpFilterButton() {
+    private func setUpFilterButton() {
         accuracyButton.titleLabel?.textColor = .textColor
         accuracyButton.backgroundColor = .backgroundColor
         dateButton.titleLabel?.textColor = .textColor
@@ -297,7 +305,17 @@ class SearchResultViewController: UIViewController {
             filterData = .accuracy
         }
     }
+    // MARK: - 로딩 구현 부분
+    func showLoadingIndicator() {
+        activityIndicator.startAnimating()
+        self.view.isUserInteractionEnabled = false
+    }
     
+    
+    func hideLoadingIndicator() {
+        activityIndicator.stopAnimating()
+        self.view.isUserInteractionEnabled = true
+    }
 
 }
 

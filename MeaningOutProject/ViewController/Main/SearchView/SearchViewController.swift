@@ -9,23 +9,23 @@ import UIKit
 
 import SnapKit
 
-class SearchViewController: UIViewController {
+final class SearchViewController: UIViewController {
     // TODO: 네이게이션 밑에 라인 없애기
-    let searchBar = UISearchBar()
-    let line = UIView()
+    private let searchBar = UISearchBar()
+    private let line = UIView()
     
-    let recentLabel = UILabel()
-    let allRemoveButton = UIButton()
-    let searchTableView = UITableView()
+    private let recentLabel = UILabel()
+    private let allRemoveButton = UIButton()
+    private let searchTableView = UITableView()
     
-    let noDataView = UIView()
-    let noDataImage = UIImageView()
-    let noDataLabel = UILabel()
+    private let noDataView = UIView()
+    private let noDataImage = UIImageView()
+    private let noDataLabel = UILabel()
     
     
     
-    let userModel = UserModel.shared
-    let searchData = SearchDataModel.shared
+    private let userModel = UserModel.shared
+    private let searchData = SearchDataModel.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +41,7 @@ class SearchViewController: UIViewController {
         noDataChang()
     }
     // MARK: - connect 부분
-    func setUpHierarch() {
+    private func setUpHierarch() {
         
         view.addSubview(searchBar)
         view.addSubview(line)
@@ -57,7 +57,7 @@ class SearchViewController: UIViewController {
     }
     
     // MARK: - Layout 부분
-    func setUpLayout() {
+    private func setUpLayout() {
         searchBar.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide)
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(15)
@@ -103,7 +103,7 @@ class SearchViewController: UIViewController {
     }
     
     // MARK: - UI 세팅 부분
-    func setUpUI() {
+    private func setUpUI() {
         view.backgroundColor = .backgroundColor
         
         searchBar.placeholder = PlaceholderEnum.searchBar
@@ -111,7 +111,7 @@ class SearchViewController: UIViewController {
         
         navigationItem.title = "\(userModel.userNickname)'s MEANING OUT"
         
-        line.backgroundColor = .textFieldBackgroundColor
+        line.backgroundColor = .lineColor
         recentLabel.text = "최근 검색"
         recentLabel.font = .systemFont(ofSize: 14, weight: .heavy)
         
@@ -128,7 +128,7 @@ class SearchViewController: UIViewController {
         noDataLabel.font = .systemFont(ofSize: 15, weight: .heavy)
     }
     // MARK: - 델리게이트 연결 부분
-    func setUpDelegate() {
+    private func setUpDelegate() {
         searchBar.delegate = self
         searchTableView.delegate = self
         searchTableView.dataSource = self
@@ -136,14 +136,15 @@ class SearchViewController: UIViewController {
         allRemoveButton.addTarget(self, action: #selector(allRemoveButtonTapped), for: .touchUpInside)
     }
     // MARK: - 테이블 뷰 세팅 부분
-    func setUpTableView() {
+    private func setUpTableView() {
         searchTableView.register(SearchTableViewCell.self, forCellReuseIdentifier: SearchTableViewCell.id)
         searchTableView.rowHeight = 40
         searchTableView.backgroundColor = .backgroundColor
         searchTableView.separatorStyle = .none
+        searchTableView.keyboardDismissMode = .onDrag
     }
     // MARK: - SearchData 배열 유무에 따라 뷰 바뀌는 함수
-    func noDataChang() {
+    private func noDataChang() {
         if searchData.searchItem.isEmpty{
             noDataView.isHidden = false
         }else{

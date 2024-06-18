@@ -9,17 +9,19 @@ import UIKit
 
 import SnapKit
 
-class SettingViewController: UIViewController {
-    let profileView = UIView()
-    lazy var profile = SelcetProfileImageView(profile: userModel.userProfile)
-    let nickName = UILabel()
-    let userJoinDate = UILabel()
-    let nextSymbol = UIImageView()
-    let userModel = UserModel.shared
-    let searchModel = SearchDataModel.shared
-    let tableView = UITableView()
+final class SettingViewController: UIViewController {
+    private let line = UIView()
+    private let profileView = UIView()
+    private lazy var profile = SelcetProfileImageView(profile: userModel.userProfile)
+    private let profileLine = UIView()
+    private let nickName = UILabel()
+    private let userJoinDate = UILabel()
+    private let nextSymbol = UIImageView()
+    private let userModel = UserModel.shared
+    private let searchModel = SearchDataModel.shared
+    private let tableView = UITableView()
     
-    let settingList = ["나의 장바구니 목록", "자주 묻는 질문", "1:1 문의", "알림 설정", "탈퇴하기"]
+    private let settingList = ["나의 장바구니 목록", "자주 묻는 질문", "1:1 문의", "알림 설정", "탈퇴하기"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,56 +37,73 @@ class SettingViewController: UIViewController {
         tableView.reloadData()
     }
     // MARK: - connect 부분
-    func setUpHierarch() {
+    private func setUpHierarch() {
+        view.addSubview(line)
+        
         view.addSubview(profileView)
         profileView.addSubview(profile)
         profileView.addSubview(nickName)
         profileView.addSubview(userJoinDate)
         profileView.addSubview(nextSymbol)
+        view.addSubview(profileLine)
         
         view.addSubview(tableView)
     }
     
     // MARK: - Layout 부분
-    func setUpLayout() {
+    private func setUpLayout() {
+        line.snp.makeConstraints { make in
+            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
+            make.top.equalTo(view.safeAreaLayoutGuide)
+            make.height.equalTo(1)
+        }
         profileView.snp.makeConstraints { make in
-            make.top.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(10)
+            make.top.equalTo(line.snp.bottom).inset(10)
+            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
             make.height.equalTo(120)
         }
         profile.snp.makeConstraints { make in
             //make.top.equalTo(view.safeAreaLayoutGuide).inset(40)
-            make.centerY.equalTo(profileView)
+            make.centerY.equalTo(profileView).multipliedBy(1.1)
             make.leading.equalTo(view.safeAreaLayoutGuide).inset(20)
             make.size.equalTo(view.snp.width).multipliedBy(0.2)
         }
         nickName.snp.makeConstraints { make in
-            make.top.equalTo(profileView.snp.top).inset(30)
+            make.top.equalTo(profileView.snp.top).inset(35)
             make.leading.equalTo(profile.snp.trailing).offset(15)
         }
         userJoinDate.snp.makeConstraints { make in
             make.top.equalTo(nickName.snp.bottom).offset(5)
             make.leading.equalTo(profile.snp.trailing).offset(15)
         }
+        
         nextSymbol.snp.makeConstraints { make in
             make.trailing.equalTo(profileView.safeAreaLayoutGuide).inset(5)
             make.centerY.equalTo(profileView)
             make.size.equalTo(20)
         }
+        profileLine.snp.makeConstraints { make in
+            make.top.equalTo(profileView.snp.bottom).offset(10)
+            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(20)
+            make.height.equalTo(1)
+        }
         tableView.snp.makeConstraints { make in
-            make.top.equalTo(profileView.snp.bottom)
-            make.leading.bottom.equalTo(view.safeAreaLayoutGuide).inset(5)
+            make.top.equalTo(profileLine.snp.bottom)
+            make.leading.bottom.equalTo(view.safeAreaLayoutGuide)
             make.trailing.equalTo(view.safeAreaLayoutGuide).inset(20)
         }
     }
     
     // MARK: - UI 세팅 부분
-    func setUpUI() {
+    private func setUpUI() {
         view.backgroundColor = .backgroundColor
-        profileView.backgroundColor = .backgroundColor
+        
+        line.backgroundColor = .lineColor
+        
         let tap = UITapGestureRecognizer(target: self, action: #selector(profileViewTapped))
         profileView.addGestureRecognizer(tap)
-        profileView.layer.borderWidth = 1
-        profileView.layer.borderColor = UIColor.textFieldBackgroundColor.cgColor
+        //profileView.layer.borderWidth = 1
+        //profileView.layer.borderColor = UIColor.textFieldBackgroundColor.cgColor
         navigationItem.title = "SETTING"
         
         nickName.text = userModel.userNickname
@@ -94,13 +113,16 @@ class SettingViewController: UIViewController {
         userJoinDate.textColor = .textFieldBackgroundColor
         nextSymbol.image = .nextSymbol
         nextSymbol.tintColor = .settingSeperatorColor
+        profileLine.backgroundColor = .textFieldBackgroundColor
+        
     }
-    func setUpTabelView() {
+    private func setUpTabelView() {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(SettingTableViewCell.self, forCellReuseIdentifier: SettingTableViewCell.id)
         tableView.rowHeight = 50
         tableView.isScrollEnabled = false
+        tableView.separatorColor = .buttonSelectColor
     }
 
     

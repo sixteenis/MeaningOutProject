@@ -7,10 +7,11 @@
 
 import UIKit
 
-class ProfileSetViewController: UIViewController {
+final class ProfileSetViewController: UIViewController {
     private lazy var profileImage = MainProfileImageView(profile: userModel.beforProfile)
-    private let nicknameTextField = UITextField()
     private let line = UIView()
+    private let nicknameTextField = UITextField()
+    private let textLine = UIView()
     private let nicknameFilterLabel = UILabel()
     private let okButton = SelcetButton(title: "완료")
     private var textfilter: NickNameFilter = .start {
@@ -47,9 +48,10 @@ class ProfileSetViewController: UIViewController {
     }
     // MARK: - connect 부분
     func setUpHierarch() {
+        view.addSubview(line)
         view.addSubview(profileImage)
         view.addSubview(nicknameTextField)
-        view.addSubview(line)
+        view.addSubview(textLine)
         view.addSubview(nicknameFilterLabel)
         view.addSubview(okButton)
         
@@ -64,6 +66,11 @@ class ProfileSetViewController: UIViewController {
     
     // MARK: - Layout 부분
     func setUpLayout() {
+        line.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide)
+            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
+            make.height.equalTo(1)
+        }
         profileImage.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).inset(20)
             make.centerX.equalTo(view.safeAreaLayoutGuide)
@@ -73,13 +80,13 @@ class ProfileSetViewController: UIViewController {
             make.top.equalTo(profileImage.snp.bottom).offset(30)
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(20)
         }
-        line.snp.makeConstraints { make in
+        textLine.snp.makeConstraints { make in
             make.top.equalTo(nicknameTextField.snp.bottom).offset(10)
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(15)
             make.height.equalTo(1)
         }
         nicknameFilterLabel.snp.makeConstraints { make in
-            make.top.equalTo(line.snp.bottom).offset(10)
+            make.top.equalTo(textLine.snp.bottom).offset(10)
             make.leading.equalTo(view.safeAreaLayoutGuide).inset(20)
         }
         okButton.snp.makeConstraints { make in
@@ -104,12 +111,12 @@ class ProfileSetViewController: UIViewController {
         }
         navigationItem.title = profileSetType.rawValue
         
-        
+        line.backgroundColor = .lineColor
         nicknameTextField.placeholder = PlaceholderEnum.nickName
         nicknameTextField.textColor = .textColor
         nicknameTextField.contentMode = .left
         
-        line.backgroundColor = .textFieldBackgroundColor
+        textLine.backgroundColor = .lineColor
         
         
         nicknameFilterLabel.textAlignment = .left
@@ -207,21 +214,26 @@ extension ProfileSetViewController: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
         //print(#function)
         guard let text = textField.text else {return}
+        textfilter = filterText(text)
+        
+    }
+    // MARK: - 닉네임 필터 기능
+    func filterText(_ text: String) -> NickNameFilter {
         if text.count < 2 || text.count >= 10 {
-            textfilter = .lineNumber
-            return
+            return .lineNumber
         }
-        if containsSpecialChar(text) {
-            textfilter = .specialcharacters
-            return
+        let specialChar = CharacterSet(charactersIn: "@#$%")
+        if text.rangeOfCharacter(from: specialChar) != nil  {
+            return .specialcharacters
         }
         
         let filterNum = text.filter{$0.isNumber}
         if !filterNum.isEmpty {
-            textfilter = .numbers
-            return
+            return .lineNumber
         }
-        textfilter = .ok
-        
+        if text.hasPrefix(" ") || text.hasSuffix(" ") {
+            return .spacer
+        }
+        return .ok
     }
 }
