@@ -35,7 +35,7 @@ final class SearchResultViewController: UIViewController {
         layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         return layout
     }
-    
+    let filerArr: [NetWorkFilterEnum] = [.accuracy, .date, .priceUp, .priceDown]
     private let searchDataModel = SearchDataModel.shared
     private var data: [Item] = []
     var filterData: NetWorkFilterEnum = .accuracy {
@@ -227,7 +227,7 @@ final class SearchResultViewController: UIViewController {
                 self.hideLoadingIndicator()
                 switch respons.result{
                 case .success(let value):
-                
+                    
                     self.succesNetWork(value)
                     
                     
@@ -291,18 +291,21 @@ final class SearchResultViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     @objc func filterButtonTapped(_ sender: UIButton) {
+        print(searchDataModel.searchItem)
         // TODO: 이미 선택된 필터일 경우 통신을 막아야되나? 안막아도 되나? 고민해보자
-        switch sender.tag {
-        case 0:
-            filterData = .accuracy
-        case 1:
-            filterData = .date
-        case 2:
-            filterData = .priceUp
-        case 3:
-            filterData = .priceDown
-        default:
-            filterData = .accuracy
+        if filterData != filerArr[sender.tag]{
+            switch sender.tag {
+            case 0:
+                filterData = .accuracy
+            case 1:
+                filterData = .date
+            case 2:
+                filterData = .priceUp
+            case 3:
+                filterData = .priceDown
+            default:
+                filterData = .accuracy
+            }
         }
     }
     // MARK: - 로딩 구현 부분
@@ -316,7 +319,7 @@ final class SearchResultViewController: UIViewController {
         activityIndicator.stopAnimating()
         self.view.isUserInteractionEnabled = true
     }
-
+    
 }
 
 
@@ -351,7 +354,7 @@ extension SearchResultViewController: UICollectionViewDelegate, UICollectionView
         navigationController?.pushViewController(vc, animated: true)
         
     }
-
+    
     
 }
 extension SearchResultViewController: UICollectionViewDataSourcePrefetching {
