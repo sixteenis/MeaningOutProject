@@ -25,7 +25,7 @@ final class SearchDataModel {
         }set{
             UserDefaults.standard.setValue(newValue, forKey: "like")
         }
-    }
+    }//coll
     var shoppingData: SearchDataModel?
     
 
@@ -34,11 +34,16 @@ final class SearchDataModel {
     
     func appendSearchItem(_ item: String) {
         var befor = UserDefaults.standard.array(forKey: "searchItem") as? [String] ?? [String]()
-        if let index = befor.firstIndex(of: item) {
+        // TODO: 스페이스바를 눌러서 검색했을 때 스페이스바 제거해서 리스트에 저장하기 ㅠ
+        let result: [Character] = Array(item)
+        let result2 = result.filter{$0 != " "}
+        var b = ""
+        let _ = result2.map{ b += String($0)}
+        //print(resultString)
+        if let index = befor.firstIndex(of: b) {
             befor.remove(at: index)
         }
-            befor.insert(item, at: 0)
-        
+            befor.insert(b, at: 0)
         UserDefaults.standard.setValue(befor, forKey: "searchItem")
     }
     func removeSearchItem(_ itemIndex: Int) {

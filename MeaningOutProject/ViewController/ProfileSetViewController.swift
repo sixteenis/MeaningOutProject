@@ -214,26 +214,43 @@ extension ProfileSetViewController: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
         //print(#function)
         guard let text = textField.text else {return}
-        textfilter = filterText(text)
+        do {
+            try filterText(text)
+            textfilter = .ok
+            
+        }catch let error as NickNameFilter {
+            textfilter = error
+        } catch {
+            print("Unknown error")
+        }
+        
+        
+        // textfilter = filterText(text)
         
     }
     // MARK: - 닉네임 필터 기능
-    func filterText(_ text: String) -> NickNameFilter {
+    func filterText(_ text: String) throws{
+        // TODO: Error Handing으로 구현
+//        guard text.count < 2 || text.count >= 10 else { throw NickNameFilter.lineNumber}
+            let specialChar = CharacterSet(charactersIn: "@#$%")
+//        guard text.rangeOfCharacter(from: specialChar) != nil else {throw NickNameFilter.specialcharacters}
+        let filterNum = text.filter{$0.isNumber}
+//        guard !filterNum.isEmpty else {throw NickNameFilter.numbers}
+//        guard text.hasPrefix(" ") || text.hasSuffix(" ") else { throw NickNameFilter.spacer}
         if text.count < 2 || text.count >= 10 {
-            return .lineNumber
-        }
-        let specialChar = CharacterSet(charactersIn: "@#$%")
-        if text.rangeOfCharacter(from: specialChar) != nil  {
-            return .specialcharacters
+            throw NickNameFilter.lineNumber
         }
         
-        let filterNum = text.filter{$0.isNumber}
+        if text.rangeOfCharacter(from: specialChar) != nil  {
+            throw NickNameFilter.specialcharacters
+        }
+        
+        
         if !filterNum.isEmpty {
-            return .lineNumber
+            throw NickNameFilter.numbers
         }
         if text.hasPrefix(" ") || text.hasSuffix(" ") {
-            return .spacer
+            throw NickNameFilter.spacer
         }
-        return .ok
     }
 }

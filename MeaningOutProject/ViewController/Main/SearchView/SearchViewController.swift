@@ -156,7 +156,7 @@ final class SearchViewController: UIViewController {
     @objc func allRemoveButtonTapped() {
         searchData.searchItem = [String]()
         noDataChang()
-        searchTableView.reloadData()
+        searchTableView.reloadData()         
     }
 }
 
