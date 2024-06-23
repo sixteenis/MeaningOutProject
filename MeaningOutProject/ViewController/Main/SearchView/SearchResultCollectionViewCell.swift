@@ -8,7 +8,6 @@
 import UIKit
 
 import SnapKit
-import Kingfisher
 
 final class SearchResultCollectionViewCell: UICollectionViewCell {
     let image = UIImageView()
@@ -97,7 +96,24 @@ final class SearchResultCollectionViewCell: UICollectionViewCell {
     // MARK: - 동적인 세팅 부분
     func setUpData(_ data: Item) {
         let url = URL(string: data.image)!
-        image.kf.setImage(with: url)
+        // 킹피셔 안쓰고 이미지 처리
+        self.image.image = nil
+        //계속 밑으로 내리면 이전 이미지가 뜨는 문제 해결해야됨...ㅠ..ㅠ
+        DispatchQueue.global().async { [weak self] in
+            do {
+                let imageData = try Data(contentsOf: url)
+                DispatchQueue.main.async {
+                    if self?.image.image != UIImage(data: imageData){
+                        self?.image.image = UIImage(data: imageData)
+                    }
+
+                }
+            }catch {
+                DispatchQueue.main.async {
+                    self?.image.image = UIImage(systemName: "bag")
+                }
+            }
+        }
         
         mallNameLabel.text = data.mallName
         
