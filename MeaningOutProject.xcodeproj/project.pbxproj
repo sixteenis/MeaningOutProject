@@ -32,6 +32,8 @@
 		0658AF1F2C1DF55F00C65E3E /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0658AF1E2C1DF55F00C65E3E /* SettingTableViewCell.swift */; };
 		0658AF212C1E12F300C65E3E /* ProfileSetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0658AF202C1E12F300C65E3E /* ProfileSetType.swift */; };
 		0690BC562C216C2400C5EAF6 /* NavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0690BC552C216C2400C5EAF6 /* NavigationController+.swift */; };
+		0690BC922C2571DF00C5EAF6 /* ShoppingCallNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0690BC912C2571DF00C5EAF6 /* ShoppingCallNetwork.swift */; };
+		0690BC942C27CD0300C5EAF6 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0690BC932C27CD0300C5EAF6 /* Network.swift */; };
 		06F530932C1B085300487212 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F530922C1B085300487212 /* AppDelegate.swift */; };
 		06F530952C1B085300487212 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F530942C1B085300487212 /* SceneDelegate.swift */; };
 		06F5309C2C1B085500487212 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06F5309B2C1B085500487212 /* Assets.xcassets */; };
@@ -71,6 +73,8 @@
 		0658AF1E2C1DF55F00C65E3E /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		0658AF202C1E12F300C65E3E /* ProfileSetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSetType.swift; sourceTree = "<group>"; };
 		0690BC552C216C2400C5EAF6 /* NavigationController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationController+.swift"; sourceTree = "<group>"; };
+		0690BC912C2571DF00C5EAF6 /* ShoppingCallNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCallNetwork.swift; sourceTree = "<group>"; };
+		0690BC932C27CD0300C5EAF6 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		06F5308F2C1B085300487212 /* MeaningOutProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeaningOutProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06F530922C1B085300487212 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		06F530942C1B085300487212 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -161,6 +165,8 @@
 			isa = PBXGroup;
 			children = (
 				0650C62B2C1CAED800BDC4D1 /* APIKey.swift */,
+				0690BC932C27CD0300C5EAF6 /* Network.swift */,
+				0690BC912C2571DF00C5EAF6 /* ShoppingCallNetwork.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -324,6 +330,7 @@
 				064914942C1B508400B05833 /* NickNameFilter.swift in Sources */,
 				064914A12C1C23A200B05833 /* SettingViewController.swift in Sources */,
 				0650C6332C1CB28A00BDC4D1 /* ShoppingModel.swift in Sources */,
+				0690BC942C27CD0300C5EAF6 /* Network.swift in Sources */,
 				064914852C1B1D8500B05833 /* SelcetButton.swift in Sources */,
 				0650C62F2C1CB02500BDC4D1 /* SearchResultViewController.swift in Sources */,
 				0650C6312C1CB0FC00BDC4D1 /* NetWorkFilterEnum.swift in Sources */,
@@ -338,6 +345,7 @@
 				0658AF212C1E12F300C65E3E /* ProfileSetType.swift in Sources */,
 				06F530BA2C1B104400487212 /* Image+.swift in Sources */,
 				064914902C1B325400B05833 /* ProfileImageView.swift in Sources */,
+				0690BC922C2571DF00C5EAF6 /* ShoppingCallNetwork.swift in Sources */,
 				06F530AA2C1B0F8300487212 /* OnboardingViewController.swift in Sources */,
 				064914922C1B33DC00B05833 /* UserModel.swift in Sources */,
 				0650C6252C1C720700BDC4D1 /* SearchDataModel.swift in Sources */,

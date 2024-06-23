@@ -230,7 +230,6 @@ extension ProfileSetViewController: UITextFieldDelegate {
     }
     // MARK: - 닉네임 필터 기능
     func filterText(_ text: String) throws{
-        // TODO: Error Handing으로 구현
 //        guard text.count < 2 || text.count >= 10 else { throw NickNameFilter.lineNumber}
             let specialChar = CharacterSet(charactersIn: "@#$%")
 //        guard text.rangeOfCharacter(from: specialChar) != nil else {throw NickNameFilter.specialcharacters}

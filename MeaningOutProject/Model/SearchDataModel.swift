@@ -7,6 +7,7 @@
 
 import Foundation
 
+import Alamofire
 final class SearchDataModel {
     // TODO: 쇼핑(라이크) 카운팅 해주기
     static let shared = SearchDataModel()
@@ -31,7 +32,33 @@ final class SearchDataModel {
 
     private init() {}
     
-    
+    func callNetwork(filterData: String, page: Int, completionHander: @escaping (ShoppingModel)->()){
+        let url = "https://openapi.naver.com/v1/search/shop.json"
+        let header: HTTPHeaders = [
+            "X-Naver-Client-Id": APIKey.id,
+            "X-Naver-Client-Secret": APIKey.Secret
+        ]
+        let param: Parameters = [
+            "query": self.nowItem,
+            "sort": filterData,
+            "display": self.display,
+            "start": page,
+        ]
+        AF.request(url,method: .get,parameters: param, headers: header)
+            .responseDecodable(of: ShoppingModel.self) {respons in
+                //self.hideLoadingIndicator()
+                switch respons.result{
+                case .success(let value):
+                    //self.succesNetWork(value)
+                    completionHander(value)
+                case .failure(let error):
+                    print(error)
+//                    self.noDataView.isHidden = false
+//                    self.noDataLabel.text = "네트워크 오류가 발생했습니다!"
+                    
+                }
+            }
+    }
     func appendSearchItem(_ item: String) {
         var befor = UserDefaults.standard.array(forKey: "searchItem") as? [String] ?? [String]()
         // TODO: 스페이스바를 눌러서 검색했을 때 스페이스바 제거해서 리스트에 저장하기 ㅠ
@@ -39,6 +66,7 @@ final class SearchDataModel {
         let result2 = result.filter{$0 != " "}
         var b = ""
         let _ = result2.map{ b += String($0)}
+
         //print(resultString)
         if let index = befor.firstIndex(of: b) {
             befor.remove(at: index)

@@ -210,33 +210,11 @@ final class SearchResultViewController: UIViewController {
     // MARK: - 통신 부분
     private func callRequset() {
         showLoadingIndicator()
-        let url = "https://openapi.naver.com/v1/search/shop.json"
-        let header: HTTPHeaders = [
-            "X-Naver-Client-Id": APIKey.id,
-            "X-Naver-Client-Secret": APIKey.Secret
-        ]
-        let param: Parameters = [
-            "query": searchDataModel.nowItem,
-            "sort": filterData.rawValue,
-            "display": searchDataModel.display,
-            "start": page,
-        ]
-        
-        AF.request(url,method: .get,parameters: param, headers: header)
-            .responseDecodable(of: ShoppingModel.self) {respons in
-                self.hideLoadingIndicator()
-                switch respons.result{
-                case .success(let value):
-                    
-                    self.succesNetWork(value)
-                    
-                    
-                case .failure(_):
-                    self.noDataView.isHidden = false
-                    self.noDataLabel.text = "네트워크 오류가 발생했습니다!"
-                    
-                }
-            }
+        searchDataModel.callNetwork(filterData: filterData.rawValue, page: page) { ShoppingModel in
+            self.hideLoadingIndicator()
+            self.succesNetWork(ShoppingModel)
+        }
+                
         
         
     }
