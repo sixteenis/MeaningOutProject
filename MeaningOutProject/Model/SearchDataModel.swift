@@ -32,7 +32,7 @@ final class SearchDataModel {
 
     private init() {}
     
-    func callNetwork(filterData: String, page: Int, completionHander: @escaping (ShoppingModel)->()){
+    func callNetwork(filterData: String, page: Int, completionHander: @escaping (ShoppingModel?)->()){
         let url = "https://openapi.naver.com/v1/search/shop.json"
         let header: HTTPHeaders = [
             "X-Naver-Client-Id": APIKey.id,
@@ -47,16 +47,17 @@ final class SearchDataModel {
         AF.request(url,method: .get,parameters: param, headers: header)
             .responseDecodable(of: ShoppingModel.self) {respons in
                 //self.hideLoadingIndicator()
-                switch respons.result{
-                case .success(let value):
-                    //self.succesNetWork(value)
-                    completionHander(value)
-                case .failure(let error):
-                    print(error)
-//                    self.noDataView.isHidden = false
-//                    self.noDataLabel.text = "네트워크 오류가 발생했습니다!"
-                    
-                }
+                completionHander(respons.value)
+//                switch respons.result{
+//                case .success(let value):
+//                    //self.succesNetWork(value)
+//                    completionHander(value)
+//                case .failure(let error):
+//                    completionHander(nil)
+////                    self.noDataView.isHidden = false
+////                    self.noDataLabel.text = "네트워크 오류가 발생했습니다!"
+//                    
+//                }
             }
     }
     func appendSearchItem(_ item: String) {
