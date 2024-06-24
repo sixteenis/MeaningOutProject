@@ -33,6 +33,7 @@ final class SearchDataModel {
     private init() {}
     
     func callNetwork(filterData: String, page: Int, completionHander: @escaping (ShoppingModel?)->()){
+
         let url = "https://openapi.naver.com/v1/search/shop.json"
         let header: HTTPHeaders = [
             "X-Naver-Client-Id": APIKey.id,

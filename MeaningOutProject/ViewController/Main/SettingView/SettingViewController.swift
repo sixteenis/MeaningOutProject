@@ -124,7 +124,7 @@ final class SettingViewController: UIViewController {
         tableView.isScrollEnabled = false
         tableView.separatorColor = .buttonSelectColor
     }
-
+    
     
     // MARK: - 버튼 함수 부분
     @objc func profileViewTapped() {
@@ -153,32 +153,17 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 4 {
-            //1.
-            let alert = UIAlertController(
-                title: "탈퇴하기",
-                message: "탈퇴를 하면 데이터가 모두 초기화됩니다. \n탈퇴 하시겠습니까?",
-                preferredStyle: .alert
-            )
-            //2.
-            let ok = UIAlertAction(title: "확인", style: .default) { _ in
+            showAlert(title: "탈퇴하기", message: "탈퇴를 하면 데이터가 모두 초기화됩니다. \n탈퇴 하시겠습니까?", okButton: "탈퇴") {_ in 
                 self.searchModel.reset()
                 self.userModel.reset()
                 let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
                 let sceneDelegate = windowScene?.delegate as? SceneDelegate
-        
+                
                 let navigationController = UINavigationController(rootViewController: OnboardingViewController())
-        
+                
                 sceneDelegate?.window?.rootViewController = navigationController
                 sceneDelegate?.window?.makeKeyAndVisible()
-                
             }
-            let cancel = UIAlertAction(title: "취소", style: .cancel)
-            
-            //3.
-            alert.addAction(cancel)
-            alert.addAction(ok)
-            //4
-            present(alert, animated: true)
         }
     }
     

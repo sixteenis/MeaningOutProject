@@ -128,14 +128,12 @@ extension NetworkViewController: WKNavigationDelegate{
     
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
         hideLoadingIndicator()
-        
         errorAlert(message: "네트워크 오류가 발생했습니다.")
-        
-        
     }
     func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: any Error) {
         hideLoadingIndicator()
         errorAlert(message: "네트워크 연결이 끊겼습니다.")
+        
     }
     private func showLoadingIndicator() {
         loadingIndicator.startAnimating()
@@ -146,17 +144,5 @@ extension NetworkViewController: WKNavigationDelegate{
     private func hideLoadingIndicator() {
         loadingIndicator.stopAnimating()
         loadingIndicator.removeFromSuperview()
-    }
-    func errorAlert(message: String) {
-        let alert = UIAlertController(
-            title: message,
-            message: nil,
-            preferredStyle: .alert
-        )
-        let ok = UIAlertAction(title: "확인", style: .default) { _ in
-            self.navigationController?.popViewController(animated: true)
-        }
-        alert.addAction(ok)
-        present(alert, animated: true)
     }
 }

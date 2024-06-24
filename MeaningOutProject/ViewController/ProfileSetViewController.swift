@@ -186,15 +186,7 @@ final class ProfileSetViewController: UIViewController {
                 return
             }
         }else{
-            let alert = UIAlertController(
-                title: "닉네임을 확인해주세요.",
-                message: nil,
-                preferredStyle: .alert
-            )
-            let ok = UIAlertAction(title: "확인", style: .default)
-            alert.addAction(ok)
-            
-            present(alert, animated: true)
+            simpleShowAlert(title: "닉네임을 확인해주세요.", message: nil, okButton: "확인")
         }
     }
 }
