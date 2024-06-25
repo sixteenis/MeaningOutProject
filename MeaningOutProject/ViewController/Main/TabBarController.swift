@@ -12,9 +12,9 @@ final class TabBarController: UITabBarController, UITabBarControllerDelegate {
     
     private let line = UIView()
     override func viewDidLoad() {
-        self.delegate = self
-
         super.viewDidLoad()
+        self.delegate = self
+        
         tabBar.tintColor = .mainOragieColor
         tabBar.unselectedItemTintColor = .textFieldBackgroundColor
         
@@ -32,6 +32,8 @@ final class TabBarController: UITabBarController, UITabBarControllerDelegate {
     }
     
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        // MARK: - 내부적으로 vc의 lifecycle로 동작하므로 의도하지 않은 문제가 발생
+        // MARK: -할 수 있음. 개선해보자
         viewController.viewWillAppear(true)
     }
     func setUpline() {

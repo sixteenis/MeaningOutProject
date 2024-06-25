@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+// TODO: UserDefaults들에 대한 로직들을 담당하는 부분을 객체에서 관리하는 것?
 final class UserModel {
     static let shared = UserModel()
     lazy var beforProfile = self.userProfile

@@ -72,7 +72,7 @@ final class MainProfileImageView: SelcetProfileImageView {
         super.layoutSubviews()
         subImageView.layer.cornerRadius = subImageView.frame.width / 2
     }
-    
+    // TODO: 부모의 값 mainImageView에 직접접근 하지 않는 방법? 찾아보자..?
     func changeImage(_ image: String) {
         self.mainImageView.image = UIImage(named: image)
     }

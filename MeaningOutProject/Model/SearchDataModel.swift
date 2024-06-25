@@ -9,7 +9,8 @@ import Foundation
 
 import Alamofire
 final class SearchDataModel {
-    // TODO: 쇼핑(라이크) 카운팅 해주기
+    // TODO: 조회, 삭제를 효율적으로 실행하기위한 자료구조 생각
+    // TODO: forkey의 String을 enum을 통해 휴먼에러를 줄이자
     static let shared = SearchDataModel()
     let display = 30
     var nowItem = ""
@@ -64,6 +65,7 @@ final class SearchDataModel {
     func appendSearchItem(_ item: String) {
         var befor = UserDefaults.standard.array(forKey: "searchItem") as? [String] ?? [String]()
         // TODO: 스페이스바를 눌러서 검색했을 때 스페이스바 제거해서 리스트에 저장하기 ㅠ
+        // TODO: 변수 다시 선언해서 이쁘게 구현 고차함수 reduce활용
         let result: [Character] = Array(item)
         let result2 = result.filter{$0 != " "}
         var b = ""

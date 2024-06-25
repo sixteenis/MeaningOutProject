@@ -32,6 +32,8 @@
 		0658AF1F2C1DF55F00C65E3E /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0658AF1E2C1DF55F00C65E3E /* SettingTableViewCell.swift */; };
 		0658AF212C1E12F300C65E3E /* ProfileSetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0658AF202C1E12F300C65E3E /* ProfileSetType.swift */; };
 		0690BC562C216C2400C5EAF6 /* NavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0690BC552C216C2400C5EAF6 /* NavigationController+.swift */; };
+		06E167A22C2ABCF800FD2FE7 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E167A12C2ABCF800FD2FE7 /* OnboardingView.swift */; };
+		06E167A42C2ABD0600FD2FE7 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E167A32C2ABD0600FD2FE7 /* BaseView.swift */; };
 		06F530932C1B085300487212 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F530922C1B085300487212 /* AppDelegate.swift */; };
 		06F530952C1B085300487212 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F530942C1B085300487212 /* SceneDelegate.swift */; };
 		06F5309C2C1B085500487212 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06F5309B2C1B085500487212 /* Assets.xcassets */; };
@@ -71,6 +73,8 @@
 		0658AF1E2C1DF55F00C65E3E /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		0658AF202C1E12F300C65E3E /* ProfileSetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSetType.swift; sourceTree = "<group>"; };
 		0690BC552C216C2400C5EAF6 /* NavigationController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationController+.swift"; sourceTree = "<group>"; };
+		06E167A12C2ABCF800FD2FE7 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		06E167A32C2ABD0600FD2FE7 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		06F5308F2C1B085300487212 /* MeaningOutProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeaningOutProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06F530922C1B085300487212 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		06F530942C1B085300487212 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -165,6 +169,39 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
+		06CFB4F02C2ABBB200C31D02 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				06E167A32C2ABD0600FD2FE7 /* BaseView.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		06E167A52C2AC20300FD2FE7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		06E167A62C2AC32B00FD2FE7 /* Refactoring */ = {
+			isa = PBXGroup;
+			children = (
+				06E167A72C2AC33B00FD2FE7 /* Onboarding */,
+			);
+			name = Refactoring;
+			path = "리팩토링";
+			sourceTree = "<group>";
+		};
+		06E167A72C2AC33B00FD2FE7 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				06F530A92C1B0F8300487212 /* OnboardingViewController.swift */,
+				06E167A12C2ABCF800FD2FE7 /* OnboardingView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
 		06F530862C1B085300487212 = {
 			isa = PBXGroup;
 			children = (
@@ -187,12 +224,15 @@
 			children = (
 				06F530922C1B085300487212 /* AppDelegate.swift */,
 				06F530942C1B085300487212 /* SceneDelegate.swift */,
+				06CFB4F02C2ABBB200C31D02 /* Base */,
 				0650C62D2C1CAEF500BDC4D1 /* Service */,
 				0649148E2C1B309600B05833 /* Enum */,
 				064914812C1B187D00B05833 /* CustomView */,
 				06F530AC2C1B0FA000487212 /* extension+ */,
 				06F530AB2C1B0F9400487212 /* Model */,
+				06E167A52C2AC20300FD2FE7 /* View */,
 				06F530A82C1B0F3C00487212 /* ViewController */,
+				06E167A62C2AC32B00FD2FE7 /* Refactoring */,
 				06F5309B2C1B085500487212 /* Assets.xcassets */,
 				06F5309D2C1B085500487212 /* LaunchScreen.storyboard */,
 				06F530A02C1B085500487212 /* Info.plist */,
@@ -204,7 +244,6 @@
 			isa = PBXGroup;
 			children = (
 				0650C6272C1C7C1F00BDC4D1 /* Main */,
-				06F530A92C1B0F8300487212 /* OnboardingViewController.swift */,
 				064914862C1B27D300B05833 /* ProfileSetViewController.swift */,
 				0649149B2C1B6E7800B05833 /* SelectProfile */,
 			);
@@ -319,6 +358,7 @@
 				06F530932C1B085300487212 /* AppDelegate.swift in Sources */,
 				0650C62C2C1CAED800BDC4D1 /* APIKey.swift in Sources */,
 				0649149F2C1C235300B05833 /* TabBarController.swift in Sources */,
+				06E167A22C2ABCF800FD2FE7 /* OnboardingView.swift in Sources */,
 				064914982C1B5D8000B05833 /* SearchViewController.swift in Sources */,
 				064914872C1B27D300B05833 /* ProfileSetViewController.swift in Sources */,
 				064914942C1B508400B05833 /* NickNameFilter.swift in Sources */,
@@ -335,6 +375,7 @@
 				064914962C1B529500B05833 /* ViewController+.swift in Sources */,
 				0690BC562C216C2400C5EAF6 /* NavigationController+.swift in Sources */,
 				0649149A2C1B5E1700B05833 /* SelectProfileViewController.swift in Sources */,
+				06E167A42C2ABD0600FD2FE7 /* BaseView.swift in Sources */,
 				0658AF212C1E12F300C65E3E /* ProfileSetType.swift in Sources */,
 				06F530BA2C1B104400487212 /* Image+.swift in Sources */,
 				064914902C1B325400B05833 /* ProfileImageView.swift in Sources */,
