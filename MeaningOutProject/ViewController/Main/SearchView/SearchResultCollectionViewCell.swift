@@ -124,7 +124,7 @@ final class SearchResultCollectionViewCell: UICollectionViewCell {
         
         
         lpriceLabel.text = "\(Int(data.lprice)!.formatted())원"
-        if searchDataModel.likeList.contains(data.productId){ //[201,206] 101 view
+        if searchDataModel.likeList[data.productId] != nil{ //[201,206] 101 view
             likeButton.setImage(.shoppingImage, for: .normal)
             likeButton.backgroundColor = .backgroundColor
             likeButton.layer.opacity = 1

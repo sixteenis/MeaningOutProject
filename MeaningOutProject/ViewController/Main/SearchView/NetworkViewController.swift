@@ -107,7 +107,7 @@ final class NetworkViewController: UIViewController {
         changerightBarButtinImage()
     }
     private func changerightBarButtinImage() {
-        if searchDataModel.likeList.contains(id) {
+        if searchDataModel.likeList[id] != nil{
             navigationItem.rightBarButtonItem?.image = .shoppingImage
         }else{
             navigationItem.rightBarButtonItem?.image = .unshoppingImage

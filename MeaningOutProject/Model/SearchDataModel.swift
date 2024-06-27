@@ -24,9 +24,9 @@ final class SearchDataModel {
             UserDefaults.standard.setValue(newValue, forKey: ShoppingID.searchItem)
         }
     }
-    var likeList: [String] {
+    var likeList: [String:Bool] {
         get{
-            return UserDefaults.standard.array(forKey: ShoppingID.likeDictionary) as? [String] ?? [String]()
+            return UserDefaults.standard.dictionary(forKey: ShoppingID.likeDictionary) as? [String:Bool] ?? [String:Bool]()
         }set{
             UserDefaults.standard.setValue(newValue, forKey: ShoppingID.likeDictionary)
         }
@@ -77,16 +77,25 @@ final class SearchDataModel {
     }
     
     func LikeListFunc(_ item: String){
-        var befor = UserDefaults.standard.array(forKey: ShoppingID.likeDictionary) as? [String] ?? [String]()
-        if let index = befor.firstIndex(of: item) { // 원래 좋아요 눌러있던 값일 경우
-            befor.remove(at: index)
-            UserDefaults.standard.setValue(befor, forKey: ShoppingID.likeDictionary)
-            return
-        }else{ // 좋아요가 안눌러저 있던 것 
-            befor.append(item)
-            UserDefaults.standard.setValue(befor, forKey: ShoppingID.likeDictionary)
+        var befor = self.likeList
+        guard let like = befor[item] else {
+            befor[item] = true
+            self.likeList = befor
             return
         }
+        befor.removeValue(forKey: item)
+        self.likeList = befor
+        return
+
+//        if let index = befor.firstIndex(of: item) { // 원래 좋아요 눌러있던 값일 경우
+//            befor.remove(at: index)
+//            UserDefaults.standard.dictionary(befor, forKey: ShoppingID.likeDictionary)
+//            return
+//        }else{ // 좋아요가 안눌러저 있던 것 
+//            befor.append(item)
+//            UserDefaults.standard.dictionary(befor, forKey: ShoppingID.likeDictionary)
+//            return
+//        }
         
         
     }
