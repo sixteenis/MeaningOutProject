@@ -62,7 +62,7 @@ final class MainProfileImageView: SelcetProfileImageView {
     private let subImageView = UIImageView()
     
     
-    override init(profile: String) {
+    override init(profile: String = "profile_0") {
         super.init(profile: profile)
         
         setUpSubImage()

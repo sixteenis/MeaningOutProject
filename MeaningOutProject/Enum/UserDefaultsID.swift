@@ -6,3 +6,14 @@
 //
 
 import Foundation
+
+enum UserDefaultsID{
+    static let userProfile = "userProfile"
+    static let userNickname = "userNickname"
+    static let userJoinDate = "joinDate"
+}
+
+enum ShoppingID{
+    static let searchItem = "searchItem"
+    static let likeDictionary = "like"
+}

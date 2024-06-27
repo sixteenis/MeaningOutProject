@@ -8,6 +8,8 @@
 import Foundation
 
 import Alamofire
+
+
 final class SearchDataModel {
     // TODO: 조회, 삭제를 효율적으로 실행하기위한 자료구조 생각
     // TODO: forkey의 String을 enum을 통해 휴먼에러를 줄이자
@@ -16,16 +18,17 @@ final class SearchDataModel {
     var nowItem = ""
     var searchItem: [String] {
         get{
-            return UserDefaults.standard.array(forKey: "searchItem") as? [String] ?? [String]()
+            
+            return UserDefaults.standard.array(forKey: ShoppingID.searchItem) as? [String] ?? [String]()
         }set{
-            UserDefaults.standard.setValue(newValue, forKey: "searchItem")
+            UserDefaults.standard.setValue(newValue, forKey: ShoppingID.searchItem)
         }
     }
     var likeList: [String] {
         get{
-            return UserDefaults.standard.array(forKey: "like") as? [String] ?? [String]()
+            return UserDefaults.standard.array(forKey: ShoppingID.likeDictionary) as? [String] ?? [String]()
         }set{
-            UserDefaults.standard.setValue(newValue, forKey: "like")
+            UserDefaults.standard.setValue(newValue, forKey: ShoppingID.likeDictionary)
         }
     }//coll
     var shoppingData: SearchDataModel?
@@ -48,22 +51,11 @@ final class SearchDataModel {
         ]
         AF.request(url,method: .get,parameters: param, headers: header)
             .responseDecodable(of: ShoppingModel.self) {respons in
-                //self.hideLoadingIndicator()
                 completionHander(respons.value)
-//                switch respons.result{
-//                case .success(let value):
-//                    //self.succesNetWork(value)
-//                    completionHander(value)
-//                case .failure(let error):
-//                    completionHander(nil)
-////                    self.noDataView.isHidden = false
-////                    self.noDataLabel.text = "네트워크 오류가 발생했습니다!"
-//                    
-//                }
             }
     }
     func appendSearchItem(_ item: String) {
-        var befor = UserDefaults.standard.array(forKey: "searchItem") as? [String] ?? [String]()
+        var befor = UserDefaults.standard.array(forKey: ShoppingID.searchItem) as? [String] ?? [String]()
         // TODO: 스페이스바를 눌러서 검색했을 때 스페이스바 제거해서 리스트에 저장하기 ㅠ
         // TODO: 변수 다시 선언해서 이쁘게 구현 고차함수 reduce활용
         let result: [Character] = Array(item)
@@ -76,31 +68,31 @@ final class SearchDataModel {
             befor.remove(at: index)
         }
             befor.insert(b, at: 0)
-        UserDefaults.standard.setValue(befor, forKey: "searchItem")
+        UserDefaults.standard.setValue(befor, forKey: ShoppingID.searchItem)
     }
     func removeSearchItem(_ itemIndex: Int) {
-        var befor = UserDefaults.standard.array(forKey: "searchItem") as? [String] ?? [String]()
+        var befor = UserDefaults.standard.array(forKey: ShoppingID.searchItem) as? [String] ?? [String]()
         befor.remove(at: itemIndex)
-        UserDefaults.standard.setValue(befor, forKey: "searchItem")
+        UserDefaults.standard.setValue(befor, forKey: ShoppingID.searchItem)
     }
     
     func LikeListFunc(_ item: String){
-        var befor = UserDefaults.standard.array(forKey: "like") as? [String] ?? [String]()
+        var befor = UserDefaults.standard.array(forKey: ShoppingID.likeDictionary) as? [String] ?? [String]()
         if let index = befor.firstIndex(of: item) { // 원래 좋아요 눌러있던 값일 경우
             befor.remove(at: index)
-            UserDefaults.standard.setValue(befor, forKey: "like")
+            UserDefaults.standard.setValue(befor, forKey: ShoppingID.likeDictionary)
             return
         }else{ // 좋아요가 안눌러저 있던 것 
             befor.append(item)
-            UserDefaults.standard.setValue(befor, forKey: "like")
+            UserDefaults.standard.setValue(befor, forKey: ShoppingID.likeDictionary)
             return
         }
         
         
     }
     func reset() {
-        UserDefaults.standard.setValue(nil, forKey: "searchItem")
-        UserDefaults.standard.setValue(nil, forKey: "like")
+        UserDefaults.standard.setValue(nil, forKey: ShoppingID.searchItem)
+        UserDefaults.standard.setValue(nil, forKey: ShoppingID.likeDictionary)
     }
     
 }

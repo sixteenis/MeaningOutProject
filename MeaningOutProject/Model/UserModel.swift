@@ -13,24 +13,25 @@ final class UserModel {
     let profileList = ["profile_0","profile_1","profile_2","profile_3","profile_4","profile_5","profile_6","profile_7","profile_8","profile_9","profile_10","profile_11"]
     var userProfile: String {
         get{
-            return UserDefaults.standard.string(forKey: "userProfile") ?? "??"
+            
+            return UserDefaults.standard.string(forKey: UserDefaultsID.userProfile) ?? "??"
         }set{
-            UserDefaults.standard.setValue(newValue, forKey: "userProfile")
+            UserDefaults.standard.setValue(newValue, forKey: UserDefaultsID.userProfile)
         }
     }
     var userNickname: String {
         get{
-            return UserDefaults.standard.string(forKey: "userNickname") ?? "??"
+            return UserDefaults.standard.string(forKey: UserDefaultsID.userNickname) ?? "??"
         }set{
-            UserDefaults.standard.setValue(newValue, forKey: "userNickname")
+            UserDefaults.standard.setValue(newValue, forKey: UserDefaultsID.userNickname)
         }
     }
     var userJoinDate: String {
         get{
-            return UserDefaults.standard.string(forKey: "joinDate") ?? "??"
+            return UserDefaults.standard.string(forKey: UserDefaultsID.userJoinDate) ?? "??"
         }
         set{
-            UserDefaults.standard.setValue(newValue, forKey: "joinDate")
+            UserDefaults.standard.setValue(newValue, forKey: UserDefaultsID.userJoinDate)
         }
     }
     private init() {}
@@ -48,9 +49,9 @@ final class UserModel {
         self.userJoinDate = dateString
     }
     func reset() {
-        UserDefaults.standard.setValue(nil, forKey: "userProfile")
-        UserDefaults.standard.setValue(nil, forKey: "userNickname")
-        UserDefaults.standard.setValue(nil, forKey: "joinDate")
+        UserDefaults.standard.setValue(nil, forKey: UserDefaultsID.userProfile)
+        UserDefaults.standard.setValue(nil, forKey: UserDefaultsID.userNickname)
+        UserDefaults.standard.setValue(nil, forKey: UserDefaultsID.userJoinDate)
     }
     
 }

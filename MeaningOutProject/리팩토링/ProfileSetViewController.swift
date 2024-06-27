@@ -215,28 +215,19 @@ extension ProfileSetViewController: UITextFieldDelegate {
         } catch {
             print("Unknown error")
         }
-        
-        
-        // textfilter = filterText(text)
-        
     }
     // MARK: - 닉네임 필터 기능
     func filterText(_ text: String) throws{
-//        guard text.count < 2 || text.count >= 10 else { throw NickNameFilter.lineNumber}
             let specialChar = CharacterSet(charactersIn: "@#$%")
-//        guard text.rangeOfCharacter(from: specialChar) != nil else {throw NickNameFilter.specialcharacters}
+
         let filterNum = text.filter{$0.isNumber}
-//        guard !filterNum.isEmpty else {throw NickNameFilter.numbers}
-//        guard text.hasPrefix(" ") || text.hasSuffix(" ") else { throw NickNameFilter.spacer}
+
         if text.count < 2 || text.count >= 10 {
             throw NickNameFilter.lineNumber
         }
-        
         if text.rangeOfCharacter(from: specialChar) != nil  {
             throw NickNameFilter.specialcharacters
         }
-        
-        
         if !filterNum.isEmpty {
             throw NickNameFilter.numbers
         }
