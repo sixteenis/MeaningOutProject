@@ -210,19 +210,15 @@ final class SearchResultViewController: UIViewController {
     // MARK: - 통신 부분
     private func callRequset() {
         showLoadingIndicator()
-        searchDataModel.callNetwork(filterData: filterData.rawValue, page: page) { data in
+        searchDataModel.callNetwork(filterData: filterData.rawValue, page: page, type: ShoppingModel.self) { data in
             self.hideLoadingIndicator()
-            guard let data = data else { 
+            guard let data = data else {
                 self.noDataView.isHidden = false
                 self.noDataLabel.text = "네트워크 오류가 발생했습니다!"
                 return
             }
             self.succesNetWork(data)
-
         }
-                
-        
-        
     }
     
     private func succesNetWork(_ result: ShoppingModel) {

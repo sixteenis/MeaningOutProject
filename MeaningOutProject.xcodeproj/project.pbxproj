@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0606993A2C2D03F60052A80F /* UserDefaultsID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060699392C2D03F60052A80F /* UserDefaultsID.swift */; };
+		0642E9D92C2EA31C008470CF /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0642E9D82C2EA31C008470CF /* NetworkRequest.swift */; };
 		064914832C1B18F700B05833 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064914822C1B18F700B05833 /* Color+.swift */; };
 		064914852C1B1D8500B05833 /* SelcetButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064914842C1B1D8500B05833 /* SelcetButton.swift */; };
 		064914872C1B27D300B05833 /* ProfileSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064914862C1B27D300B05833 /* ProfileSetViewController.swift */; };
@@ -51,6 +52,7 @@
 
 /* Begin PBXFileReference section */
 		060699392C2D03F60052A80F /* UserDefaultsID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsID.swift; sourceTree = "<group>"; };
+		0642E9D82C2EA31C008470CF /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
 		064914822C1B18F700B05833 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		064914842C1B1D8500B05833 /* SelcetButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelcetButton.swift; sourceTree = "<group>"; };
 		064914862C1B27D300B05833 /* ProfileSetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSetViewController.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				0650C62B2C1CAED800BDC4D1 /* APIKey.swift */,
+				0642E9D82C2EA31C008470CF /* NetworkRequest.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -361,6 +364,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0642E9D92C2EA31C008470CF /* NetworkRequest.swift in Sources */,
 				06F530932C1B085300487212 /* AppDelegate.swift in Sources */,
 				0650C62C2C1CAED800BDC4D1 /* APIKey.swift in Sources */,
 				0649149F2C1C235300B05833 /* TabBarController.swift in Sources */,

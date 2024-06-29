@@ -11,8 +11,6 @@ import Alamofire
 
 
 final class SearchDataModel {
-    // TODO: 조회, 삭제를 효율적으로 실행하기위한 자료구조 생각
-    // TODO: forkey의 String을 enum을 통해 휴먼에러를 줄이자
     static let shared = SearchDataModel()
     let display = 30
     var nowItem = ""
@@ -35,8 +33,31 @@ final class SearchDataModel {
     
 
     private init() {}
-    
-    func callNetwork(filterData: String, page: Int, completionHander: @escaping (ShoppingModel?)->()){
+//    func request<T: Decodable> (api: TMDBRequest , model: T.Type, complitionHandler: @escaping (T?, Error?) -> Void) {
+//           AF.request(api.endPoint,
+//                      method: api.method,
+//                      parameters: api.parameter,
+//                      encoding: URLEncoding(destination: .queryString) ,
+//                      headers: api.header)
+//           .validate(statusCode: 200..<500)
+//           // 메타 타입의 값 활용
+//           .responseDecodable(of: T.self) { response in
+//               
+//               print("STATUS: \(response.response?.statusCode ?? 0)")
+//               
+//               switch response.result {
+//               case .success(let value):
+//                   print("Success")
+//                   //                dump(value.results)
+//                   complitionHandler(value, nil)
+//                   
+//               case .failure(let error):
+//                   print("Failed")
+//                   print(error)
+//                   complitionHandler( nil, error)
+//               }
+//           }
+    func callNetwork<T: Decodable>(filterData: String, page: Int,type: T.Type,completionHander: @escaping (T?)->()){
 
         let url = "https://openapi.naver.com/v1/search/shop.json"
         let header: HTTPHeaders = [
@@ -50,8 +71,16 @@ final class SearchDataModel {
             "start": page,
         ]
         AF.request(url,method: .get,parameters: param, headers: header)
-            .responseDecodable(of: ShoppingModel.self) {respons in
-                completionHander(respons.value)
+            .responseDecodable(of: T.self) {respons in
+                switch respons.result {
+                case .success(let data):
+                    completionHander(data)
+                    
+                case .failure(let error):
+                    print(error)
+                    completionHander(nil)
+                }
+                
             }
     }
     func appendSearchItem(_ item: String) {
@@ -78,7 +107,7 @@ final class SearchDataModel {
     
     func LikeListFunc(_ item: String){
         var befor = self.likeList
-        guard let like = befor[item] else {
+        guard befor[item] != nil else {
             befor[item] = true
             self.likeList = befor
             return
@@ -86,17 +115,6 @@ final class SearchDataModel {
         befor.removeValue(forKey: item)
         self.likeList = befor
         return
-
-//        if let index = befor.firstIndex(of: item) { // 원래 좋아요 눌러있던 값일 경우
-//            befor.remove(at: index)
-//            UserDefaults.standard.dictionary(befor, forKey: ShoppingID.likeDictionary)
-//            return
-//        }else{ // 좋아요가 안눌러저 있던 것 
-//            befor.append(item)
-//            UserDefaults.standard.dictionary(befor, forKey: ShoppingID.likeDictionary)
-//            return
-//        }
-        
         
     }
     func reset() {
