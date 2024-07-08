@@ -36,7 +36,11 @@ class LikeFolderShowViewController: BaseViewController {
     }
     @objc func plusButtonTapped() {
         let vc = AddFolderViewController()
-        present(vc, animated: true)
+        vc.completion = {
+            self.folderTable.reloadData()
+        }
+        let nv = UINavigationController(rootViewController: vc)
+        present(nv, animated: true)
     }
 }
 
@@ -51,6 +55,8 @@ extension LikeFolderShowViewController: UITableViewDelegate, UITableViewDataSour
         cell.changView(data)
         return cell
     }
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(#function)
+    }
     
 }
