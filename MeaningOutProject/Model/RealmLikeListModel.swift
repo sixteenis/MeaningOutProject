@@ -33,6 +33,8 @@ class LikeList: Object {
     @Persisted var lprice: String
     @Persisted var mallName: String
     @Persisted var link: String
+    
+    @Persisted(originProperty: "likeLists") var main: LinkingObjects<Folder> //상위 부모의 이름을 저장
     convenience init(productId: String, title: String, image: String, lprice: String, mallName: String, link: String) {
         self.init()
         self.productId = productId

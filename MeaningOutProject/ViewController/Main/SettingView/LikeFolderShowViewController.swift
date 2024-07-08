@@ -15,6 +15,10 @@ class LikeFolderShowViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        folderTable.reloadData()
+    }
     override func setUpHierarchy() {
         view.addSubview(folderTable)
     }
@@ -58,6 +62,7 @@ extension LikeFolderShowViewController: UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = LikeItemShowViewController()
         vc.index = indexPath.row
+        vc.nvTitle = folder[indexPath.row].folderName
         navigationController?.pushViewController(vc, animated: true)
     }
     

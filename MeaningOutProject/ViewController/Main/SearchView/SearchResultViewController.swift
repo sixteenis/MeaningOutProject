@@ -320,15 +320,41 @@ extension SearchResultViewController: UICollectionViewDelegate, UICollectionView
         
         cell.likeTapped = {[weak self] in
             guard let self = self else { return }
-            // MARK: - 폴더에 넣어주는 곳
+            if folder.count == 1{
+                // MARK: - 폴더에 넣어주는 곳
+                
+                //            likeRepository.addItem(LikeList(productId: data.productId, title: data.title, image: data.image, lprice: data.lprice, mallName: data.mallName, link: data.link), folder:self.folder.first!)
+                // MARK: - 지금은 폴더가 하나지만 나중에 폴더가 늘어나면 처리해줘야됨
+                let item = LikeList(productId: data.productId, title: data.title, image: data.image, lprice: data.lprice, mallName: data.mallName, link: data.link)
+                let folder = self.folder.first!
+                likeRepository.toggleLike(item, folder: folder)
+                searchDataModel.LikeListFunc(data.productId)
+                collectionView.reloadItems(at: [indexPath])
+            }else {
+                //1.
+                let alert = UIAlertController(
+                    title: nil,
+                    message: nil,
+                    preferredStyle: .actionSheet
+                )
+                //2.
+                for item in 0..<folder.count{
+                    let action = UIAlertAction(title: folder[item].folderName, style: .default) { _ in
+                        print("아직 구현 못함 ㅋ")
+                        
+                    }
+                    alert.addAction(action)
+                }
+                
+                let cancel = UIAlertAction(title: "취소", style: .cancel)
+                
+                //3.
             
-//            likeRepository.addItem(LikeList(productId: data.productId, title: data.title, image: data.image, lprice: data.lprice, mallName: data.mallName, link: data.link), folder:self.folder.first!)
-            // MARK: - 지금은 폴더가 하나지만 나중에 폴더가 늘어나면 처리해줘야됨
-            let item = LikeList(productId: data.productId, title: data.title, image: data.image, lprice: data.lprice, mallName: data.mallName, link: data.link)
-            let folder = self.folder.first!
-            likeRepository.toggleLike(item, folder: folder)
-            searchDataModel.LikeListFunc(data.productId)
-            collectionView.reloadItems(at: [indexPath])
+                alert.addAction(cancel)
+                
+                //4
+                present(alert, animated: true)
+            }
         }
         
         

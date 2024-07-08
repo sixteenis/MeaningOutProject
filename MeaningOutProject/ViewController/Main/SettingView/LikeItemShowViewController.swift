@@ -18,6 +18,7 @@ class LikeItemShowViewController: BaseViewController {
     private let likeRepository = LikeRepository()
     private let folder = LikeRepository().fetchFolder()
     var index: Int!
+    var nvTitle: String?
     static func collectionViewLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewFlowLayout()
         let width = UIScreen.main.bounds.width - 40 // 20 + 30
@@ -42,6 +43,7 @@ class LikeItemShowViewController: BaseViewController {
         }
     }
     override func setUpView() {
+        navigationItem.title = nvTitle
         collectionView.delegate = self
         collectionView.dataSource = self
         //collectionView.prefetchDataSource = self
