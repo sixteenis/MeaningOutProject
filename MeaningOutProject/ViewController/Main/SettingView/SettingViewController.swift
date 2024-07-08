@@ -165,7 +165,8 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
                 sceneDelegate?.window?.makeKeyAndVisible()
             }
         }else if indexPath.row == 0{
-            let vc = LikeIItemShowViewController()
+            let vc = LikeFolderShowViewController()
+            vc.navTitle = settingList[indexPath.row]
             navigationController?.pushViewController(vc, animated: true)
         }
         

@@ -14,7 +14,7 @@ final class LikeRepository {
     func addDefaultFolderIfNeeded() {
         let folder = realm.objects(Folder.self)
         if folder.isEmpty{
-            let folder = FolderModel(folderName: "전체", image: "냠냠이", imageColor: "냠냠")
+            let folder = FolderModel(folderName: "전체", image: "figure", imageColor: "냠냠")
             self.addFolder(folder)
         }
     }
@@ -29,25 +29,23 @@ final class LikeRepository {
             print("폴더 생성 error")
         }
     }
-    func fetchFolder() -> [Folder] {
+    func fetchFolder() -> Results<Folder> {
         let value = realm.objects(Folder.self)
-        return Array(value)
+        return value
     }
     
     
     
     
-    func fetchAll() -> [LikeList] {
+    func fetchAll() -> Results<LikeList> {
         let data = realm.objects(LikeList.self)
-        
-        return Array(data)
+        return data
     }
     
     func toggleLike(_ item: LikeList, folder: Folder) {
         let data = realm.objects(LikeList.self).where {
             $0.productId == item.productId
         }
-        print(data)
         if data.isEmpty {
             addItem(item, folder: folder)
         }else{
@@ -55,8 +53,6 @@ final class LikeRepository {
         }
     }
     func deleteItem(_ item: LikeList, folder: Folder) {
-        print("삭제부분")
-        print("삭제부분")
            do {
                try realm.write {
                    if let index = folder.likeLists.firstIndex(where: { $0.productId == item.productId }) {

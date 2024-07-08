@@ -34,12 +34,16 @@
 		0658AF1F2C1DF55F00C65E3E /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0658AF1E2C1DF55F00C65E3E /* SettingTableViewCell.swift */; };
 		0658AF212C1E12F300C65E3E /* ProfileSetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0658AF202C1E12F300C65E3E /* ProfileSetType.swift */; };
 		0690BC562C216C2400C5EAF6 /* NavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0690BC552C216C2400C5EAF6 /* NavigationController+.swift */; };
-		06A035D32C3BC10800CAFE3B /* LikeIItemShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A035D22C3BC10800CAFE3B /* LikeIItemShowViewController.swift */; };
+		06A035D32C3BC10800CAFE3B /* LikeItemShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A035D22C3BC10800CAFE3B /* LikeItemShowViewController.swift */; };
 		06A035D52C3BC12800CAFE3B /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A035D42C3BC12800CAFE3B /* BaseViewController.swift */; };
 		06A035D72C3BC81900CAFE3B /* RealmLikeListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A035D62C3BC81900CAFE3B /* RealmLikeListModel.swift */; };
 		06A035DC2C3BCDA600CAFE3B /* LikeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A035DB2C3BCDA600CAFE3B /* LikeRepository.swift */; };
 		06A035DE2C3BD48A00CAFE3B /* FolderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A035DD2C3BD48A00CAFE3B /* FolderModel.swift */; };
 		06A035E32C3BDBF500CAFE3B /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 06A035E22C3BDBF500CAFE3B /* RealmSwift */; settings = {ATTRIBUTES = (Required, ); }; };
+		06A035E52C3C024400CAFE3B /* LikeFolderShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A035E42C3C024400CAFE3B /* LikeFolderShowViewController.swift */; };
+		06A035E72C3C027000CAFE3B /* LikeFolderShowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A035E62C3C027000CAFE3B /* LikeFolderShowTableViewCell.swift */; };
+		06A035E92C3C042900CAFE3B /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A035E82C3C042900CAFE3B /* BaseTableViewCell.swift */; };
+		06A035EB2C3C0D2600CAFE3B /* AddFolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A035EA2C3C0D2600CAFE3B /* AddFolderViewController.swift */; };
 		06E167A22C2ABCF800FD2FE7 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E167A12C2ABCF800FD2FE7 /* OnboardingView.swift */; };
 		06E167A42C2ABD0600FD2FE7 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E167A32C2ABD0600FD2FE7 /* BaseView.swift */; };
 		06E167A92C2AF26500FD2FE7 /* ProfileSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E167A82C2AF26500FD2FE7 /* ProfileSetView.swift */; };
@@ -84,11 +88,15 @@
 		0658AF1E2C1DF55F00C65E3E /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		0658AF202C1E12F300C65E3E /* ProfileSetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSetType.swift; sourceTree = "<group>"; };
 		0690BC552C216C2400C5EAF6 /* NavigationController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationController+.swift"; sourceTree = "<group>"; };
-		06A035D22C3BC10800CAFE3B /* LikeIItemShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeIItemShowViewController.swift; sourceTree = "<group>"; };
+		06A035D22C3BC10800CAFE3B /* LikeItemShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeItemShowViewController.swift; sourceTree = "<group>"; };
 		06A035D42C3BC12800CAFE3B /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		06A035D62C3BC81900CAFE3B /* RealmLikeListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmLikeListModel.swift; sourceTree = "<group>"; };
 		06A035DB2C3BCDA600CAFE3B /* LikeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeRepository.swift; sourceTree = "<group>"; };
 		06A035DD2C3BD48A00CAFE3B /* FolderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderModel.swift; sourceTree = "<group>"; };
+		06A035E42C3C024400CAFE3B /* LikeFolderShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeFolderShowViewController.swift; sourceTree = "<group>"; };
+		06A035E62C3C027000CAFE3B /* LikeFolderShowTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeFolderShowTableViewCell.swift; sourceTree = "<group>"; };
+		06A035E82C3C042900CAFE3B /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
+		06A035EA2C3C0D2600CAFE3B /* AddFolderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFolderViewController.swift; sourceTree = "<group>"; };
 		06E167A12C2ABCF800FD2FE7 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		06E167A32C2ABD0600FD2FE7 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		06E167A82C2AF26500FD2FE7 /* ProfileSetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSetView.swift; sourceTree = "<group>"; };
@@ -176,7 +184,10 @@
 			children = (
 				064914A02C1C23A200B05833 /* SettingViewController.swift */,
 				0658AF1E2C1DF55F00C65E3E /* SettingTableViewCell.swift */,
-				06A035D22C3BC10800CAFE3B /* LikeIItemShowViewController.swift */,
+				06A035E42C3C024400CAFE3B /* LikeFolderShowViewController.swift */,
+				06A035E62C3C027000CAFE3B /* LikeFolderShowTableViewCell.swift */,
+				06A035EA2C3C0D2600CAFE3B /* AddFolderViewController.swift */,
+				06A035D22C3BC10800CAFE3B /* LikeItemShowViewController.swift */,
 			);
 			path = SettingView;
 			sourceTree = "<group>";
@@ -195,6 +206,7 @@
 			children = (
 				06E167A32C2ABD0600FD2FE7 /* BaseView.swift */,
 				06A035D42C3BC12800CAFE3B /* BaseViewController.swift */,
+				06A035E82C3C042900CAFE3B /* BaseTableViewCell.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -387,6 +399,7 @@
 				0642E9D92C2EA31C008470CF /* NetworkRequest.swift in Sources */,
 				06F530932C1B085300487212 /* AppDelegate.swift in Sources */,
 				0650C62C2C1CAED800BDC4D1 /* APIKey.swift in Sources */,
+				06A035E92C3C042900CAFE3B /* BaseTableViewCell.swift in Sources */,
 				0649149F2C1C235300B05833 /* TabBarController.swift in Sources */,
 				06E167A22C2ABCF800FD2FE7 /* OnboardingView.swift in Sources */,
 				06A035D52C3BC12800CAFE3B /* BaseViewController.swift in Sources */,
@@ -403,11 +416,12 @@
 				06A035D72C3BC81900CAFE3B /* RealmLikeListModel.swift in Sources */,
 				064914892C1B282200B05833 /* ReuseIdentifier+.swift in Sources */,
 				0658AF1F2C1DF55F00C65E3E /* SettingTableViewCell.swift in Sources */,
-				06A035D32C3BC10800CAFE3B /* LikeIItemShowViewController.swift in Sources */,
+				06A035D32C3BC10800CAFE3B /* LikeItemShowViewController.swift in Sources */,
 				064914832C1B18F700B05833 /* Color+.swift in Sources */,
 				0650C62A2C1C7C5800BDC4D1 /* SearchTableViewCell.swift in Sources */,
 				0649149D2C1B6EA700B05833 /* SelectProfileCollectionViewCell.swift in Sources */,
 				064914962C1B529500B05833 /* ViewController+.swift in Sources */,
+				06A035E52C3C024400CAFE3B /* LikeFolderShowViewController.swift in Sources */,
 				0690BC562C216C2400C5EAF6 /* NavigationController+.swift in Sources */,
 				0649149A2C1B5E1700B05833 /* SelectProfileViewController.swift in Sources */,
 				06E167A42C2ABD0600FD2FE7 /* BaseView.swift in Sources */,
@@ -415,6 +429,8 @@
 				06F530BA2C1B104400487212 /* Image+.swift in Sources */,
 				064914902C1B325400B05833 /* ProfileImageView.swift in Sources */,
 				06F530AA2C1B0F8300487212 /* OnboardingViewController.swift in Sources */,
+				06A035E72C3C027000CAFE3B /* LikeFolderShowTableViewCell.swift in Sources */,
+				06A035EB2C3C0D2600CAFE3B /* AddFolderViewController.swift in Sources */,
 				064914922C1B33DC00B05833 /* UserModel.swift in Sources */,
 				0650C6252C1C720700BDC4D1 /* SearchDataModel.swift in Sources */,
 				06F530952C1B085300487212 /* SceneDelegate.swift in Sources */,
