@@ -14,7 +14,7 @@ final class SearchResultViewController: UIViewController {
     let activityIndicator = UIActivityIndicatorView(style: .large)
     private let line = UIView()
     private let allcountLabel = UILabel()
-    
+    let a = UIButton(type: .custom)
     private let accuracyButton = UIButton()
     private let dateButton = UIButton()
     private let priceUpButton = UIButton()
@@ -25,6 +25,9 @@ final class SearchResultViewController: UIViewController {
     private let noDataLabel = UILabel()
     
     private let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout())
+    
+    private let likeRepository = LikeRepository()
+    private let folder = LikeRepository().fetchFolder()
     static func collectionViewLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewFlowLayout()
         let width = UIScreen.main.bounds.width - 40 // 20 + 30
@@ -166,7 +169,7 @@ final class SearchResultViewController: UIViewController {
         accuracyButton.layer.borderColor = UIColor.textFieldBackgroundColor.cgColor
         accuracyButton.tag = 0
         accuracyButton.addTarget(self, action: #selector(filterButtonTapped), for: .touchUpInside)
-        
+           
         dateButton.setTitle("날짜순", for: .normal)
         dateButton.titleLabel?.font = .systemFont(ofSize: 14)
         dateButton.layer.cornerRadius = 15
@@ -317,6 +320,13 @@ extension SearchResultViewController: UICollectionViewDelegate, UICollectionView
         
         cell.likeTapped = {[weak self] in
             guard let self = self else { return }
+            // MARK: - 폴더에 넣어주는 곳
+            
+//            likeRepository.addItem(LikeList(productId: data.productId, title: data.title, image: data.image, lprice: data.lprice, mallName: data.mallName, link: data.link), folder:self.folder.first!)
+            // MARK: - 지금은 폴더가 하나지만 나중에 폴더가 늘어나면 처리해줘야됨
+            let item = LikeList(productId: data.productId, title: data.title, image: data.image, lprice: data.lprice, mallName: data.mallName, link: data.link)
+            let folder = self.folder.first!
+            likeRepository.toggleLike(item, folder: folder)
             searchDataModel.LikeListFunc(data.productId)
             collectionView.reloadItems(at: [indexPath])
         }

@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import RealmSwift
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
@@ -26,7 +26,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window?.makeKeyAndVisible() // show
             
         }
-        
+        let repository = LikeRepository()
+        repository.addDefaultFolderIfNeeded()
+        let realm = try! Realm()
+        print(realm.configuration.fileURL ?? "")
         
     }
 

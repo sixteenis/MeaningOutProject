@@ -164,7 +164,11 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
                 sceneDelegate?.window?.rootViewController = navigationController
                 sceneDelegate?.window?.makeKeyAndVisible()
             }
+        }else if indexPath.row == 0{
+            let vc = LikeIItemShowViewController()
+            navigationController?.pushViewController(vc, animated: true)
         }
+        
     }
     
     

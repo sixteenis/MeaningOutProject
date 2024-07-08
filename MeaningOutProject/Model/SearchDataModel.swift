@@ -16,12 +16,13 @@ final class SearchDataModel {
     var nowItem = ""
     var searchItem: [String] {
         get{
-            
             return UserDefaults.standard.array(forKey: ShoppingID.searchItem) as? [String] ?? [String]()
         }set{
             UserDefaults.standard.setValue(newValue, forKey: ShoppingID.searchItem)
         }
     }
+    
+    // MARK: - 여기를 램으로 진행합시다!
     var likeList: [String:Bool] {
         get{
             return UserDefaults.standard.dictionary(forKey: ShoppingID.likeDictionary) as? [String:Bool] ?? [String:Bool]()
@@ -33,30 +34,6 @@ final class SearchDataModel {
     
 
     private init() {}
-//    func request<T: Decodable> (api: TMDBRequest , model: T.Type, complitionHandler: @escaping (T?, Error?) -> Void) {
-//           AF.request(api.endPoint,
-//                      method: api.method,
-//                      parameters: api.parameter,
-//                      encoding: URLEncoding(destination: .queryString) ,
-//                      headers: api.header)
-//           .validate(statusCode: 200..<500)
-//           // 메타 타입의 값 활용
-//           .responseDecodable(of: T.self) { response in
-//               
-//               print("STATUS: \(response.response?.statusCode ?? 0)")
-//               
-//               switch response.result {
-//               case .success(let value):
-//                   print("Success")
-//                   //                dump(value.results)
-//                   complitionHandler(value, nil)
-//                   
-//               case .failure(let error):
-//                   print("Failed")
-//                   print(error)
-//                   complitionHandler( nil, error)
-//               }
-//           }
     func callNetwork<T: Decodable>(filterData: String, page: Int,type: T.Type,completionHander: @escaping (T?)->()){
 
         let url = "https://openapi.naver.com/v1/search/shop.json"
