@@ -56,7 +56,9 @@ extension LikeFolderShowViewController: UITableViewDelegate, UITableViewDataSour
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(#function)
+        let vc = LikeItemShowViewController()
+        vc.index = indexPath.row
+        navigationController?.pushViewController(vc, animated: true)
     }
     
 }

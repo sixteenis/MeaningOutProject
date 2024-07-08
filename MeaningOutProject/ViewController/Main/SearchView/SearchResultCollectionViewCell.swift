@@ -137,6 +137,49 @@ final class SearchResultCollectionViewCell: UICollectionViewCell {
             
         }
     }
+    func setUpDataFolder(_ data: LikeList) {
+        let url = URL(string: data.image)!
+        // 킹피셔 안쓰고 이미지 처리
+        self.image.image = nil
+        //계속 밑으로 내리면 이전 이미지가 뜨는 문제 해결해야됨...ㅠ..ㅠ
+        DispatchQueue.global().async { [weak self] in
+            do {
+                let imageData = try Data(contentsOf: url)
+                DispatchQueue.main.async {
+                    if self?.image.image != UIImage(data: imageData){
+                        self?.image.image = UIImage(data: imageData)
+                    }
+
+                }
+            }catch {
+                DispatchQueue.main.async {
+                    self?.image.image = UIImage(systemName: "bag")
+                }
+            }
+        }
+        
+        mallNameLabel.text = data.mallName
+        
+        var beforText = data.title.replacingOccurrences(of: "<b>", with: "")
+        beforText = beforText.replacingOccurrences(of: "</b>", with: "")
+    
+        titleLabel.text = beforText
+        
+        
+        lpriceLabel.text = "\(Int(data.lprice)!.formatted())원"
+        if searchDataModel.likeList[data.productId] != nil{ //[201,206] 101 view
+            likeButton.setImage(.shoppingImage, for: .normal)
+            likeButton.backgroundColor = .backgroundColor
+            likeButton.layer.opacity = 1
+            
+        }else{
+            likeButton.setImage(.unshoppingImage, for: .normal)
+            likeButton.backgroundColor = .settingSeperatorColor
+            likeButton.layer.opacity = 0.7
+            
+            
+        }
+    }
     // MARK: - 라이크 버튼 기능
     @objc func likeButtonTapped() {
         likeTapped()
