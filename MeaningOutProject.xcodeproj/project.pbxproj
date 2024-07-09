@@ -44,6 +44,8 @@
 		06A035E72C3C027000CAFE3B /* LikeFolderShowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A035E62C3C027000CAFE3B /* LikeFolderShowTableViewCell.swift */; };
 		06A035E92C3C042900CAFE3B /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A035E82C3C042900CAFE3B /* BaseTableViewCell.swift */; };
 		06A035EB2C3C0D2600CAFE3B /* AddFolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A035EA2C3C0D2600CAFE3B /* AddFolderViewController.swift */; };
+		06A035F52C3D238200CAFE3B /* ProfileSetVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A035F42C3D238200CAFE3B /* ProfileSetVM.swift */; };
+		06A035F72C3D239F00CAFE3B /* Obsearvable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A035F62C3D239F00CAFE3B /* Obsearvable.swift */; };
 		06E167A22C2ABCF800FD2FE7 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E167A12C2ABCF800FD2FE7 /* OnboardingView.swift */; };
 		06E167A42C2ABD0600FD2FE7 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E167A32C2ABD0600FD2FE7 /* BaseView.swift */; };
 		06E167A92C2AF26500FD2FE7 /* ProfileSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E167A82C2AF26500FD2FE7 /* ProfileSetView.swift */; };
@@ -97,6 +99,8 @@
 		06A035E62C3C027000CAFE3B /* LikeFolderShowTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeFolderShowTableViewCell.swift; sourceTree = "<group>"; };
 		06A035E82C3C042900CAFE3B /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		06A035EA2C3C0D2600CAFE3B /* AddFolderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFolderViewController.swift; sourceTree = "<group>"; };
+		06A035F42C3D238200CAFE3B /* ProfileSetVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSetVM.swift; sourceTree = "<group>"; };
+		06A035F62C3D239F00CAFE3B /* Obsearvable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Obsearvable.swift; sourceTree = "<group>"; };
 		06E167A12C2ABCF800FD2FE7 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		06E167A32C2ABD0600FD2FE7 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		06E167A82C2AF26500FD2FE7 /* ProfileSetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSetView.swift; sourceTree = "<group>"; };
@@ -223,6 +227,7 @@
 			children = (
 				06E167A82C2AF26500FD2FE7 /* ProfileSetView.swift */,
 				064914862C1B27D300B05833 /* ProfileSetViewController.swift */,
+				06A035F42C3D238200CAFE3B /* ProfileSetVM.swift */,
 				06E167A72C2AC33B00FD2FE7 /* Onboarding */,
 			);
 			name = Refactoring;
@@ -260,6 +265,7 @@
 			children = (
 				06F530922C1B085300487212 /* AppDelegate.swift */,
 				06F530942C1B085300487212 /* SceneDelegate.swift */,
+				06A035F62C3D239F00CAFE3B /* Obsearvable.swift */,
 				06CFB4F02C2ABBB200C31D02 /* Base */,
 				0650C62D2C1CAEF500BDC4D1 /* Service */,
 				0649148E2C1B309600B05833 /* Enum */,
@@ -269,8 +275,8 @@
 				06E167A52C2AC20300FD2FE7 /* View */,
 				06F530A82C1B0F3C00487212 /* ViewController */,
 				06E167A62C2AC32B00FD2FE7 /* Refactoring */,
-				06F5309B2C1B085500487212 /* Assets.xcassets */,
 				06F5309D2C1B085500487212 /* LaunchScreen.storyboard */,
+				06F5309B2C1B085500487212 /* Assets.xcassets */,
 				06F530A02C1B085500487212 /* Info.plist */,
 			);
 			path = MeaningOutProject;
@@ -422,6 +428,7 @@
 				0649149D2C1B6EA700B05833 /* SelectProfileCollectionViewCell.swift in Sources */,
 				064914962C1B529500B05833 /* ViewController+.swift in Sources */,
 				06A035E52C3C024400CAFE3B /* LikeFolderShowViewController.swift in Sources */,
+				06A035F72C3D239F00CAFE3B /* Obsearvable.swift in Sources */,
 				0690BC562C216C2400C5EAF6 /* NavigationController+.swift in Sources */,
 				0649149A2C1B5E1700B05833 /* SelectProfileViewController.swift in Sources */,
 				06E167A42C2ABD0600FD2FE7 /* BaseView.swift in Sources */,
@@ -432,6 +439,7 @@
 				06A035E72C3C027000CAFE3B /* LikeFolderShowTableViewCell.swift in Sources */,
 				06A035EB2C3C0D2600CAFE3B /* AddFolderViewController.swift in Sources */,
 				064914922C1B33DC00B05833 /* UserModel.swift in Sources */,
+				06A035F52C3D238200CAFE3B /* ProfileSetVM.swift in Sources */,
 				0650C6252C1C720700BDC4D1 /* SearchDataModel.swift in Sources */,
 				06F530952C1B085300487212 /* SceneDelegate.swift in Sources */,
 				0658AF1D2C1DD98D00C65E3E /* NetworkViewController.swift in Sources */,

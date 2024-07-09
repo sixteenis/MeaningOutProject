@@ -14,13 +14,15 @@ final class ProfileSetViewController: UIViewController {
     private let textLine = UIView()
     private let nicknameFilterLabel = UILabel()
     private let okButton = SelcetButton(title: "완료")
+    
+    
     private var textfilter: NickNameFilter = .start {
         didSet{
             setUpChangeUI()
         }
     }
-    
     let userModel = UserModel.shared
+    private let vm = ProfileSetVM()
     var profileSetType: ProfileSetType = .first
     
     
@@ -30,6 +32,7 @@ final class ProfileSetViewController: UIViewController {
         setUpLayout()
         setUpUI()
         setUpChangeUI()
+        bindData()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -152,19 +155,13 @@ final class ProfileSetViewController: UIViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     @objc func okButtonTapped() {
-        checkTextFiled()
+        self.checkTextFiled(self.vm.outputFilterBool.value)
     }
     @objc func saveButtonTapped() {
-        if nicknameTextField.text == "" {
-            userModel.userProfile = userModel.beforProfile
-            navigationController?.popViewController(animated: true)
-        }else{
-            checkTextFiled()
-        }
-        
+        self.checkTextFiled(self.vm.outputFilterBool.value)
     }
     // MARK: - 다음뷰로 이동하는 부분
-    func nextView() {
+    private func nextView() {
         let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
         let sceneDelegate = windowScene?.delegate as? SceneDelegate
         
@@ -173,8 +170,17 @@ final class ProfileSetViewController: UIViewController {
         sceneDelegate?.window?.rootViewController = TabBarController()
         sceneDelegate?.window?.makeKeyAndVisible()
     }
-    func checkTextFiled(){
-        if self.textfilter == .ok && !nicknameTextField.text!.isEmpty {
+    // MARK: - vm 부분
+    private func bindData() {
+        
+        vm.outputFilterTitle.bind { data in
+            self.nicknameFilterLabel.text = data.rawValue
+            self.nicknameFilterLabel.textColor = data.color
+        }
+    }
+    // MARK: - 확인 버튼 눌렀을 때 다음 뷰로 갈지 정하는 함수
+    func checkTextFiled(_ bool: Bool){
+        if bool {
             userModel.userProfile = userModel.beforProfile
             userModel.userNickname = nicknameTextField.text!
             if profileSetType == .first {
@@ -195,44 +201,12 @@ final class ProfileSetViewController: UIViewController {
 
 extension ProfileSetViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        checkTextFiled()
+        //checkTextFiled()
         return true
-    }
-    private func containsSpecialChar(_ char: String) -> Bool {
-        let specialChar = CharacterSet.alphanumerics.inverted
-        return char.rangeOfCharacter(from: specialChar) != nil
     }
     //텍스트 필드 글자 필터링 하는 부분
     func textFieldDidChangeSelection(_ textField: UITextField) {
-        //print(#function)
-        guard let text = textField.text else {return}
-        do {
-            try filterText(text)
-            textfilter = .ok
-            
-        }catch let error as NickNameFilter {
-            textfilter = error
-        } catch {
-            print("Unknown error")
-        }
+        self.vm.inputNickname.value = textField.text
     }
-    // MARK: - 닉네임 필터 기능
-    func filterText(_ text: String) throws{
-            let specialChar = CharacterSet(charactersIn: "@#$%")
 
-        let filterNum = text.filter{$0.isNumber}
-
-        if text.count < 2 || text.count >= 10 {
-            throw NickNameFilter.lineNumber
-        }
-        if text.rangeOfCharacter(from: specialChar) != nil  {
-            throw NickNameFilter.specialcharacters
-        }
-        if !filterNum.isEmpty {
-            throw NickNameFilter.numbers
-        }
-        if text.hasPrefix(" ") || text.hasSuffix(" ") {
-            throw NickNameFilter.spacer
-        }
-    }
 }
