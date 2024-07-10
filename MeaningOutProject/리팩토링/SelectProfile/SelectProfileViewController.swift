@@ -12,7 +12,6 @@ import SnapKit
 final class SelectProfileViewController: UIViewController {
     private let line = UIView()
     private lazy var profileImage = MainProfileImageView(profile: userModel.beforProfile)
-    
     private let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout())
     
     var profileSetType: ProfileSetType = .first
@@ -29,7 +28,7 @@ final class SelectProfileViewController: UIViewController {
     }
     
     let userModel = UserModel.shared
-        
+    private let vm = SelectProfileViewModel()
     
     
     override func viewDidLoad() {
@@ -94,13 +93,12 @@ final class SelectProfileViewController: UIViewController {
 
 extension SelectProfileViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        return userModel.profileList.count
+        return vm.profileImage.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SelectProfileCollectionViewCell.id, for: indexPath) as! SelectProfileCollectionViewCell
-        let data = userModel.profileList[indexPath.row]
+        let data = vm.profileImage[indexPath.row]
         let selectBool = data == userModel.beforProfile
         cell.backgroundColor = .backgroundColor
         cell.setUpData(data, select: selectBool)
@@ -112,7 +110,4 @@ extension SelectProfileViewController: UICollectionViewDelegate, UICollectionVie
         collectionView.reloadData()
         
     }
-    
-    
-    
 }

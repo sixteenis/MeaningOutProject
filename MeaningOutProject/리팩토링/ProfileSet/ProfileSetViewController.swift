@@ -7,57 +7,50 @@
 
 import UIKit
 
-final class ProfileSetViewController: UIViewController {
-    private lazy var profileImage = MainProfileImageView(profile: userModel.beforProfile)
+final class ProfileSetViewController: BaseViewController {
+    private lazy var profileImage = MainProfileImageView(profile: vm.outputProfileImage.value)
     private let line = UIView()
     private let nicknameTextField = UITextField()
     private let textLine = UIView()
     private let nicknameFilterLabel = UILabel()
     private let okButton = SelcetButton(title: "완료")
     
-    
-    private var textfilter: NickNameFilter = .start {
-        didSet{
-            setUpChangeUI()
-        }
-    }
-    let userModel = UserModel.shared
-    private let vm = ProfileSetVM()
+    private let vm = ProfileSetViewModel()
+    // TODO: 이친구도 vm으로 치워보자 나중에!
     var profileSetType: ProfileSetType = .first
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpHierarch()
-        setUpLayout()
-        setUpUI()
-        setUpChangeUI()
-        bindData()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        switch profileSetType {
-        case .first:
-            profileImage.changeImage(userModel.beforProfile)
-        case .edit:
-            profileImage.changeImage(userModel.beforProfile)
-        }
-        
-            
+        vm.inputViewDidLoadTrigger.value = ()
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         profileImage.layer.cornerRadius = profileImage.frame.width / 2
     }
+    // MARK: - vm 부분
+    override func bindData() {
+        vm.outputProfileImage.bind { image in
+            self.profileImage.changeImage(image)
+        }
+        vm.outputFilterTitle.bind { data in
+            self.nicknameFilterLabel.text = data.rawValue
+            self.nicknameFilterLabel.textColor = data.color
+        }
+        
+    }
     // MARK: - connect 부분
-    func setUpHierarch() {
+    override func setUpHierarchy() {
         view.addSubview(line)
         view.addSubview(profileImage)
         view.addSubview(nicknameTextField)
         view.addSubview(textLine)
         view.addSubview(nicknameFilterLabel)
         view.addSubview(okButton)
-        
+            
         //델리게이트
         nicknameTextField.delegate = self
         
@@ -68,7 +61,7 @@ final class ProfileSetViewController: UIViewController {
     }
     
     // MARK: - Layout 부분
-    func setUpLayout() {
+    override func setUpLayout() {
         line.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide)
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
@@ -100,7 +93,7 @@ final class ProfileSetViewController: UIViewController {
     }
     
     // MARK: - UI 세팅 부분
-    func setUpUI() {
+    override func setUpView() {
         view.backgroundColor = .backgroundColor
         
         navigationController?.navigationBar.tintColor = .buttonSelectColor
@@ -125,29 +118,12 @@ final class ProfileSetViewController: UIViewController {
         nicknameFilterLabel.textAlignment = .left
         nicknameFilterLabel.numberOfLines = 1
         nicknameFilterLabel.font = .systemFont(ofSize: 13)
-        setUpChangeUI()
         
         
-    }
-    // MARK: - 동적인 UI 세팅 부분
-    func setUpChangeUI() {
-        nicknameFilterLabel.text = textfilter.rawValue
-        nicknameFilterLabel.textColor = textfilter.color
-    }
-    
-    func reset() {
-        nicknameTextField.text = ""
-        textfilter = .start
     }
     // MARK: - 버튼 함수 부분
     @objc func nvBackButtonTapped() {
-        if profileSetType == .edit {
-            userModel.beforProfile = userModel.userProfile
-        }else{
-            reset()
-        }
         navigationController?.popViewController(animated: true)
-        
     }
     @objc func profileImageTapped() {
         let vc = SelectProfileViewController()
@@ -170,21 +146,11 @@ final class ProfileSetViewController: UIViewController {
         sceneDelegate?.window?.rootViewController = TabBarController()
         sceneDelegate?.window?.makeKeyAndVisible()
     }
-    // MARK: - vm 부분
-    private func bindData() {
-        
-        vm.outputFilterTitle.bind { data in
-            self.nicknameFilterLabel.text = data.rawValue
-            self.nicknameFilterLabel.textColor = data.color
-        }
-    }
+    
     // MARK: - 확인 버튼 눌렀을 때 다음 뷰로 갈지 정하는 함수
-    func checkTextFiled(_ bool: Bool){
+    private func checkTextFiled(_ bool: Bool){
         if bool {
-            userModel.userProfile = userModel.beforProfile
-            userModel.userNickname = nicknameTextField.text!
             if profileSetType == .first {
-                userModel.setUserJoinDate()
                 nextView()
                 return
             }else{
@@ -196,8 +162,6 @@ final class ProfileSetViewController: UIViewController {
         }
     }
 }
-
-
 
 extension ProfileSetViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

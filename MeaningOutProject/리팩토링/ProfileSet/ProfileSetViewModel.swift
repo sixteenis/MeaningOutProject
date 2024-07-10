@@ -7,24 +7,38 @@
 
 import Foundation
 
-final class ProfileSetVM {
+final class ProfileSetViewModel {
+    let model = UserModel.shared
     //닉네임 텍스트를 받은 input 하나
+    var inputViewDidLoadTrigger: Obsearvable<Void?> = Obsearvable(nil)
     var inputNickname: Obsearvable<String?> = Obsearvable(nil)
     
     //닉네임 필터링을 통해 string값 하나
     //닉네임 필터링을 통해 bool값 하나
+    
+    lazy var outputProfileImage = Obsearvable(self.model.beforProfile)
     var outputFilterTitle: Obsearvable<NickNameFilter> = Obsearvable(.start)
     var outputFilterBool = Obsearvable(false)
     
     init() {
-        inputNickname.bind { _ in
+        inputNickname.bind { name in
             self.nickNameFilter()
-            self.checkName()
+            self.checkName(name)
+        }
+        inputViewDidLoadTrigger.bind { _ in
+            self.changeProfile()
         }
     }
-    private func checkName() {
+    private func changeProfile() {
+        outputProfileImage.value = model.beforProfile
+    }
+    private func checkName(_ name: String?) {
         if self.outputFilterTitle.value == .ok {
+            guard let name = name else {return}
             outputFilterBool.value = true
+            model.userProfile = model.beforProfile
+            model.userNickname = name
+            model.setUserJoinDate()
             return
         }
         outputFilterBool.value = false
@@ -34,6 +48,7 @@ final class ProfileSetVM {
         guard let name = self.inputNickname.value else { return }
         let specialChar = CharacterSet(charactersIn: "@#$%")
         let filterNum = name.filter{$0.isNumber}
+        
         if name.count < 2 || name.count >= 10 {
             outputFilterTitle.value = .lineNumber
             return

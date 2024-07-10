@@ -44,11 +44,11 @@
 		06A035E72C3C027000CAFE3B /* LikeFolderShowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A035E62C3C027000CAFE3B /* LikeFolderShowTableViewCell.swift */; };
 		06A035E92C3C042900CAFE3B /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A035E82C3C042900CAFE3B /* BaseTableViewCell.swift */; };
 		06A035EB2C3C0D2600CAFE3B /* AddFolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A035EA2C3C0D2600CAFE3B /* AddFolderViewController.swift */; };
-		06A035F52C3D238200CAFE3B /* ProfileSetVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A035F42C3D238200CAFE3B /* ProfileSetVM.swift */; };
+		06A035F52C3D238200CAFE3B /* ProfileSetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A035F42C3D238200CAFE3B /* ProfileSetViewModel.swift */; };
 		06A035F72C3D239F00CAFE3B /* Obsearvable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A035F62C3D239F00CAFE3B /* Obsearvable.swift */; };
+		06A035FB2C3D4F8100CAFE3B /* SelectProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A035FA2C3D4F8100CAFE3B /* SelectProfileViewModel.swift */; };
 		06E167A22C2ABCF800FD2FE7 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E167A12C2ABCF800FD2FE7 /* OnboardingView.swift */; };
 		06E167A42C2ABD0600FD2FE7 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E167A32C2ABD0600FD2FE7 /* BaseView.swift */; };
-		06E167A92C2AF26500FD2FE7 /* ProfileSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E167A82C2AF26500FD2FE7 /* ProfileSetView.swift */; };
 		06F530932C1B085300487212 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F530922C1B085300487212 /* AppDelegate.swift */; };
 		06F530952C1B085300487212 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F530942C1B085300487212 /* SceneDelegate.swift */; };
 		06F5309C2C1B085500487212 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06F5309B2C1B085500487212 /* Assets.xcassets */; };
@@ -99,11 +99,11 @@
 		06A035E62C3C027000CAFE3B /* LikeFolderShowTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeFolderShowTableViewCell.swift; sourceTree = "<group>"; };
 		06A035E82C3C042900CAFE3B /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		06A035EA2C3C0D2600CAFE3B /* AddFolderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFolderViewController.swift; sourceTree = "<group>"; };
-		06A035F42C3D238200CAFE3B /* ProfileSetVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSetVM.swift; sourceTree = "<group>"; };
+		06A035F42C3D238200CAFE3B /* ProfileSetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSetViewModel.swift; sourceTree = "<group>"; };
 		06A035F62C3D239F00CAFE3B /* Obsearvable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Obsearvable.swift; sourceTree = "<group>"; };
+		06A035FA2C3D4F8100CAFE3B /* SelectProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectProfileViewModel.swift; sourceTree = "<group>"; };
 		06E167A12C2ABCF800FD2FE7 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		06E167A32C2ABD0600FD2FE7 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
-		06E167A82C2AF26500FD2FE7 /* ProfileSetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSetView.swift; sourceTree = "<group>"; };
 		06F5308F2C1B085300487212 /* MeaningOutProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeaningOutProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06F530922C1B085300487212 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		06F530942C1B085300487212 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -152,15 +152,6 @@
 			path = Enum;
 			sourceTree = "<group>";
 		};
-		0649149B2C1B6E7800B05833 /* SelectProfile */ = {
-			isa = PBXGroup;
-			children = (
-				064914992C1B5E1700B05833 /* SelectProfileViewController.swift */,
-				0649149C2C1B6EA700B05833 /* SelectProfileCollectionViewCell.swift */,
-			);
-			path = SelectProfile;
-			sourceTree = "<group>";
-		};
 		0650C6262C1C7C0300BDC4D1 /* SearchView */ = {
 			isa = PBXGroup;
 			children = (
@@ -205,6 +196,25 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
+		06A035F82C3D4F3200CAFE3B /* ProfileSet */ = {
+			isa = PBXGroup;
+			children = (
+				064914862C1B27D300B05833 /* ProfileSetViewController.swift */,
+				06A035F42C3D238200CAFE3B /* ProfileSetViewModel.swift */,
+			);
+			path = ProfileSet;
+			sourceTree = "<group>";
+		};
+		06A035F92C3D4F4400CAFE3B /* SelectProfile */ = {
+			isa = PBXGroup;
+			children = (
+				064914992C1B5E1700B05833 /* SelectProfileViewController.swift */,
+				06A035FA2C3D4F8100CAFE3B /* SelectProfileViewModel.swift */,
+				0649149C2C1B6EA700B05833 /* SelectProfileCollectionViewCell.swift */,
+			);
+			path = SelectProfile;
+			sourceTree = "<group>";
+		};
 		06CFB4F02C2ABBB200C31D02 /* Base */ = {
 			isa = PBXGroup;
 			children = (
@@ -225,9 +235,8 @@
 		06E167A62C2AC32B00FD2FE7 /* Refactoring */ = {
 			isa = PBXGroup;
 			children = (
-				06E167A82C2AF26500FD2FE7 /* ProfileSetView.swift */,
-				064914862C1B27D300B05833 /* ProfileSetViewController.swift */,
-				06A035F42C3D238200CAFE3B /* ProfileSetVM.swift */,
+				06A035F92C3D4F4400CAFE3B /* SelectProfile */,
+				06A035F82C3D4F3200CAFE3B /* ProfileSet */,
 				06E167A72C2AC33B00FD2FE7 /* Onboarding */,
 			);
 			name = Refactoring;
@@ -286,7 +295,6 @@
 			isa = PBXGroup;
 			children = (
 				0650C6272C1C7C1F00BDC4D1 /* Main */,
-				0649149B2C1B6E7800B05833 /* SelectProfile */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -412,7 +420,6 @@
 				064914982C1B5D8000B05833 /* SearchViewController.swift in Sources */,
 				064914872C1B27D300B05833 /* ProfileSetViewController.swift in Sources */,
 				064914942C1B508400B05833 /* NickNameFilter.swift in Sources */,
-				06E167A92C2AF26500FD2FE7 /* ProfileSetView.swift in Sources */,
 				064914A12C1C23A200B05833 /* SettingViewController.swift in Sources */,
 				0650C6332C1CB28A00BDC4D1 /* ShoppingModel.swift in Sources */,
 				06A035DE2C3BD48A00CAFE3B /* FolderModel.swift in Sources */,
@@ -439,10 +446,11 @@
 				06A035E72C3C027000CAFE3B /* LikeFolderShowTableViewCell.swift in Sources */,
 				06A035EB2C3C0D2600CAFE3B /* AddFolderViewController.swift in Sources */,
 				064914922C1B33DC00B05833 /* UserModel.swift in Sources */,
-				06A035F52C3D238200CAFE3B /* ProfileSetVM.swift in Sources */,
+				06A035F52C3D238200CAFE3B /* ProfileSetViewModel.swift in Sources */,
 				0650C6252C1C720700BDC4D1 /* SearchDataModel.swift in Sources */,
 				06F530952C1B085300487212 /* SceneDelegate.swift in Sources */,
 				0658AF1D2C1DD98D00C65E3E /* NetworkViewController.swift in Sources */,
+				06A035FB2C3D4F8100CAFE3B /* SelectProfileViewModel.swift in Sources */,
 				0606993A2C2D03F60052A80F /* UserDefaultsID.swift in Sources */,
 				0650C6232C1C6BA400BDC4D1 /* Placeholder.swift in Sources */,
 				0650C6352C1CB8E200BDC4D1 /* SearchResultCollectionViewCell.swift in Sources */,

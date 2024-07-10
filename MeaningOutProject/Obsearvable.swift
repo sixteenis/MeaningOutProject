@@ -19,7 +19,7 @@ class Obsearvable<T> {
         self.value = value
     }
     func bind(closure: @escaping (T) -> ()) {
-        closure(value)
+        //closure(value)
         self.closure = closure
     }
 }
