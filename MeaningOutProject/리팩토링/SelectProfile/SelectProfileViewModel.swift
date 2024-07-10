@@ -13,8 +13,23 @@ final class SelectProfileViewModel {
     var profileImage: [String] {
         return userModel.profileList
     }
-    lazy var inputSelectProfile = Obsearvable(userModel.beforProfile)
+    var getSelectImage: String {
+        return userModel.beforProfile
+    }
+    lazy var inputSelectProfile: Obsearvable<Int?> = Obsearvable(nil)
     
-    //private func
+    lazy var outputChangeProfile: Obsearvable<String> = Obsearvable(userModel.beforProfile)
+    
+    init() {
+        inputSelectProfile.bind { index in
+            guard let index = index else { return }
+            self.changeProfile(index)
+        }
+    }
+    
+    private func changeProfile(_ index: Int) {
+        self.outputChangeProfile.value = self.profileImage[index]
+        self.userModel.beforProfile = self.profileImage[index]
+    }
     
 }

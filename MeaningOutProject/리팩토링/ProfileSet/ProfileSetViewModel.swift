@@ -9,16 +9,13 @@ import Foundation
 
 final class ProfileSetViewModel {
     let model = UserModel.shared
-    //닉네임 텍스트를 받은 input 하나
+
     var inputViewDidLoadTrigger: Obsearvable<Void?> = Obsearvable(nil)
     var inputNickname: Obsearvable<String?> = Obsearvable(nil)
     
-    //닉네임 필터링을 통해 string값 하나
-    //닉네임 필터링을 통해 bool값 하나
-    
-    lazy var outputProfileImage = Obsearvable(self.model.beforProfile)
-    var outputFilterTitle: Obsearvable<NickNameFilter> = Obsearvable(.start)
-    var outputFilterBool = Obsearvable(false)
+    private(set) lazy var outputProfileImage = Obsearvable(self.model.beforProfile)
+    private(set) var outputFilterTitle: Obsearvable<NickNameFilter> = Obsearvable(.start)
+    private(set) var outputFilterBool = Obsearvable(false)
     
     init() {
         inputNickname.bind { name in

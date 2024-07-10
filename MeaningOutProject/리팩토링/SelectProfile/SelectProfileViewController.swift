@@ -9,13 +9,11 @@ import UIKit
 
 import SnapKit
 
-final class SelectProfileViewController: UIViewController {
+final class SelectProfileViewController: BaseViewController {
     private let line = UIView()
-    private lazy var profileImage = MainProfileImageView(profile: userModel.beforProfile)
+    private lazy var profileImage = MainProfileImageView(profile: vm.getSelectImage)
+    
     private let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout())
-    
-    var profileSetType: ProfileSetType = .first
-    
     static func collectionViewLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewFlowLayout()
         let width = UIScreen.main.bounds.width - 50 // 20 + 30
@@ -27,27 +25,27 @@ final class SelectProfileViewController: UIViewController {
         return layout
     }
     
-    let userModel = UserModel.shared
     private let vm = SelectProfileViewModel()
-    
+    var profileSetType: ProfileSetType = .first
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpHierarch()
-        setUpLayout()
-        setUpUI()
         setUpCollectionView()
     }
     
+    override func bindData() {
+        vm.outputChangeProfile.bind { _ in
+            self.collectionView.reloadData()
+        }
+    }
     // MARK: - connect 부분
-    func setUpHierarch() {
+    override func setUpHierarchy() {
         view.addSubview(line)
         view.addSubview(profileImage)
         view.addSubview(collectionView)
     }
-    
     // MARK: - Layout 부분
-    func setUpLayout() {
+    override func setUpLayout () {
         line.snp.makeConstraints { make in
             make.horizontalEdges.top.equalTo(view.safeAreaLayoutGuide)
             make.height.equalTo(1)
@@ -62,10 +60,8 @@ final class SelectProfileViewController: UIViewController {
             make.horizontalEdges.bottom.equalTo(view.safeAreaLayoutGuide)
         }
     }
-    
     // MARK: - UI 세팅 부분
-    func setUpUI() {
-        view.backgroundColor = .backgroundColor
+    override func setUpView() {
         line.backgroundColor = .lineColor
         navigationController?.navigationBar.tintColor = .buttonSelectColor
         let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(nvBackButtonTapped))
@@ -87,7 +83,6 @@ final class SelectProfileViewController: UIViewController {
     @objc func nvBackButtonTapped() {
         navigationController?.popViewController(animated: true)
     }
-
 }
 
 
@@ -95,19 +90,16 @@ extension SelectProfileViewController: UICollectionViewDelegate, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return vm.profileImage.count
     }
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SelectProfileCollectionViewCell.id, for: indexPath) as! SelectProfileCollectionViewCell
         let data = vm.profileImage[indexPath.row]
-        let selectBool = data == userModel.beforProfile
+        let selectBool = data == vm.outputChangeProfile.value
         cell.backgroundColor = .backgroundColor
         cell.setUpData(data, select: selectBool)
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        userModel.beforProfile = userModel.profileList[indexPath.row]
-        self.profileImage.changeImage(userModel.beforProfile)
-        collectionView.reloadData()
-        
+        vm.inputSelectProfile.value = indexPath.row
+        self.profileImage.changeImage(vm.outputChangeProfile.value)
     }
 }

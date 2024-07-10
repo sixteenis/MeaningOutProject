@@ -209,8 +209,8 @@
 			isa = PBXGroup;
 			children = (
 				064914992C1B5E1700B05833 /* SelectProfileViewController.swift */,
-				06A035FA2C3D4F8100CAFE3B /* SelectProfileViewModel.swift */,
 				0649149C2C1B6EA700B05833 /* SelectProfileCollectionViewCell.swift */,
+				06A035FA2C3D4F8100CAFE3B /* SelectProfileViewModel.swift */,
 			);
 			path = SelectProfile;
 			sourceTree = "<group>";

@@ -130,6 +130,7 @@ final class SettingViewController: UIViewController {
     @objc func profileViewTapped() {
         let nv = ProfileSetViewController()
         nv.profileSetType = .edit
+        userModel.beforProfile = userModel.userProfile
         navigationController?.pushViewController(nv, animated: true)
     }
 }
