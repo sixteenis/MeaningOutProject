@@ -9,35 +9,24 @@ import UIKit
 
 import SnapKit
 
-final class SearchTableViewCell: UITableViewCell {
-    let recentImage = UIImageView()
-    let searchTitle = UILabel()
-    let delectButton = UIButton(type: .custom)
+final class SearchTableViewCell: BaseTableViewCell {
+    private let recentImage = UIImageView()
+    private let searchTitle = UILabel()
+    private let delectButton = UIButton(type: .custom)
     
-    var didDelete: () -> ()  = { }
-    
-    let searchDataModel = SearchDataModel.shared
-    
+    var didDelete: () -> ()  = {}
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setUpHierarch()
-        setUpLayout()
-        setUpUI()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     // MARK: - connect 부분
-    private func setUpHierarch() {
+    override func setUpHierarchy() {
         contentView.addSubview(recentImage)
         contentView.addSubview(searchTitle)
         contentView.addSubview(delectButton)
-        
     }
     
     // MARK: - Layout 부분
-    private func setUpLayout() {
+    override func setUpLayout() {
         recentImage.snp.makeConstraints { make in
             make.leading.equalTo(contentView.safeAreaLayoutGuide)
             make.centerY.equalTo(contentView.safeAreaLayoutGuide)
@@ -58,7 +47,7 @@ final class SearchTableViewCell: UITableViewCell {
     }
     
     // MARK: - UI 세팅 부분 (정적)
-    private func setUpUI() {
+    override func setUpView() {
         recentImage.image = .searchCellClockImage
         recentImage.tintColor = .textColor
         

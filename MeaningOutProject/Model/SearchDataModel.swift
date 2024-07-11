@@ -14,6 +14,8 @@ final class SearchDataModel {
     static let shared = SearchDataModel()
     let display = 30
     var nowItem = ""
+    
+    // MARK: - 검색 기록 저장 부분 ㅇㅇ
     var searchItem: [String] {
         get{
             return UserDefaults.standard.array(forKey: ShoppingID.searchItem) as? [String] ?? [String]()
@@ -29,10 +31,8 @@ final class SearchDataModel {
         }set{
             UserDefaults.standard.setValue(newValue, forKey: ShoppingID.likeDictionary)
         }
-    }//coll
-    var shoppingData: SearchDataModel?
+    }
     
-
     private init() {}
     func callNetwork<T: Decodable>(filterData: String, page: Int,type: T.Type,completionHander: @escaping (T?)->()){
 

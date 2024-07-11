@@ -9,7 +9,7 @@ import UIKit
 
 import SnapKit
 
-final class SearchViewController: UIViewController {
+final class SearchViewController: BaseViewController {
     // TODO: 네이게이션 밑에 라인 없애기
     private let searchBar = UISearchBar()
     private let line = UIView()
@@ -22,16 +22,12 @@ final class SearchViewController: UIViewController {
     private let noDataImage = UIImageView()
     private let noDataLabel = UILabel()
     
-    
-    
+    // TODO: 이거 mv으로 넘겨야됨 ㅇㅇ
     private let userModel = UserModel.shared
     private let searchData = SearchDataModel.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpHierarch()
-        setUpLayout()
-        setUpUI()
         setUpDelegate()
         setUpTableView()
     }
@@ -40,8 +36,11 @@ final class SearchViewController: UIViewController {
         searchTableView.reloadData()
         noDataChang()
     }
+    override func bindData() {
+        print("1")
+    }
     // MARK: - connect 부분
-    private func setUpHierarch() {
+    override func setUpHierarchy() {
         
         view.addSubview(searchBar)
         view.addSubview(line)
@@ -57,7 +56,7 @@ final class SearchViewController: UIViewController {
     }
     
     // MARK: - Layout 부분
-    private func setUpLayout() {
+    override func setUpLayout() {
         searchBar.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide)
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(15)
@@ -103,7 +102,7 @@ final class SearchViewController: UIViewController {
     }
     
     // MARK: - UI 세팅 부분
-    private func setUpUI() {
+    override func setUpView() {
         view.backgroundColor = .backgroundColor
         
         searchBar.placeholder = PlaceholderEnum.searchBar
