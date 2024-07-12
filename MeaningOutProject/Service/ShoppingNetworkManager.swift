@@ -11,10 +11,10 @@ import Alamofire
 final class ShoppingNetworkManager {
     static let shard = ShoppingNetworkManager()
     private init() {}
-    func callNetwork<T: Decodable>(data: ShoppingDataType,type: T.Type, completionHander: @escaping (T?)->()){
+    func callNetwork<T: Decodable>(query: String, start: Int ,data: ShoppingDataType,type: T.Type, completionHander: @escaping (T?)->()){
         let url = data.url
         let header: HTTPHeaders = data.header
-        let getParam = data.param(query: "1", start: 2)
+        let getParam = data.param(query: query, start: start)
         let param: Parameters = getParam
         AF.request(url,method: .get,parameters: param, headers: header)
             .responseDecodable(of: T.self) {respons in
@@ -23,7 +23,6 @@ final class ShoppingNetworkManager {
                     completionHander(data)
                     
                 case .failure(let error):
-                    print(error)
                     completionHander(nil)
                 }
                 

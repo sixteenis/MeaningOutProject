@@ -26,6 +26,8 @@ final class SearchViewController: BaseViewController {
     private let userModel = UserModel.shared
     private let searchData = SearchDataModel.shared
     
+    private let vm = SearchViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpDelegate()
@@ -144,7 +146,7 @@ final class SearchViewController: BaseViewController {
     }
     // MARK: - SearchData 배열 유무에 따라 뷰 바뀌는 함수
     private func noDataChang() {
-        if searchData.searchItem.isEmpty{
+        if vm.searchList.isEmpty{
             noDataView.isHidden = false
         }else{
             noDataView.isHidden = true
@@ -153,6 +155,7 @@ final class SearchViewController: BaseViewController {
     }
     // MARK: - 버튼 함수 부분
     @objc func allRemoveButtonTapped() {
+        vm.inputRemoveAllButtonTapped.value = ()
         searchData.searchItem = [String]()
         noDataChang()
         searchTableView.reloadData()         

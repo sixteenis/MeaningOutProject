@@ -68,8 +68,7 @@ final class SearchDataModel {
         let result2 = result.filter{$0 != " "}
         var b = ""
         let _ = result2.map{ b += String($0)}
-
-        //print(resultString)
+        
         if let index = befor.firstIndex(of: b) {
             befor.remove(at: index)
         }

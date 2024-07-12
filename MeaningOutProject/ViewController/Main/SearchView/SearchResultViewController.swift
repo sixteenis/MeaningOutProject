@@ -296,16 +296,12 @@ final class SearchResultViewController: UIViewController {
         activityIndicator.startAnimating()
         self.view.isUserInteractionEnabled = false
     }
-    
-    
     func hideLoadingIndicator() {
         activityIndicator.stopAnimating()
         self.view.isUserInteractionEnabled = true
     }
     
 }
-
-
 
 extension SearchResultViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
