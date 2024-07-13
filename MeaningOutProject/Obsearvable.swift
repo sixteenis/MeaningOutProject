@@ -22,4 +22,8 @@ class Obsearvable<T> {
         //closure(value)
         self.closure = closure
     }
+    func loadBind(closure: @escaping (T) -> ()) {
+        closure(value)
+        self.closure = closure
+    }
 }

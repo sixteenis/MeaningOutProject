@@ -54,6 +54,7 @@ final class SearchResultViewController: UIViewController {
     var page = 1
     var isEnd = 1
     
+    var searchText: String?
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpHierarch()

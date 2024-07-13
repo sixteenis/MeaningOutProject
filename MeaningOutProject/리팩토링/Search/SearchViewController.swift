@@ -22,31 +22,41 @@ final class SearchViewController: BaseViewController {
     private let noDataImage = UIImageView()
     private let noDataLabel = UILabel()
     
-    // TODO: 이거 mv으로 넘겨야됨 ㅇㅇ
-    private let userModel = UserModel.shared
-    private let searchData = SearchDataModel.shared
-    
     private let vm = SearchViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpDelegate()
         setUpTableView()
+        bindData()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        searchTableView.reloadData()
-        noDataChang()
     }
     override func bindData() {
-        print("1")
+        vm.inputViewLoad.value = ()
+        // TODO: 다른 탭바에서 닉네임 변경 시 네비타이틀 자동 변경 구현하기
+        vm.outputNickName.loadBind { [weak self] name in
+            guard let self = self else {return}
+            self.navigationItem.title = "\(name)'s MEANING OUT"
+        }
+        vm.outputSearchList.bind { [weak self] _ in
+            guard let self = self else{ return }
+            self.searchTableView.reloadData()
+            noDataChang()
+        }
+        vm.outputSearchText.bind { [weak self] text in
+            guard let self = self else {return}
+            let vc = SearchResultViewController()
+            vc.searchText = text
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     // MARK: - connect 부분
     override func setUpHierarchy() {
-        
         view.addSubview(searchBar)
         view.addSubview(line)
-
+        
         view.addSubview(recentLabel)
         view.addSubview(allRemoveButton)
         view.addSubview(searchTableView)
@@ -100,7 +110,7 @@ final class SearchViewController: BaseViewController {
             make.top.equalTo(noDataImage.snp.bottom).offset(10)
         }
         
-
+        
     }
     
     // MARK: - UI 세팅 부분
@@ -109,8 +119,7 @@ final class SearchViewController: BaseViewController {
         
         searchBar.placeholder = PlaceholderEnum.searchBar
         searchBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
-        
-        navigationItem.title = "\(userModel.userNickname)'s MEANING OUT"
+
         
         line.backgroundColor = .lineColor
         recentLabel.text = "최근 검색"
@@ -146,7 +155,7 @@ final class SearchViewController: BaseViewController {
     }
     // MARK: - SearchData 배열 유무에 따라 뷰 바뀌는 함수
     private func noDataChang() {
-        if vm.searchList.isEmpty{
+        if vm.outputSearchList.value.isEmpty{
             noDataView.isHidden = false
         }else{
             noDataView.isHidden = true
@@ -155,10 +164,7 @@ final class SearchViewController: BaseViewController {
     }
     // MARK: - 버튼 함수 부분
     @objc func allRemoveButtonTapped() {
-        vm.inputRemoveAllButtonTapped.value = ()
-        searchData.searchItem = [String]()
-        noDataChang()
-        searchTableView.reloadData()         
+        vm.inputRemoveAllButton.value = ()
     }
 }
 
@@ -166,13 +172,8 @@ final class SearchViewController: BaseViewController {
 extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if !searchBar.text!.isEmpty && searchBar.text!.count > 1 {
-            searchData.appendSearchItem(searchBar.text!)
-            noDataChang()
-            searchData.nowItem = searchBar.text!
-            searchTableView.reloadData()
+            self.vm.inputSearchTextFiled.value = searchBar.text
             searchBar.text = nil
-            view.endEditing(true)
-            navigationController?.pushViewController(SearchResultViewController(), animated: true)
         }
         
     }
@@ -181,31 +182,23 @@ extension SearchViewController: UISearchBarDelegate {
 // MARK: - 테이블 부분
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchData.searchItem.count
+        return vm.outputSearchList.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = searchTableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.id, for: indexPath) as! SearchTableViewCell
-        let data = searchData.searchItem[indexPath.row]
-        print(#function)
+        let data = vm.outputSearchList.value[indexPath.row]
         cell.setUpData(data: data)
         cell.selectionStyle = .none
-        
         cell.didDelete = { [weak self] in
             guard let self = self else { return }
-            self.searchData.removeSearchItem(indexPath.row)
-            noDataChang()
-            self.searchTableView.reloadData()
-            
+            self.vm.inputRemoveOneButton.value = indexPath.row
         }
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-           let data = searchData.searchItem[indexPath.row]
-           searchData.nowItem = data
-           searchData.appendSearchItem(data)
-           navigationController?.pushViewController(SearchResultViewController(), animated: true)
-       }
-    
+        let data = vm.outputSearchList.value[indexPath.row]
+        vm.inputSearchTextFiled.value = data
+    }
     
 }
