@@ -15,7 +15,11 @@ final class SearchDataModel {
     var total = 1
     var start = 1
     var nowItem = ""
-    var filterType = ShoppingDataType.accuracy
+    var filterType: ShoppingDataType? {
+        didSet{
+            self.start = 1
+        }
+    }
     var shoppingList: [Item] = [Item]()
     // MARK: - 검색 기록 저장 부분 ㅇㅇ
     var searchItem: [String] {

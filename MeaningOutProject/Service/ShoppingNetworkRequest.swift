@@ -11,8 +11,8 @@ import Alamofire
 enum ShoppingDataType: String, CaseIterable{
     case accuracy = "sim"
     case date = "date"
-    case priceUp = "asc"
-    case priceDown = "dsc"
+    case priceUp = "dsc"
+    case priceDown = "asc"
     
     var url: String {
         return "https://openapi.naver.com/v1/search/shop.json"

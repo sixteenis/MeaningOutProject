@@ -27,7 +27,7 @@
 		0650C62A2C1C7C5800BDC4D1 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0650C6292C1C7C5800BDC4D1 /* SearchTableViewCell.swift */; };
 		0650C62C2C1CAED800BDC4D1 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0650C62B2C1CAED800BDC4D1 /* APIKey.swift */; };
 		0650C62F2C1CB02500BDC4D1 /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0650C62E2C1CB02500BDC4D1 /* SearchResultViewController.swift */; };
-		0650C6312C1CB0FC00BDC4D1 /* NetWorkFilterEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0650C6302C1CB0FC00BDC4D1 /* NetWorkFilterEnum.swift */; };
+		0650C6312C1CB0FC00BDC4D1 /* FilterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0650C6302C1CB0FC00BDC4D1 /* FilterButton.swift */; };
 		0650C6332C1CB28A00BDC4D1 /* ShoppingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0650C6322C1CB28A00BDC4D1 /* ShoppingModel.swift */; };
 		0650C6352C1CB8E200BDC4D1 /* SearchResultCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0650C6342C1CB8E200BDC4D1 /* SearchResultCollectionViewCell.swift */; };
 		0658AF1D2C1DD98D00C65E3E /* NetworkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0658AF1C2C1DD98D00C65E3E /* NetworkViewController.swift */; };
@@ -51,6 +51,7 @@
 		06A035F52C3D238200CAFE3B /* ProfileSetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A035F42C3D238200CAFE3B /* ProfileSetViewModel.swift */; };
 		06A035F72C3D239F00CAFE3B /* Obsearvable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A035F62C3D239F00CAFE3B /* Obsearvable.swift */; };
 		06A035FB2C3D4F8100CAFE3B /* SelectProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A035FA2C3D4F8100CAFE3B /* SelectProfileViewModel.swift */; };
+		06B2ACDB2C42F93700BC2C1E /* FilterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B2ACDA2C42F93700BC2C1E /* FilterButton.swift */; };
 		06E167A22C2ABCF800FD2FE7 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E167A12C2ABCF800FD2FE7 /* OnboardingView.swift */; };
 		06E167A42C2ABD0600FD2FE7 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E167A32C2ABD0600FD2FE7 /* BaseView.swift */; };
 		06F530932C1B085300487212 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F530922C1B085300487212 /* AppDelegate.swift */; };
@@ -87,7 +88,7 @@
 		0650C6292C1C7C5800BDC4D1 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		0650C62B2C1CAED800BDC4D1 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		0650C62E2C1CB02500BDC4D1 /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
-		0650C6302C1CB0FC00BDC4D1 /* NetWorkFilterEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetWorkFilterEnum.swift; sourceTree = "<group>"; };
+		0650C6302C1CB0FC00BDC4D1 /* FilterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterButton.swift; sourceTree = "<group>"; };
 		0650C6322C1CB28A00BDC4D1 /* ShoppingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingModel.swift; sourceTree = "<group>"; };
 		0650C6342C1CB8E200BDC4D1 /* SearchResultCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCollectionViewCell.swift; sourceTree = "<group>"; };
 		0658AF1C2C1DD98D00C65E3E /* NetworkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkViewController.swift; sourceTree = "<group>"; };
@@ -110,6 +111,7 @@
 		06A035F42C3D238200CAFE3B /* ProfileSetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSetViewModel.swift; sourceTree = "<group>"; };
 		06A035F62C3D239F00CAFE3B /* Obsearvable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Obsearvable.swift; sourceTree = "<group>"; };
 		06A035FA2C3D4F8100CAFE3B /* SelectProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectProfileViewModel.swift; sourceTree = "<group>"; };
+		06B2ACDA2C42F93700BC2C1E /* FilterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterButton.swift; sourceTree = "<group>"; };
 		06E167A12C2ABCF800FD2FE7 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		06E167A32C2ABD0600FD2FE7 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		06F5308F2C1B085300487212 /* MeaningOutProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeaningOutProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -142,6 +144,7 @@
 		064914812C1B187D00B05833 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				06B2ACDA2C42F93700BC2C1E /* FilterButton.swift */,
 				064914842C1B1D8500B05833 /* SelcetButton.swift */,
 				0649148F2C1B325400B05833 /* ProfileImageView.swift */,
 			);
@@ -153,7 +156,7 @@
 			children = (
 				064914932C1B508400B05833 /* NickNameFilter.swift */,
 				0650C6222C1C6BA400BDC4D1 /* Placeholder.swift */,
-				0650C6302C1CB0FC00BDC4D1 /* NetWorkFilterEnum.swift */,
+				0650C6302C1CB0FC00BDC4D1 /* FilterButton.swift */,
 				0658AF202C1E12F300C65E3E /* ProfileSetType.swift */,
 				060699392C2D03F60052A80F /* UserDefaultsID.swift */,
 			);
@@ -454,7 +457,8 @@
 				065E517A2C42C3A80079DE64 /* SearchResultViewModel.swift in Sources */,
 				064914852C1B1D8500B05833 /* SelcetButton.swift in Sources */,
 				0650C62F2C1CB02500BDC4D1 /* SearchResultViewController.swift in Sources */,
-				0650C6312C1CB0FC00BDC4D1 /* NetWorkFilterEnum.swift in Sources */,
+				06B2ACDB2C42F93700BC2C1E /* FilterButton.swift in Sources */,
+				0650C6312C1CB0FC00BDC4D1 /* FilterButton.swift in Sources */,
 				06A035D72C3BC81900CAFE3B /* RealmLikeListModel.swift in Sources */,
 				064914892C1B282200B05833 /* ReuseIdentifier+.swift in Sources */,
 				0658AF1F2C1DF55F00C65E3E /* SettingTableViewCell.swift in Sources */,

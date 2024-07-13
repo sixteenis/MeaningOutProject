@@ -40,57 +40,36 @@ final class SearchResultViewController: BaseViewController {
     private let likeRepository = LikeRepository()
     private let folder = LikeRepository().fetchFolder()
     
-    //let filerArr: [ShoppingDataType] = ShoppingDataType.allCases
-    //private let searchDataModel = SearchDataModel()
-    //private var data: [Item] = []
-//    var filterData: NetWorkFilterEnum = .accuracy {
-//        didSet {
-//            setUpFilterButton()
-//        }
-//        willSet {
-//            page = 1
-//            self.collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
-//            callRequset()
-//        }
-//    }
-//    var page = 1
-//    var isEnd = 1
-    
+   
     var searchText: String? // 이전뷰에서 받아오는 값
     private let vm = SearchResultViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        //showLoadingIndicator()
+        showLoadingIndicator()
         setUpcollection()
-        //callRequset()
-    }
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        //setUpFilterButton()
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        noDataView.isHidden = true
-        collectionView.reloadData()
     }
     override func bindData() {
         vm.inputLoadView.value = searchText
-        
         vm.outputList.loadBind { [weak self] data in
             guard let self = self else {return}
+            self.hideLoadingIndicator()
             if data.isEmpty {
                 self.noDataView.isHidden = false
                 self.noDataLabel.text = "\(searchText!)의 대한 정보가 없습니다!"
                 return
             }
-            //self.hideLoadingIndicator()
             noDataView.isHidden = true
             collectionView.reloadData()
-            print(vm.outputList.value)
         }
         
         vm.outputTotal.loadBind { total in
-            self.allcountLabel.text = total.formatted()
+            self.allcountLabel.text = total.formatted() + "개의 검색 결과"
+        }
+        vm.outputPage.bind { page in
+            if page == 1{
+                self.collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
+            }
         }
     }
     
@@ -200,6 +179,7 @@ final class SearchResultViewController: BaseViewController {
         
         priceUpButton.setTitle("가격높은순", for: .normal)
         priceUpButton.titleLabel?.font = .systemFont(ofSize: 14)
+        priceUpButton.titleLabel?.textColor = .black
         priceUpButton.layer.cornerRadius = 15
         priceUpButton.layer.borderWidth = 1
         priceUpButton.layer.borderColor = UIColor.textFieldBackgroundColor.cgColor
@@ -207,7 +187,6 @@ final class SearchResultViewController: BaseViewController {
         priceUpButton.addTarget(self, action: #selector(filterButtonTapped), for: .touchUpInside)
         
         priceDownButton.setTitle("가격낮은순", for: .normal)
-        priceDownButton.titleLabel?.textColor = .black
         priceDownButton.titleLabel?.font = .systemFont(ofSize: 14)
         priceDownButton.layer.cornerRadius = 15
         priceDownButton.layer.borderWidth = 1
@@ -215,10 +194,9 @@ final class SearchResultViewController: BaseViewController {
         priceDownButton.tag = 3
         priceDownButton.addTarget(self, action: #selector(filterButtonTapped), for: .touchUpInside)
         
+        
         noDataView.backgroundColor = .backgroundColor
-        
         noDataImage.image = .noDataImage
-        
         noDataLabel.font = .systemFont(ofSize: 15, weight: .heavy)
     }
     // MARK: - collection 세팅 부분
@@ -230,40 +208,6 @@ final class SearchResultViewController: BaseViewController {
         collectionView.backgroundColor = .backgroundColor
     }
     
-    // MARK: - 통신 부분
-//    private func callRequset() {
-//        showLoadingIndicator()
-//        searchDataModel.callNetwork(filterData: filterData.rawValue, page: page, type: ShoppingModel.self) { data in
-//            self.hideLoadingIndicator()
-//            guard let data = data else {
-//                self.noDataView.isHidden = false
-//                self.noDataLabel.text = "네트워크 오류가 발생했습니다!"
-//                return
-//            }
-//            self.succesNetWork(data)
-//        }
-//    }
-    
-//    private func succesNetWork(_ result: ShoppingModel) {
-//        guard let total = result.total, let items = result.items else { return }
-//        
-//        allcountLabel.text = "\(total.formatted())개의 검색 결과"
-//        isEnd = total
-//        print(page)
-//        if page == 1{
-//            data = items
-//        }else{
-//            data.append(contentsOf: items)
-//        }
-//        if data.isEmpty {
-//            self.noDataView.isHidden = false
-//            self.noDataLabel.text = "\(searchDataModel.nowItem)의 대한 정보가 없습니다!"
-//        }else{
-//            noDataView.isHidden = true
-//        }
-//        
-//        collectionView.reloadData()
-//    }
     // MARK: - 필터 버튼 뷰 세팅하는 함수
     private func setUpFilterButton(_ tag: Int) {
         accuracyButton.titleLabel?.textColor = .textColor
@@ -274,44 +218,30 @@ final class SearchResultViewController: BaseViewController {
         priceUpButton.backgroundColor = .backgroundColor
         priceDownButton.titleLabel?.textColor = .textColor
         priceDownButton.backgroundColor = .backgroundColor
-        switch tag {
-        case 0:
-            accuracyButton.titleLabel?.textColor = .backgroundColor
-            accuracyButton.backgroundColor = .buttonSelectColor
-        case 1:
-            dateButton.titleLabel?.textColor = .backgroundColor
-            dateButton.backgroundColor = .buttonSelectColor
-        case 2:
-            priceUpButton.titleLabel?.textColor = .backgroundColor
-            priceUpButton.backgroundColor = .buttonSelectColor
-        case 3:
-            priceDownButton.titleLabel?.textColor = .backgroundColor
-            priceDownButton.backgroundColor = .buttonSelectColor
-        default:
-            print("필터 버튼에서 에러 발생!")
-        }
+//        switch tag {
+//        case 0:
+//            accuracyButton.titleLabel?.textColor = .backgroundColor
+//            accuracyButton.backgroundColor = .buttonSelectColor
+//        case 1:
+//            dateButton.titleLabel?.textColor = .backgroundColor
+//            dateButton.backgroundColor = .buttonSelectColor
+//        case 2:
+//            priceUpButton.titleLabel?.textColor = .backgroundColor
+//            priceUpButton.backgroundColor = .buttonSelectColor
+//        case 3:
+//            priceDownButton.titleLabel?.textColor = .backgroundColor
+//            priceDownButton.backgroundColor = .buttonSelectColor
+//        default:
+//            print("필터 버튼에서 에러 발생!")
+//        }
     }
     // MARK: - 버튼 부분
     @objc func nvBackButtonTapped() {
         navigationController?.popViewController(animated: true)
     }
     @objc func filterButtonTapped(_ sender: UIButton) {
-        //print(searchDataModel.searchItem)
-        // TODO: 이미 선택된 필터일 경우 통신을 막아야되나? 안막아도 되나? 고민해보자
-//        if filterData != filerArr[sender.tag]{
-//            switch sender.tag {
-//            case 0:
-//                filterData = .accuracy
-//            case 1:
-//                filterData = .date
-//            case 2:
-//                filterData = .priceUp
-//            case 3:
-//                filterData = .priceDown
-//            default:
-//                filterData = .accuracy
-//            }
-//        }
+        vm.inputfilterSelect.value = sender.tag
+        setUpFilterButton(sender.tag)
     }
     // MARK: - 로딩 구현 부분
     func showLoadingIndicator() {
@@ -334,6 +264,7 @@ extension SearchResultViewController: UICollectionViewDelegate, UICollectionView
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchResultCollectionViewCell.id, for: indexPath) as! SearchResultCollectionViewCell
         let data = vm.outputList.value[indexPath.item]
         cell.setUpData(data)
+        
         cell.likeTapped = {[weak self] in
             guard let self = self else { return }
             if folder.count == 1{
@@ -375,7 +306,6 @@ extension SearchResultViewController: UICollectionViewDelegate, UICollectionView
         vc.url = data[indexPath.item].link
         vc.id = data[indexPath.item].productId
         navigationController?.pushViewController(vc, animated: true)
-        
     }
     
     
@@ -385,9 +315,7 @@ extension SearchResultViewController: UICollectionViewDataSourcePrefetching {
         for item in indexPaths {
             let data = vm.outputList.value
             if data.count - 4 == item.row && vm.outputPage.value + 30 < vm.outputTotal.value {
-                //page += searchDataModel.display
-                vm.inputPlusPage.value = 30
-                //callRequset()
+                vm.inputPlusPage.value = ()
             }
         }
     }
