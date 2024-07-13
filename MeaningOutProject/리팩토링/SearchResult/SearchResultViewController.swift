@@ -16,10 +16,10 @@ final class SearchResultViewController: BaseViewController {
     private let line = UIView()
     private let allcountLabel = UILabel()
     
-    private let accuracyButton = UIButton()
-    private let dateButton = UIButton()
-    private let priceUpButton = UIButton()
-    private let priceDownButton = UIButton()
+    private let accuracyButton = FilterButtonView(type: .accuracy)
+    private let dateButton = FilterButtonView(type: .date)
+    private let priceUpButton = FilterButtonView(type: .priceUp)
+    private let priceDownButton = FilterButtonView(type: .priceDown)
     
     private let noDataView = UIView()
     private let noDataImage = UIImageView()
@@ -48,6 +48,7 @@ final class SearchResultViewController: BaseViewController {
         super.viewDidLoad()
         showLoadingIndicator()
         setUpcollection()
+        setUpFilterButton(0)
     }
     override func bindData() {
         vm.inputLoadView.value = searchText
@@ -161,36 +162,19 @@ final class SearchResultViewController: BaseViewController {
         allcountLabel.font = .systemFont(ofSize: 14, weight: .heavy)
         allcountLabel.textColor = .mainOragieColor
         
-        accuracyButton.setTitle("정확도", for: .normal)
-        accuracyButton.titleLabel?.font = .systemFont(ofSize: 14)
-        accuracyButton.layer.cornerRadius = 15
-        accuracyButton.layer.borderWidth = 1
-        accuracyButton.layer.borderColor = UIColor.textFieldBackgroundColor.cgColor
+        
         accuracyButton.tag = 0
         accuracyButton.addTarget(self, action: #selector(filterButtonTapped), for: .touchUpInside)
            
-        dateButton.setTitle("날짜순", for: .normal)
-        dateButton.titleLabel?.font = .systemFont(ofSize: 14)
-        dateButton.layer.cornerRadius = 15
-        dateButton.layer.borderWidth = 1
-        dateButton.layer.borderColor = UIColor.textFieldBackgroundColor.cgColor
+       
         dateButton.tag = 1
         dateButton.addTarget(self, action: #selector(filterButtonTapped), for: .touchUpInside)
         
-        priceUpButton.setTitle("가격높은순", for: .normal)
-        priceUpButton.titleLabel?.font = .systemFont(ofSize: 14)
-        priceUpButton.titleLabel?.textColor = .black
-        priceUpButton.layer.cornerRadius = 15
-        priceUpButton.layer.borderWidth = 1
-        priceUpButton.layer.borderColor = UIColor.textFieldBackgroundColor.cgColor
+        
         priceUpButton.tag = 2
         priceUpButton.addTarget(self, action: #selector(filterButtonTapped), for: .touchUpInside)
         
-        priceDownButton.setTitle("가격낮은순", for: .normal)
-        priceDownButton.titleLabel?.font = .systemFont(ofSize: 14)
-        priceDownButton.layer.cornerRadius = 15
-        priceDownButton.layer.borderWidth = 1
-        priceDownButton.layer.borderColor = UIColor.textFieldBackgroundColor.cgColor
+        
         priceDownButton.tag = 3
         priceDownButton.addTarget(self, action: #selector(filterButtonTapped), for: .touchUpInside)
         
@@ -210,30 +194,22 @@ final class SearchResultViewController: BaseViewController {
     
     // MARK: - 필터 버튼 뷰 세팅하는 함수
     private func setUpFilterButton(_ tag: Int) {
-        accuracyButton.titleLabel?.textColor = .textColor
-        accuracyButton.backgroundColor = .backgroundColor
-        dateButton.titleLabel?.textColor = .textColor
-        dateButton.backgroundColor = .backgroundColor
-        priceUpButton.titleLabel?.textColor = .textColor
-        priceUpButton.backgroundColor = .backgroundColor
-        priceDownButton.titleLabel?.textColor = .textColor
-        priceDownButton.backgroundColor = .backgroundColor
-//        switch tag {
-//        case 0:
-//            accuracyButton.titleLabel?.textColor = .backgroundColor
-//            accuracyButton.backgroundColor = .buttonSelectColor
-//        case 1:
-//            dateButton.titleLabel?.textColor = .backgroundColor
-//            dateButton.backgroundColor = .buttonSelectColor
-//        case 2:
-//            priceUpButton.titleLabel?.textColor = .backgroundColor
-//            priceUpButton.backgroundColor = .buttonSelectColor
-//        case 3:
-//            priceDownButton.titleLabel?.textColor = .backgroundColor
-//            priceDownButton.backgroundColor = .buttonSelectColor
-//        default:
-//            print("필터 버튼에서 에러 발생!")
-//        }
+        accuracyButton.noselect()
+        dateButton.noselect()
+        priceUpButton.noselect()
+        priceDownButton.noselect()
+        switch tag {
+        case 0:
+            accuracyButton.select()
+        case 1:
+            dateButton.select()
+        case 2:
+            priceUpButton.select()
+        case 3:
+            priceDownButton.select()
+        default:
+            print("필터 버튼에서 에러 발생!")
+        }
     }
     // MARK: - 버튼 부분
     @objc func nvBackButtonTapped() {
