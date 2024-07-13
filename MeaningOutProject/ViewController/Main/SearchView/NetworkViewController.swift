@@ -19,7 +19,7 @@ final class NetworkViewController: UIViewController {
     var shoppingTitle: String?
     var id: String = ""
     var url: String = ""
-    let searchDataModel = SearchDataModel.shared
+    let searchDataModel = SearchDataModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()

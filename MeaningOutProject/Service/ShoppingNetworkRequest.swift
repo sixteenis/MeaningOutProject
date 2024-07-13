@@ -7,6 +7,7 @@
 
 import Foundation
 import Alamofire
+
 enum ShoppingDataType: String, CaseIterable{
     case accuracy = "sim"
     case date = "date"

@@ -11,6 +11,7 @@ import RealmSwift
 
 final class LikeRepository {
     private let realm = try! Realm()
+    
     func addDefaultFolderIfNeeded() {
         let folder = realm.objects(Folder.self)
         if folder.isEmpty{
@@ -29,6 +30,7 @@ final class LikeRepository {
             print("폴더 생성 error")
         }
     }
+    
     func fetchFolder() -> Results<Folder> {
         let value = realm.objects(Folder.self)
         return value
@@ -52,6 +54,7 @@ final class LikeRepository {
             deleteItem(item, folder: folder)
         }
     }
+    
     func deleteItem(_ item: LikeList, folder: Folder) {
            do {
                try realm.write {

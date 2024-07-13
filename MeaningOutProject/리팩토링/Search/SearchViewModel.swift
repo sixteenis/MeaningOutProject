@@ -8,7 +8,7 @@
 import Foundation
 
 final class SearchViewModel {
-    let model = SearchDataModel.shared
+    let model = SearchDataModel()
     let userModel = UserModel.shared
     var inputViewLoad: Obsearvable<Void?> = Obsearvable(nil)
     var inputSearchTextFiled: Obsearvable<String?> = Obsearvable(nil) //서치바의 텍스트를 설정하고 검색할 때 또는 검색기록에서 눌렀을 때

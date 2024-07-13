@@ -11,10 +11,12 @@ import Alamofire
 
 
 final class SearchDataModel {
-    static let shared = SearchDataModel()
     let display = 30
+    var total = 1
+    var start = 1
     var nowItem = ""
-    
+    var filterType = ShoppingDataType.accuracy
+    var shoppingList: [Item] = [Item]()
     // MARK: - 검색 기록 저장 부분 ㅇㅇ
     var searchItem: [String] {
         get{
@@ -32,34 +34,7 @@ final class SearchDataModel {
             UserDefaults.standard.setValue(newValue, forKey: ShoppingID.likeDictionary)
         }
     }
-    
-    private init() {}
-    func callNetwork<T: Decodable>(filterData: String, page: Int,type: T.Type,completionHander: @escaping (T?)->()){
 
-        let url = "https://openapi.naver.com/v1/search/shop.json"
-        let header: HTTPHeaders = [
-            "X-Naver-Client-Id": APIKey.id,
-            "X-Naver-Client-Secret": APIKey.Secret
-        ]
-        let param: Parameters = [
-            "query": self.nowItem,
-            "sort": filterData,
-            "display": self.display,
-            "start": page,
-        ]
-        AF.request(url,method: .get,parameters: param, headers: header)
-            .responseDecodable(of: T.self) {respons in
-                switch respons.result {
-                case .success(let data):
-                    completionHander(data)
-                    
-                case .failure(let error):
-                    print(error)
-                    completionHander(nil)
-                }
-                
-            }
-    }
     func appendSearchItem(_ item: String) {
         var befor = UserDefaults.standard.array(forKey: ShoppingID.searchItem) as? [String] ?? [String]()
         // TODO: 스페이스바를 눌러서 검색했을 때 스페이스바 제거해서 리스트에 저장하기 ㅠ
@@ -75,6 +50,7 @@ final class SearchDataModel {
             befor.insert(b, at: 0)
         UserDefaults.standard.setValue(befor, forKey: ShoppingID.searchItem)
     }
+    
     func removeSearchItem(_ itemIndex: Int) {
         var befor = UserDefaults.standard.array(forKey: ShoppingID.searchItem) as? [String] ?? [String]()
         befor.remove(at: itemIndex)

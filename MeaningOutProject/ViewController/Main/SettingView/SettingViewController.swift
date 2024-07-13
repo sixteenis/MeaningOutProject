@@ -18,7 +18,7 @@ final class SettingViewController: UIViewController {
     private let userJoinDate = UILabel()
     private let nextSymbol = UIImageView()
     private let userModel = UserModel.shared
-    private let searchModel = SearchDataModel.shared
+    private let searchModel = SearchDataModel()
     private let tableView = UITableView()
     
     private let settingList = ["나의 장바구니 목록", "자주 묻는 질문", "1:1 문의", "알림 설정", "탈퇴하기"]

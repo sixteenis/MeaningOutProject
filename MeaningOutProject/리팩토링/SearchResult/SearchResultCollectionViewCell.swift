@@ -18,7 +18,7 @@ final class SearchResultCollectionViewCell: UICollectionViewCell {
     
     var likeTapped: () -> () = {}
     
-    let searchDataModel = SearchDataModel.shared
+    let searchDataModel = SearchDataModel()
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUpHierarch()

@@ -36,6 +36,7 @@
 		065E51672C3E8E190079DE64 /* BaseCollectioViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065E51662C3E8E190079DE64 /* BaseCollectioViewCell.swift */; };
 		065E516A2C3EA7820079DE64 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065E51692C3EA7820079DE64 /* SearchViewModel.swift */; };
 		065E516C2C3EE9C90079DE64 /* ShoppingNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065E516B2C3EE9C90079DE64 /* ShoppingNetworkManager.swift */; };
+		065E517A2C42C3A80079DE64 /* SearchResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065E51792C42C3A80079DE64 /* SearchResultViewModel.swift */; };
 		0690BC562C216C2400C5EAF6 /* NavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0690BC552C216C2400C5EAF6 /* NavigationController+.swift */; };
 		06A035D32C3BC10800CAFE3B /* LikeItemShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A035D22C3BC10800CAFE3B /* LikeItemShowViewController.swift */; };
 		06A035D52C3BC12800CAFE3B /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A035D42C3BC12800CAFE3B /* BaseViewController.swift */; };
@@ -95,6 +96,7 @@
 		065E51662C3E8E190079DE64 /* BaseCollectioViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectioViewCell.swift; sourceTree = "<group>"; };
 		065E51692C3EA7820079DE64 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		065E516B2C3EE9C90079DE64 /* ShoppingNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingNetworkManager.swift; sourceTree = "<group>"; };
+		065E51792C42C3A80079DE64 /* SearchResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewModel.swift; sourceTree = "<group>"; };
 		0690BC552C216C2400C5EAF6 /* NavigationController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationController+.swift"; sourceTree = "<group>"; };
 		06A035D22C3BC10800CAFE3B /* LikeItemShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeItemShowViewController.swift; sourceTree = "<group>"; };
 		06A035D42C3BC12800CAFE3B /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -161,8 +163,6 @@
 		0650C6262C1C7C0300BDC4D1 /* SearchView */ = {
 			isa = PBXGroup;
 			children = (
-				0650C62E2C1CB02500BDC4D1 /* SearchResultViewController.swift */,
-				0650C6342C1CB8E200BDC4D1 /* SearchResultCollectionViewCell.swift */,
 				0658AF1C2C1DD98D00C65E3E /* NetworkViewController.swift */,
 			);
 			path = SearchView;
@@ -211,6 +211,16 @@
 			path = Search;
 			sourceTree = "<group>";
 		};
+		065E51782C42C3840079DE64 /* SearchResult */ = {
+			isa = PBXGroup;
+			children = (
+				0650C62E2C1CB02500BDC4D1 /* SearchResultViewController.swift */,
+				0650C6342C1CB8E200BDC4D1 /* SearchResultCollectionViewCell.swift */,
+				065E51792C42C3A80079DE64 /* SearchResultViewModel.swift */,
+			);
+			path = SearchResult;
+			sourceTree = "<group>";
+		};
 		06A035F82C3D4F3200CAFE3B /* ProfileSet */ = {
 			isa = PBXGroup;
 			children = (
@@ -251,6 +261,7 @@
 		06E167A62C2AC32B00FD2FE7 /* Refactoring */ = {
 			isa = PBXGroup;
 			children = (
+				065E51782C42C3840079DE64 /* SearchResult */,
 				065E51682C3EA74D0079DE64 /* Search */,
 				06A035F92C3D4F4400CAFE3B /* SelectProfile */,
 				06A035F82C3D4F3200CAFE3B /* ProfileSet */,
@@ -322,8 +333,8 @@
 				064914912C1B33DC00B05833 /* UserModel.swift */,
 				0650C6242C1C720700BDC4D1 /* SearchDataModel.swift */,
 				0650C6322C1CB28A00BDC4D1 /* ShoppingModel.swift */,
-				06A035D62C3BC81900CAFE3B /* RealmLikeListModel.swift */,
 				06A035DB2C3BCDA600CAFE3B /* LikeRepository.swift */,
+				06A035D62C3BC81900CAFE3B /* RealmLikeListModel.swift */,
 				06A035DD2C3BD48A00CAFE3B /* FolderModel.swift */,
 			);
 			path = Model;
@@ -440,6 +451,7 @@
 				064914A12C1C23A200B05833 /* SettingViewController.swift in Sources */,
 				0650C6332C1CB28A00BDC4D1 /* ShoppingModel.swift in Sources */,
 				06A035DE2C3BD48A00CAFE3B /* FolderModel.swift in Sources */,
+				065E517A2C42C3A80079DE64 /* SearchResultViewModel.swift in Sources */,
 				064914852C1B1D8500B05833 /* SelcetButton.swift in Sources */,
 				0650C62F2C1CB02500BDC4D1 /* SearchResultViewController.swift in Sources */,
 				0650C6312C1CB0FC00BDC4D1 /* NetWorkFilterEnum.swift in Sources */,
