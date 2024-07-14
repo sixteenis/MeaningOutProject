@@ -15,7 +15,7 @@ final class SearchDataModel {
     var total = 1
     var start = 1
     var nowItem = ""
-    var filterType: ShoppingDataType? {
+    var filterType: ShoppingDataType = .accuracy {
         didSet{
             self.start = 1
         }

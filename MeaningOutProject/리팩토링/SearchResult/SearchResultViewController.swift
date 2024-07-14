@@ -40,37 +40,45 @@ final class SearchResultViewController: BaseViewController {
     private let likeRepository = LikeRepository()
     private let folder = LikeRepository().fetchFolder()
     
-   
+    
     var searchText: String? // 이전뷰에서 받아오는 값
     private let vm = SearchResultViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        showLoadingIndicator()
+        //showLoadingIndicator()
         setUpcollection()
         setUpFilterButton(0)
     }
     override func bindData() {
         vm.inputLoadView.value = searchText
-        vm.outputList.loadBind { [weak self] data in
+        
+        vm.outputList.bind { [weak self] data in
             guard let self = self else {return}
-            self.hideLoadingIndicator()
             if data.isEmpty {
                 self.noDataView.isHidden = false
                 self.noDataLabel.text = "\(searchText!)의 대한 정보가 없습니다!"
+              //self.hideLoadingIndicator()
                 return
+            }else{
+                //self.hideLoadingIndicator()
+                noDataView.isHidden = true
+                collectionView.reloadData()
             }
-            noDataView.isHidden = true
-            collectionView.reloadData()
         }
         
         vm.outputTotal.loadBind { total in
             self.allcountLabel.text = total.formatted() + "개의 검색 결과"
         }
         vm.outputPage.bind { page in
-            if page == 1{
+            if page == 1 && !self.vm.outputList.value.isEmpty{
+                // TODO:  비었을 때 이걸 실행하면 왜 꺼짐???????????
                 self.collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
             }
+        }
+        vm.outputloadIndex.bind { index in
+            guard let index = index else {return}
+            self.collectionView.reloadItems(at: [index])
         }
     }
     
@@ -150,7 +158,6 @@ final class SearchResultViewController: BaseViewController {
         activityIndicator.center = self.view.center
         activityIndicator.hidesWhenStopped = true
         self.view.addSubview(activityIndicator)
-        view.backgroundColor = .backgroundColor
         
         navigationController?.navigationBar.tintColor = .buttonSelectColor
         let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(nvBackButtonTapped))
@@ -162,26 +169,19 @@ final class SearchResultViewController: BaseViewController {
         allcountLabel.font = .systemFont(ofSize: 14, weight: .heavy)
         allcountLabel.textColor = .mainOragieColor
         
-        
         accuracyButton.tag = 0
         accuracyButton.addTarget(self, action: #selector(filterButtonTapped), for: .touchUpInside)
-           
-       
         dateButton.tag = 1
         dateButton.addTarget(self, action: #selector(filterButtonTapped), for: .touchUpInside)
-        
-        
         priceUpButton.tag = 2
         priceUpButton.addTarget(self, action: #selector(filterButtonTapped), for: .touchUpInside)
-        
-        
         priceDownButton.tag = 3
         priceDownButton.addTarget(self, action: #selector(filterButtonTapped), for: .touchUpInside)
-        
         
         noDataView.backgroundColor = .backgroundColor
         noDataImage.image = .noDataImage
         noDataLabel.font = .systemFont(ofSize: 15, weight: .heavy)
+        noDataView.isHidden = true
     }
     // MARK: - collection 세팅 부분
     private func setUpcollection() {
@@ -239,38 +239,35 @@ extension SearchResultViewController: UICollectionViewDelegate, UICollectionView
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchResultCollectionViewCell.id, for: indexPath) as! SearchResultCollectionViewCell
         let data = vm.outputList.value[indexPath.item]
-        cell.setUpData(data)
+        let likeBool = vm.outputLikeList.value.contains(data.productId)
+        cell.setUpData(data, bool: likeBool)
         
         cell.likeTapped = {[weak self] in
             guard let self = self else { return }
-            if folder.count == 1{
-                // MARK: - 폴더에 넣어주는 곳
-                
-                //            likeRepository.addItem(LikeList(productId: data.productId, title: data.title, image: data.image, lprice: data.lprice, mallName: data.mallName, link: data.link), folder:self.folder.first!)
-                // MARK: - 지금은 폴더가 하나지만 나중에 폴더가 늘어나면 처리해줘야됨
-                let item = LikeList(productId: data.productId, title: data.title, image: data.image, lprice: data.lprice, mallName: data.mallName, link: data.link)
-                let folder = self.folder.first!
-                likeRepository.toggleLike(item, folder: folder)
-                //searchDataModel.LikeListFunc(data.productId)
-                collectionView.reloadItems(at: [indexPath])
-            }else {
-                let alert = UIAlertController(
-                    title: nil,
-                    message: nil,
-                    preferredStyle: .actionSheet
-                )
-                for item in 0..<folder.count{
-                    let action = UIAlertAction(title: folder[item].folderName, style: .default) { _ in
-                        print("아직 구현 못함 ㅋ")
+            if !likeBool{
+                if vm.outputFolder.value.count == 1{
+                    vm.inputAppendLike.value = (data,vm.outputFolder.value.first, indexPath)
+                }else {
+                    let alert = UIAlertController(
+                        title: nil,
+                        message: nil,
+                        preferredStyle: .actionSheet
+                    )
+                    for i in 0..<vm.outputFolder.value.count{
+                        let action = UIAlertAction(title: vm.outputFolder.value[i].folderName, style: .default) { _ in
+                            let folder = self.vm.outputFolder.value[i]
+                            self.vm.inputAppendLike.value = (data, folder, indexPath)
+                        }
+                        alert.addAction(action)
                     }
-                    alert.addAction(action)
+                    let cancel = UIAlertAction(title: "취소", style: .cancel)
+                    alert.addAction(cancel)
+                    present(alert, animated: true)
                 }
-                let cancel = UIAlertAction(title: "취소", style: .cancel)
-                alert.addAction(cancel)
-                present(alert, animated: true)
+            }else{
+                vm.inputAppendLike.value = (data,vm.outputFolder.value.first, indexPath)
             }
         }
-        
         
         return cell
     }

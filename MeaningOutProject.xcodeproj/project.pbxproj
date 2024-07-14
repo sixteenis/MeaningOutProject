@@ -60,10 +60,10 @@
 		06F5309F2C1B085500487212 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 06F5309E2C1B085500487212 /* Base */; };
 		06F530A72C1B087400487212 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 06F530A62C1B087400487212 /* .gitignore */; };
 		06F530AA2C1B0F8300487212 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F530A92C1B0F8300487212 /* OnboardingViewController.swift */; };
-		06F530AF2C1B0FBE00487212 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 06F530AE2C1B0FBE00487212 /* IQKeyboardManagerSwift */; };
+		06F530AF2C1B0FBE00487212 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 06F530AE2C1B0FBE00487212 /* IQKeyboardManagerSwift */; settings = {ATTRIBUTES = (Required, ); }; };
 		06F530B22C1B0FC800487212 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 06F530B12C1B0FC800487212 /* Alamofire */; };
-		06F530B52C1B0FD400487212 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 06F530B42C1B0FD400487212 /* Kingfisher */; };
-		06F530B82C1B0FDC00487212 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 06F530B72C1B0FDC00487212 /* SnapKit */; };
+		06F530B52C1B0FD400487212 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 06F530B42C1B0FD400487212 /* Kingfisher */; settings = {ATTRIBUTES = (Required, ); }; };
+		06F530B82C1B0FDC00487212 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 06F530B72C1B0FDC00487212 /* SnapKit */; settings = {ATTRIBUTES = (Required, ); }; };
 		06F530BA2C1B104400487212 /* Image+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F530B92C1B104400487212 /* Image+.swift */; };
 /* End PBXBuildFile section */
 

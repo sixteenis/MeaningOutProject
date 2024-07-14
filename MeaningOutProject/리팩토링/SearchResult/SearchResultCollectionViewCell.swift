@@ -9,27 +9,22 @@ import UIKit
 
 import SnapKit
 
-final class SearchResultCollectionViewCell: UICollectionViewCell {
-    let image = UIImageView()
-    let likeButton = UIButton()
-    let mallNameLabel = UILabel()
-    let titleLabel = UILabel()
-    let lpriceLabel = UILabel()
+final class SearchResultCollectionViewCell: BaseCollectioViewCell {
+    private let image = UIImageView()
+    private let likeButton = UIButton()
+    private let mallNameLabel = UILabel()
+    private let titleLabel = UILabel()
+    private let lpriceLabel = UILabel()
     
     var likeTapped: () -> () = {}
     
     let searchDataModel = SearchDataModel()
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setUpHierarch()
-        setUpLayout()
-        setUpUI()
     }
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-    }
+
     // MARK: - connect 부분
-    func setUpHierarch() {
+    override func setUpHierarchy() {
         contentView.addSubview(image)
         contentView.addSubview(likeButton)
         contentView.addSubview(mallNameLabel)
@@ -41,9 +36,9 @@ final class SearchResultCollectionViewCell: UICollectionViewCell {
         super.layoutSublayers(of: layer)
         image.layer.cornerRadius = 10
     }
-    
+
     // MARK: - Layout 부분
-    func setUpLayout() {
+    override func setUpLayout() {
         image.snp.makeConstraints { make in
             make.horizontalEdges.top.equalTo(contentView.safeAreaLayoutGuide)
             make.height.equalTo(contentView.snp.height).multipliedBy(0.7)
@@ -69,7 +64,7 @@ final class SearchResultCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: - UI 세팅 부분 (정적)
-    func setUpUI() {
+    override func setUpView() {
         contentView.backgroundColor = .backgroundColor
         
         image.clipsToBounds = true
@@ -94,23 +89,22 @@ final class SearchResultCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: - 동적인 세팅 부분
-    func setUpData(_ data: Item) {
+    func setUpData(_ data: Item, bool: Bool) {
         let url = URL(string: data.image)!
-        // 킹피셔 안쓰고 이미지 처리
         self.image.image = nil
-        //계속 밑으로 내리면 이전 이미지가 뜨는 문제 해결해야됨...ㅠ..ㅠ
         DispatchQueue.global().async { [weak self] in
+            guard let self = self else {return}
             do {
                 let imageData = try Data(contentsOf: url)
                 DispatchQueue.main.async {
-                    if self?.image.image != UIImage(data: imageData){
-                        self?.image.image = UIImage(data: imageData)
+                    if self.image.image != UIImage(data: imageData){
+                        self.image.image = UIImage(data: imageData)
                     }
 
                 }
             }catch {
                 DispatchQueue.main.async {
-                    self?.image.image = UIImage(systemName: "bag")
+                    self.image.image = UIImage(systemName: "bag")
                 }
             }
         }
@@ -124,7 +118,7 @@ final class SearchResultCollectionViewCell: UICollectionViewCell {
         
         
         lpriceLabel.text = "\(Int(data.lprice)!.formatted())원"
-        if searchDataModel.likeList[data.productId] != nil{ //[201,206] 101 view
+        if bool{ //[201,206] 101 view
             likeButton.setImage(.shoppingImage, for: .normal)
             likeButton.backgroundColor = .backgroundColor
             likeButton.layer.opacity = 1
@@ -137,6 +131,7 @@ final class SearchResultCollectionViewCell: UICollectionViewCell {
             
         }
     }
+    
     func setUpDataFolder(_ data: LikeList) {
         let url = URL(string: data.image)!
         // 킹피셔 안쓰고 이미지 처리

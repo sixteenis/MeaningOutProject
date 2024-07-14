@@ -36,7 +36,7 @@ final class SearchViewController: BaseViewController {
     override func bindData() {
         vm.inputViewLoad.value = ()
         // TODO: 다른 탭바에서 닉네임 변경 시 네비타이틀 자동 변경 구현하기
-        vm.outputNickName.loadBind { [weak self] name in
+        vm.outputNickName.bind { [weak self] name in
             guard let self = self else {return}
             self.navigationItem.title = "\(name)'s MEANING OUT"
         }

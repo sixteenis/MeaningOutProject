@@ -31,16 +31,21 @@ final class LikeRepository {
         }
     }
     
-    func fetchFolder() -> Results<Folder> {
-        let value = realm.objects(Folder.self)
+    func fetchFolder() -> [Folder] {
+        let value = Array(realm.objects(Folder.self))
+        
         return value
     }
     
     
+    func getLikeList() -> [String] {
+        let data = fetchAll()
+        let result = data.map { $0.productId }
+        return result
+    }
     
-    
-    func fetchAll() -> Results<LikeList> {
-        let data = realm.objects(LikeList.self)
+    func fetchAll() -> [LikeList] {
+        let data = Array(realm.objects(LikeList.self))
         return data
     }
     
@@ -49,13 +54,25 @@ final class LikeRepository {
             $0.productId == item.productId
         }
         if data.isEmpty {
-            addItem(item, folder: folder)
+            if folder == self.fetchFolder().first!{
+                addItem(item, folder: folder)
+            }else{
+                let totalfolder = self.fetchFolder().first!
+                addItem(item, folder: totalfolder)
+                addItem(item, folder: folder)
+            }
         }else{
-            deleteItem(item, folder: folder)
+            if folder == self.fetchFolder().first!{
+                deleteItem(item, folder: folder)
+            }else{
+                let totalfolder = self.fetchFolder().first!
+                deleteItem(item, folder: totalfolder)
+                deleteItem(item, folder: folder)
+            }
         }
     }
     
-    func deleteItem(_ item: LikeList, folder: Folder) {
+    private func deleteItem(_ item: LikeList, folder: Folder) {
            do {
                try realm.write {
                    if let index = folder.likeLists.firstIndex(where: { $0.productId == item.productId }) {
@@ -68,7 +85,7 @@ final class LikeRepository {
                print("삭제 오류: \(error)")
            }
     }
-    func addItem(_ item: LikeList, folder: Folder) {
+    private func addItem(_ item: LikeList, folder: Folder) {
         do {
             try realm.write {
                 realm.add(item)

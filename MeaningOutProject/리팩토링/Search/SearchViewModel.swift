@@ -8,8 +8,9 @@
 import Foundation
 
 final class SearchViewModel {
-    let model = SearchDataModel()
-    let userModel = UserModel.shared
+    private let model = SearchDataModel()
+    private let userModel = UserModel.shared
+    
     var inputViewLoad: Obsearvable<Void?> = Obsearvable(nil)
     var inputSearchTextFiled: Obsearvable<String?> = Obsearvable(nil) //서치바의 텍스트를 설정하고 검색할 때 또는 검색기록에서 눌렀을 때
     var inputRemoveAllButton: Obsearvable<Void> = Obsearvable(()) // 전체 삭제 버튼을 눌렀을 때
@@ -20,9 +21,9 @@ final class SearchViewModel {
     //하나씩 삭제할 때 인덱스를 인붓으로 받고 아웃붙으로 하나 삭제하고 리로드해줘야됨
     //전체 삭제누르면 모델 전체삭제하고 아웃붙 클로저에서 리로드
     
-    lazy var outputSearchList: Obsearvable<[String]> = Obsearvable([String]())
-    lazy var outputNickName: Obsearvable<String> = Obsearvable("")
-    var outputSearchText = Obsearvable("")
+    private(set) lazy var outputSearchList: Obsearvable<[String]> = Obsearvable([String]())
+    private(set) lazy var outputNickName: Obsearvable<String> = Obsearvable("")
+    private(set) var outputSearchText = Obsearvable("")
     
     init() {
         inputViewLoad.loadBind { _ in

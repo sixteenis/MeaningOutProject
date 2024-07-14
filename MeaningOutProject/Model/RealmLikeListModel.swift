@@ -45,11 +45,3 @@ class LikeList: Object {
         self.link = link
     }
 }
-//struct Item: Decodable {
-//    let title: String
-//    let link: String
-//    let image: String
-//    let lprice: String
-//    let mallName: String
-//    let productId: String
-//}

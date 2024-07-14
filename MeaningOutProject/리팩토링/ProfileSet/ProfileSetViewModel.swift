@@ -8,7 +8,7 @@
 import Foundation
 
 final class ProfileSetViewModel {
-    let model = UserModel.shared
+    private let model = UserModel.shared
 
     var inputViewDidLoadTrigger: Obsearvable<Void?> = Obsearvable(nil)
     var inputNickname: Obsearvable<String?> = Obsearvable(nil)

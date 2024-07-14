@@ -18,7 +18,7 @@ final class SelectProfileViewModel {
     }
     lazy var inputSelectProfile: Obsearvable<Int?> = Obsearvable(nil)
     
-    lazy var outputChangeProfile: Obsearvable<String> = Obsearvable(userModel.beforProfile)
+    private(set) lazy var outputChangeProfile: Obsearvable<String> = Obsearvable(userModel.beforProfile)
     
     init() {
         inputSelectProfile.bind { index in
