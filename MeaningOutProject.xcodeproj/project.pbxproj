@@ -166,7 +166,6 @@
 		0650C6262C1C7C0300BDC4D1 /* SearchView */ = {
 			isa = PBXGroup;
 			children = (
-				0658AF1C2C1DD98D00C65E3E /* NetworkViewController.swift */,
 			);
 			path = SearchView;
 			sourceTree = "<group>";
@@ -202,6 +201,14 @@
 				065E516B2C3EE9C90079DE64 /* ShoppingNetworkManager.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		0655AFA82C43D74E007EE66B /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				0658AF1C2C1DD98D00C65E3E /* NetworkViewController.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 		065E51682C3EA74D0079DE64 /* Search */ = {
@@ -264,6 +271,7 @@
 		06E167A62C2AC32B00FD2FE7 /* Refactoring */ = {
 			isa = PBXGroup;
 			children = (
+				0655AFA82C43D74E007EE66B /* Network */,
 				065E51782C42C3840079DE64 /* SearchResult */,
 				065E51682C3EA74D0079DE64 /* Search */,
 				06A035F92C3D4F4400CAFE3B /* SelectProfile */,

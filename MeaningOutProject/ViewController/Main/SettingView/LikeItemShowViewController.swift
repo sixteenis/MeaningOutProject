@@ -60,7 +60,7 @@ extension LikeItemShowViewController: UICollectionViewDelegate, UICollectionView
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchResultCollectionViewCell.id, for: indexPath) as! SearchResultCollectionViewCell
         let data = folder[index].likeLists[indexPath.item]
         cell.backgroundColor = .backgroundColor
-        cell.setUpDataFolder(data)
+        //cell.setUpDataFolder(data)
         
         cell.likeTapped = {[weak self] in
             guard let self = self else { return }
@@ -83,9 +83,7 @@ extension LikeItemShowViewController: UICollectionViewDelegate, UICollectionView
         
         let vc = NetworkViewController()
         let data = folder[index].likeLists[indexPath.item]
-        vc.shoppingTitle = data.title
-        vc.url = data.link
-        vc.id = data.productId
+        vc.item = LikeList(productId: data.productId, title: data.title, image: data.image, lprice: data.lprice, mallName: data.mallName, link: data.link)
         navigationController?.pushViewController(vc, animated: true)
         
     }

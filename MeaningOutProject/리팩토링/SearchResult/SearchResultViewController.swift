@@ -37,10 +37,6 @@ final class SearchResultViewController: BaseViewController {
         return layout
     }
     
-    private let likeRepository = LikeRepository()
-    private let folder = LikeRepository().fetchFolder()
-    
-    
     var searchText: String? // 이전뷰에서 받아오는 값
     private let vm = SearchResultViewModel()
     
@@ -50,9 +46,11 @@ final class SearchResultViewController: BaseViewController {
         setUpcollection()
         setUpFilterButton(0)
     }
-    override func bindData() {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         vm.inputLoadView.value = searchText
-        
+    }
+    override func bindData() {
         vm.outputList.bind { [weak self] data in
             guard let self = self else {return}
             if data.isEmpty {
@@ -72,7 +70,6 @@ final class SearchResultViewController: BaseViewController {
         }
         vm.outputPage.bind { page in
             if page == 1 && !self.vm.outputList.value.isEmpty{
-                // TODO:  비었을 때 이걸 실행하면 왜 꺼짐???????????
                 self.collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
             }
         }
@@ -274,10 +271,8 @@ extension SearchResultViewController: UICollectionViewDelegate, UICollectionView
     // MARK: - 네트워크 컨트롤러 이동하는 부분
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = NetworkViewController()
-        let data = vm.outputList.value
-        vc.shoppingTitle = data[indexPath.item].title
-        vc.url = data[indexPath.item].link
-        vc.id = data[indexPath.item].productId
+        let data = vm.outputList.value[indexPath.item]
+        vc.item = LikeList(productId: data.productId, title: data.title, image: data.image, lprice: data.lprice, mallName: data.mallName, link: data.link)
         navigationController?.pushViewController(vc, animated: true)
     }
     

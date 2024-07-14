@@ -72,7 +72,23 @@ final class LikeRepository {
         }
     }
     
-    private func deleteItem(_ item: LikeList, folder: Folder) {
+    
+    func deleteItem(_ item: LikeList, folder: Folder?) {
+        guard let folder = folder else {
+            try! realm.write {
+                let folders = self.fetchFolder()
+                for i in 0..<folders.count {
+                    if folders[i].likeLists.contains(item) {
+                        if let index = folders[i].likeLists.firstIndex(where: { $0.productId == item.productId }){
+                            folders[i].likeLists.remove(at: index)
+                        }
+                    }
+                    
+                }
+                realm.delete(item)
+            }
+            return
+        }
            do {
                try realm.write {
                    if let index = folder.likeLists.firstIndex(where: { $0.productId == item.productId }) {

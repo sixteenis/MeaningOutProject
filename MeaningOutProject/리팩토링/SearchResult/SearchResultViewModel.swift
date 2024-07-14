@@ -23,6 +23,7 @@ final class SearchResultViewModel {
     private(set) var outputFolder = Obsearvable([Folder]())
     private(set) var outputLikeList = Obsearvable([String]())
     private(set) var outputloadIndex: Obsearvable<IndexPath?> = Obsearvable(nil)
+    
     init() {
         inputLoadView.bind { item in
             guard let item = item else {return}

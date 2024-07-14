@@ -10,28 +10,23 @@ import WebKit
 
 import SnapKit
 
-final class NetworkViewController: UIViewController {
-    let loadingIndicator = UIActivityIndicatorView(style: .large)
-    let webView = WKWebView()
-    let noDataView = UIView()
-    let noDataImage = UIImageView()
-    let noDataLabel = UILabel()
-    var shoppingTitle: String?
-    var id: String = ""
-    var url: String = ""
+final class NetworkViewController: BaseViewController {
+    private let loadingIndicator = UIActivityIndicatorView(style: .large)
+    private let webView = WKWebView()
+    private let noDataView = UIView()
+    private let noDataImage = UIImageView()
+    private let noDataLabel = UILabel()
+    var item: LikeList!
     let searchDataModel = SearchDataModel()
+    let likeRepository = LikeRepository()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpHierarch()
-        setUpLayout()
-        setUpUI()
         setWebView()
-        
+        changeImage(item.productId)
     }
-    
     // MARK: - connect 부분
-    private func setUpHierarch() {
+    override func setUpHierarchy() {
         view.addSubview(webView)
         
         view.addSubview(noDataView)
@@ -40,7 +35,7 @@ final class NetworkViewController: UIViewController {
     }
     
     // MARK: - Layout 부분
-    private func setUpLayout() {
+    override func setUpLayout() {
         webView.snp.makeConstraints { make in
             make.edges.equalTo(view.safeAreaLayoutGuide)
         }
@@ -61,12 +56,10 @@ final class NetworkViewController: UIViewController {
             make.top.equalTo(noDataImage.snp.bottom).offset(10)
         }
     }
-    override func viewWillAppear(_ animated: Bool) {
-        changerightBarButtinImage()
-    }
+    
     
     // MARK: - UI 세팅 부분
-    private func setUpUI() {
+    override func setUpView() {
         view.backgroundColor = .backgroundColor
         webView.navigationDelegate = self
         navigationController?.navigationBar.tintColor = .buttonSelectColor
@@ -74,7 +67,7 @@ final class NetworkViewController: UIViewController {
         navigationItem.leftBarButtonItem = backButton
         let rightButton = UIBarButtonItem(image: .shoppingImage, style: .plain, target: self, action: #selector(shoppingNVButtonTapped))
         navigationItem.rightBarButtonItem = rightButton
-        var filterTitle = shoppingTitle?.replacingOccurrences(of: "<b>", with: "")
+        var filterTitle = item?.title.replacingOccurrences(of: "<b>", with: "")
         filterTitle = filterTitle?.replacingOccurrences(of: "</b>", with: "")
         navigationItem.title = filterTitle
         
@@ -86,7 +79,7 @@ final class NetworkViewController: UIViewController {
         
     }
     private func setWebView() {
-        let myurl = URL(string: url)
+        let myurl = URL(string: item.link)
         if let myurl = myurl {
             let myrequest = URLRequest(url: myurl)
             noDataView.isHidden = true
@@ -103,15 +96,44 @@ final class NetworkViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     @objc func shoppingNVButtonTapped() {
-        searchDataModel.LikeListFunc(id)
         changerightBarButtinImage()
     }
-    private func changerightBarButtinImage() {
-        if searchDataModel.likeList[id] != nil{
+    func changeImage(_ id:String) {
+        if likeRepository.getLikeList().contains(id) {
             navigationItem.rightBarButtonItem?.image = .shoppingImage
         }else{
             navigationItem.rightBarButtonItem?.image = .unshoppingImage
         }
+    }
+    private func changerightBarButtinImage() {
+        let likeBool = likeRepository.getLikeList().contains(item.productId) //리스트에 있으면 true 없으면 false
+        let folder = likeRepository.fetchFolder()
+            if !likeBool{ // 좋아요가 눌려있다면?
+                if folder.count == 1{
+                    likeRepository.toggleLike(item, folder: folder.first!)
+                    changeImage(item.productId)
+                }else {
+                    let alert = UIAlertController(
+                        title: nil,
+                        message: nil,
+                        preferredStyle: .actionSheet
+                    )
+                    for i in 0..<folder.count{
+                        let action = UIAlertAction(title: folder[i].folderName, style: .default) { _ in
+                            self.likeRepository.toggleLike(self.item, folder: folder[i])
+                            self.changeImage(self.item.productId)
+                        }
+                        alert.addAction(action)
+                    }
+                    let cancel = UIAlertAction(title: "취소", style: .cancel)
+                    alert.addAction(cancel)
+                    present(alert, animated: true)
+                }
+            }else{ // 좋아요가 안눌려있다면
+                self.likeRepository.deleteItem(self.item, folder: nil)
+                changeImage(item.productId)
+            }
+        
     }
     
     
