@@ -26,7 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window?.makeKeyAndVisible() // show
             
         }
-        let repository = LikeRepository()
+        let repository = LikeRepository.shard
         repository.addDefaultFolderIfNeeded()
         let realm = try! Realm()
         print(realm.configuration.fileURL ?? "")

@@ -262,7 +262,7 @@ extension SearchResultViewController: UICollectionViewDelegate, UICollectionView
                     present(alert, animated: true)
                 }
             }else{
-                vm.inputAppendLike.value = (data,vm.outputFolder.value.first, indexPath)
+                vm.inputAppendLike.value = (data,nil, indexPath)
             }
         }
         

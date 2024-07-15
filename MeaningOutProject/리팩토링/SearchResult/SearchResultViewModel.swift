@@ -9,7 +9,7 @@ import Foundation
 
 final class SearchResultViewModel {
     private let model = SearchDataModel()
-    private let likeModel = LikeRepository()
+    private let likeModel = LikeRepository.shard
     var inputLoadView: Obsearvable<String?> = Obsearvable(nil)
     var inputPlusPage: Obsearvable<Void?> = Obsearvable(nil)
     var inputfilterSelect: Obsearvable<Int?> = Obsearvable(nil)
@@ -46,7 +46,6 @@ final class SearchResultViewModel {
         }
         inputAppendLike.bind { item, folder, index in
             guard let item = item else { return }
-            guard let folder = folder else { return }
             let newItem = LikeList(productId: item.productId, title: item.title, image: item.image, lprice: item.lprice, mallName: item.mallName, link: item.link)
             self.likeModel.toggleLike(newItem, folder: folder)
             self.appendLikeItem(index)

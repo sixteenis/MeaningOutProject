@@ -18,7 +18,7 @@ final class NetworkViewController: BaseViewController {
     private let noDataLabel = UILabel()
     var item: LikeList!
     let searchDataModel = SearchDataModel()
-    let likeRepository = LikeRepository()
+    let likeRepository = LikeRepository.shard
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -130,7 +130,7 @@ final class NetworkViewController: BaseViewController {
                     present(alert, animated: true)
                 }
             }else{ // 좋아요가 안눌려있다면
-                self.likeRepository.deleteItem(self.item, folder: nil)
+                self.likeRepository.toggleLike(self.item, folder: nil)
                 changeImage(item.productId)
             }
         

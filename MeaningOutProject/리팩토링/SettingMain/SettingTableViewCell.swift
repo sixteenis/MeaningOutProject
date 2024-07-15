@@ -49,12 +49,12 @@ final class SettingTableViewCell: UITableViewCell {
     
     
     // MARK: - 동적인 세팅 부분
-    func setUpData(data: String) {
+    func setUpData(data: Setting) {
         subLabel.isHidden = true
-        mainLabel.text = data
+        mainLabel.text = data.rawValue
         
     }
-    func setUpData(data: String, likeCount: Int) {
+    func setUpData(data: Setting, likeCount: Int) {
         subLabel.isHidden = false
         let attributedLabel = NSMutableAttributedString(string: "")
         let imageAttachment = NSTextAttachment()
@@ -65,7 +65,7 @@ final class SettingTableViewCell: UITableViewCell {
         subLabel.attributedText = attributedLabel
             
         
-        mainLabel.text = data
+        mainLabel.text = data.rawValue
         
     }
 

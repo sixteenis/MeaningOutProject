@@ -22,7 +22,7 @@ final class ShoppingNetworkManager {
                 case .success(let data):
                     completionHander(data)
                     
-                case .failure(let error):
+                case .failure(_):
                     completionHander(nil)
                 }
                 

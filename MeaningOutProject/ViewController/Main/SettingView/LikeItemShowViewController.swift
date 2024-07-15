@@ -15,8 +15,8 @@ import SnapKit
 class LikeItemShowViewController: BaseViewController {
     private let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout())
     
-    private let likeRepository = LikeRepository()
-    private let folder = LikeRepository().fetchFolder()
+    private let likeRepository = LikeRepository.shard
+    private let folder = LikeRepository.shard.fetchFolder()
     var index: Int!
     var nvTitle: String?
     static func collectionViewLayout() -> UICollectionViewLayout {

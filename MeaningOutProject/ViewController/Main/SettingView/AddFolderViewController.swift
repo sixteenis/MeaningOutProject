@@ -11,7 +11,7 @@ import SnapKit
 import RealmSwift
 class AddFolderViewController: BaseViewController {
     let setTitle = UITextField()
-    let likeRepository = LikeRepository()
+    let likeRepository = LikeRepository.shard
     var completion: (() -> ())?
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -9,7 +9,7 @@ import UIKit
 
 import SnapKit
 
-final class SettingViewController: UIViewController {
+final class SettingViewController: BaseViewController {
     private let line = UIView()
     private let profileView = UIView()
     private lazy var profile = SelcetProfileImageView(profile: userModel.userProfile)
@@ -17,17 +17,17 @@ final class SettingViewController: UIViewController {
     private let nickName = UILabel()
     private let userJoinDate = UILabel()
     private let nextSymbol = UIImageView()
+    
+    
     private let userModel = UserModel.shared
     private let searchModel = SearchDataModel()
     private let tableView = UITableView()
     
     private let settingList = ["나의 장바구니 목록", "자주 묻는 질문", "1:1 문의", "알림 설정", "탈퇴하기"]
     
+    private let vm = SettingViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpHierarch()
-        setUpLayout()
-        setUpUI()
         setUpTabelView()
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -36,8 +36,15 @@ final class SettingViewController: UIViewController {
         nickName.text = userModel.userNickname
         tableView.reloadData()
     }
+    // MARK: - vm 구현 부분
+    override func bindData() {
+        vm.inputViewDidLoad.value = ()
+        vm.outputSettingList.loadBind { _ in
+            self.tableView.reloadData()
+        }
+    }
     // MARK: - connect 부분
-    private func setUpHierarch() {
+    override func setUpHierarchy() {
         view.addSubview(line)
         
         view.addSubview(profileView)
@@ -49,9 +56,8 @@ final class SettingViewController: UIViewController {
         
         view.addSubview(tableView)
     }
-    
     // MARK: - Layout 부분
-    private func setUpLayout() {
+    override func setUpLayout() {
         line.snp.makeConstraints { make in
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
             make.top.equalTo(view.safeAreaLayoutGuide)
@@ -95,15 +101,14 @@ final class SettingViewController: UIViewController {
     }
     
     // MARK: - UI 세팅 부분
-    private func setUpUI() {
+    override func setUpView() {
         view.backgroundColor = .backgroundColor
         
         line.backgroundColor = .lineColor
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(profileViewTapped))
         profileView.addGestureRecognizer(tap)
-        //profileView.layer.borderWidth = 1
-        //profileView.layer.borderColor = UIColor.textFieldBackgroundColor.cgColor
+        
         navigationItem.title = "SETTING"
         
         nickName.text = userModel.userNickname
@@ -137,24 +142,23 @@ final class SettingViewController: UIViewController {
 
 extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return settingList.count
+        return vm.outputSettingList.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SettingTableViewCell.id, for: indexPath) as! SettingTableViewCell
-        let data = settingList[indexPath.row]
+        let data = vm.outputSettingList.value[indexPath.row]
         cell.selectionStyle = .none
-        if data == "나의 장바구니 목록" {
-            cell.setUpData(data: data, likeCount: searchModel.likeList.count)
-        }else{
+        if data == .shoppingList{
+            cell.setUpData(data: data, likeCount: vm.outputLikeCount.value)
+        }else {
             cell.setUpData(data: data)
         }
-        
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 4 {
-            showAlert(title: "탈퇴하기", message: "탈퇴를 하면 데이터가 모두 초기화됩니다. \n탈퇴 하시겠습니까?", okButton: "탈퇴") {_ in 
+            showAlert(title: "탈퇴하기", message: "탈퇴를 하면 데이터가 모두 초기화됩니다. \n탈퇴 하시겠습니까?", okButton: "탈퇴") {_ in
                 self.searchModel.reset()
                 self.userModel.reset()
                 let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
