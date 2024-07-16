@@ -250,6 +250,11 @@ extension SearchResultViewController: UICollectionViewDelegate, UICollectionView
                         message: nil,
                         preferredStyle: .actionSheet
                     )
+                    let allFolder = UIAlertAction(title: "전체", style: .default) { _ in
+                        self.vm.inputAppendLike.value = (data, nil, indexPath)
+                        
+                    }
+                    alert.addAction(allFolder)
                     for i in 0..<vm.outputFolder.value.count{
                         let action = UIAlertAction(title: vm.outputFolder.value[i].folderName, style: .default) { _ in
                             let folder = self.vm.outputFolder.value[i]

@@ -22,7 +22,7 @@ class SettingViewModel {
         }
     }
     func getLikeCount() {
-        self.outputLikeCount.value = LikeRepository.shard.getLikeList().count
+        self.outputLikeCount.value = LikeRepository.shard.fetchAll().count
     }
     func getSettingList() {
         self.outputSettingList.value = Setting.allCases

@@ -33,7 +33,7 @@ class AddFolderViewController: BaseViewController {
     }
     @objc func saveButtonTapped() {
         if likeRepository.fetchFolder().count <= 3 {
-            let newfolder = FolderModel(folderName: setTitle.text!, image: "figure.2", imageColor: "dd")
+            let newfolder = FolderModel(folderName: setTitle.text!, image: "figure.2", imageColor: "dd", likeList: LikeList())
             
             likeRepository.addFolder(newfolder)
             completion?()

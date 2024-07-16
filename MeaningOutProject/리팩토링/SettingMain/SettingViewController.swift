@@ -32,6 +32,7 @@ final class SettingViewController: BaseViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        bindData()
         profile.changeProfile(image: userModel.userProfile)
         nickName.text = userModel.userNickname
         tableView.reloadData()
