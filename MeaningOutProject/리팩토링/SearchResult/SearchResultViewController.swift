@@ -242,8 +242,8 @@ extension SearchResultViewController: UICollectionViewDelegate, UICollectionView
         cell.likeTapped = {[weak self] in
             guard let self = self else { return }
             if !likeBool{
-                if vm.outputFolder.value.count == 1{
-                    vm.inputAppendLike.value = (data,vm.outputFolder.value.first, indexPath)
+                if vm.outputFolder.value.count == 0{
+                    vm.inputAppendLike.value = (data, nil, indexPath)
                 }else {
                     let alert = UIAlertController(
                         title: nil,

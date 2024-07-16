@@ -12,14 +12,6 @@ final class LikeRepository {
     private let realm = try! Realm()
     static let shard = LikeRepository()
     private init() {}
-    func addDefaultFolderIfNeeded() {
-        let folder = realm.objects(Folder.self)
-        if folder.isEmpty {
-            let folder = FolderModel(folderName: "전체", image: "figure", imageColor: "냠냠")
-            self.addFolder(folder)
-        }
-    }
-    
     func addFolder(_ folder: FolderModel) {
         let newFolder = Folder(folderName: folder.folderName, image: folder.image, imageColor: folder.imageColor, likeLists: List<LikeList>())
         print(realm.configuration.fileURL ?? "")
@@ -53,11 +45,9 @@ final class LikeRepository {
             $0.productId == item.productId
         }
         if data.isEmpty {
-            if folder == self.fetchFolder().first {
-                addItem(item, folder: folder)
+            if folder == nil{
+                addItem(item, folder: nil)
             } else {
-                let totalfolder = self.fetchFolder().first!
-                addItem(item, folder: totalfolder)
                 addItem(item, folder: folder)
             }
         } else {
@@ -65,23 +55,15 @@ final class LikeRepository {
         }
     }
     
+    
+    // MARK: - 폴더로 변경해서 구현중인데 아직 구현 못함
     func deleteItem(_ item: LikeList) {
-            guard let realm = item.realm else {
-                print("삭제 오류: Item does not belong to any realm instance.")
-                return
-            }
-            
             do {
+                let removeItem = realm.objects(LikeList.self).where {
+                    $0.productId == item.productId
+                }
                 try realm.write {
-                    // 모든 폴더에서 likeLists 리스트에서 해당 객체 제거
-                    for folder in fetchFolder() {
-                        if let index = folder.likeLists.firstIndex(where: { $0.productId == item.productId }) {
-                            folder.likeLists.remove(at: index)
-                        }
-                    }
-                    
-                    // Realm 데이터베이스에서 객체 삭제
-                    realm.delete(item)
+                    realm.delete(removeItem)
                 }
             } catch {
                 print("삭제 오류: \(error)")
@@ -89,10 +71,15 @@ final class LikeRepository {
         }
     
     private func addItem(_ item: LikeList, folder: Folder?) {
-        guard let folder = folder else {return}
+        guard let folder = folder else {
+            try! realm.write {
+                realm.add(item)
+            }
+            return
+        }
         do {
             try realm.write {
-                realm.add(item)
+                //realm.add(item)
                 folder.likeLists.append(item)
             }
         } catch {
