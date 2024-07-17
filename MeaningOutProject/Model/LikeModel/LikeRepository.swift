@@ -34,6 +34,7 @@ final class LikeRepository {
         }
         return result
     }
+    
     func fetchFolder() -> [Folder] {
         let value = Array(realm.objects(Folder.self))
         return value

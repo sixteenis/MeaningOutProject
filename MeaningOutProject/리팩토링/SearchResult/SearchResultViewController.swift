@@ -239,7 +239,7 @@ extension SearchResultViewController: UICollectionViewDelegate, UICollectionView
         let likeBool = vm.outputLikeList.value.contains(data.productId)
         cell.setUpData(data, bool: likeBool)
         
-        cell.likeTapped = {[weak self] in
+        cell.likeTapped = { [weak self] in
             guard let self = self else { return }
             if !likeBool{
                 if vm.outputFolder.value.count == 0{

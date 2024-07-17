@@ -33,6 +33,7 @@
 		0655AFB12C4559A3007EE66B /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0655AFB02C4559A3007EE66B /* SettingViewModel.swift */; };
 		0655AFB32C455A0C007EE66B /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0655AFB22C455A0C007EE66B /* Setting.swift */; };
 		0655AFC12C48042A007EE66B /* FolderListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0655AFC02C48042A007EE66B /* FolderListModel.swift */; };
+		0655AFC42C4808AD007EE66B /* LikeFolderShowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0655AFC32C4808AD007EE66B /* LikeFolderShowViewModel.swift */; };
 		0658AF1D2C1DD98D00C65E3E /* NetworkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0658AF1C2C1DD98D00C65E3E /* NetworkViewController.swift */; };
 		0658AF1F2C1DF55F00C65E3E /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0658AF1E2C1DF55F00C65E3E /* SettingTableViewCell.swift */; };
 		0658AF212C1E12F300C65E3E /* ProfileSetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0658AF202C1E12F300C65E3E /* ProfileSetType.swift */; };
@@ -97,6 +98,7 @@
 		0655AFB02C4559A3007EE66B /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		0655AFB22C455A0C007EE66B /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 		0655AFC02C48042A007EE66B /* FolderListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderListModel.swift; sourceTree = "<group>"; };
+		0655AFC32C4808AD007EE66B /* LikeFolderShowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeFolderShowViewModel.swift; sourceTree = "<group>"; };
 		0658AF1C2C1DD98D00C65E3E /* NetworkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkViewController.swift; sourceTree = "<group>"; };
 		0658AF1E2C1DF55F00C65E3E /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		0658AF202C1E12F300C65E3E /* ProfileSetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSetType.swift; sourceTree = "<group>"; };
@@ -182,8 +184,6 @@
 		0650C6282C1C7C2D00BDC4D1 /* SettingView */ = {
 			isa = PBXGroup;
 			children = (
-				06A035E42C3C024400CAFE3B /* LikeFolderShowViewController.swift */,
-				06A035E62C3C027000CAFE3B /* LikeFolderShowTableViewCell.swift */,
 				06A035EA2C3C0D2600CAFE3B /* AddFolderViewController.swift */,
 				06A035D22C3BC10800CAFE3B /* LikeItemShowViewController.swift */,
 			);
@@ -227,6 +227,16 @@
 				0655AFC02C48042A007EE66B /* FolderListModel.swift */,
 			);
 			path = LikeModel;
+			sourceTree = "<group>";
+		};
+		0655AFC22C48086B007EE66B /* LikeFolder */ = {
+			isa = PBXGroup;
+			children = (
+				06A035E42C3C024400CAFE3B /* LikeFolderShowViewController.swift */,
+				06A035E62C3C027000CAFE3B /* LikeFolderShowTableViewCell.swift */,
+				0655AFC32C4808AD007EE66B /* LikeFolderShowViewModel.swift */,
+			);
+			path = LikeFolder;
 			sourceTree = "<group>";
 		};
 		065E51682C3EA74D0079DE64 /* Search */ = {
@@ -289,6 +299,7 @@
 		06E167A62C2AC32B00FD2FE7 /* Refactoring */ = {
 			isa = PBXGroup;
 			children = (
+				0655AFC22C48086B007EE66B /* LikeFolder */,
 				0655AFAF2C455974007EE66B /* SettingMain */,
 				0655AFA82C43D74E007EE66B /* Network */,
 				065E51782C42C3840079DE64 /* SearchResult */,
@@ -479,6 +490,7 @@
 				064914A12C1C23A200B05833 /* SettingViewController.swift in Sources */,
 				0650C6332C1CB28A00BDC4D1 /* ShoppingModel.swift in Sources */,
 				06A035DE2C3BD48A00CAFE3B /* FolderModel.swift in Sources */,
+				0655AFC42C4808AD007EE66B /* LikeFolderShowViewModel.swift in Sources */,
 				065E517A2C42C3A80079DE64 /* SearchResultViewModel.swift in Sources */,
 				064914852C1B1D8500B05833 /* SelcetButton.swift in Sources */,
 				0650C62F2C1CB02500BDC4D1 /* SearchResultViewController.swift in Sources */,

@@ -12,12 +12,14 @@ class LikeFolderShowViewController: BaseViewController {
     let folderTable = UITableView()
     let folder = LikeRepository.shard.getFolderList()
     var navTitle: String?
+    
+    let vm = LikeFolderShowViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        folderTable.reloadData()
+        vm.inputViewDidLoad.value = ()
     }
     override func setUpHierarchy() {
         view.addSubview(folderTable)
@@ -25,6 +27,12 @@ class LikeFolderShowViewController: BaseViewController {
     override func setUpLayout() {
         folderTable.snp.makeConstraints { make in
             make.edges.equalTo(view.safeAreaLayoutGuide)
+        }
+    }
+    override func bindData() {
+        vm.outputGetFolderList.bind { [weak self] _ in
+            guard let self else { return }
+            self.folderTable.reloadData()
         }
     }
     override func setUpView() {
@@ -50,12 +58,12 @@ class LikeFolderShowViewController: BaseViewController {
 
 extension LikeFolderShowViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return folder.count
+        return vm.outputGetFolderList.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: LikeFolderShowTableViewCell.id, for: indexPath) as! LikeFolderShowTableViewCell
-        let data = folder[indexPath.row]
+        let data = vm.outputGetFolderList.value[indexPath.row]
         cell.changView(data)
         return cell
     }
