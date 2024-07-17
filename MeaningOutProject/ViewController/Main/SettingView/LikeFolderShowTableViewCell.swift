@@ -54,10 +54,10 @@ class LikeFolderShowTableViewCell: UITableViewCell {
         count.numberOfLines = 1
         
     }
-    func changView(_ data: Folder) {
+    func changView(_ data: FolderModel) {
         print("1123")
         image.image = UIImage(systemName: data.image)
         title.text = data.folderName
-        count.text = data.likeLists.count.formatted()
+        count.text = data.likeList.count.formatted()
     }
 }

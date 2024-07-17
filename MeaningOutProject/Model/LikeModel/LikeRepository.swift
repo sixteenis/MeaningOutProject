@@ -23,7 +23,17 @@ final class LikeRepository {
             print("폴더 생성 error: \(error)")
         }
     }
-    
+    func getFolderList() -> [FolderModel] {
+        var result = [FolderModel]()
+        let allFolder = FolderModel(folderName: "전체", image: "bag.fill", imageColor: "blue", likeList: fetchAll())
+        result.append(allFolder)
+        let customFolder = fetchFolder()
+        customFolder.forEach {
+            let temp = FolderModel(folderName: $0.folderName, image: $0.image, imageColor: $0.imageColor, likeList: Array($0.likeLists))
+            result.append(temp)
+        }
+        return result
+    }
     func fetchFolder() -> [Folder] {
         let value = Array(realm.objects(Folder.self))
         return value

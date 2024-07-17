@@ -10,7 +10,7 @@ import SnapKit
 
 class LikeFolderShowViewController: BaseViewController {
     let folderTable = UITableView()
-    let folder = LikeRepository.shard.fetchFolder()
+    let folder = LikeRepository.shard.getFolderList()
     var navTitle: String?
     override func viewDidLoad() {
         super.viewDidLoad()
