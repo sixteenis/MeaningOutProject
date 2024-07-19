@@ -8,11 +8,11 @@
 import Foundation
 
 class SettingViewModel {
-    private let userModel = UserModel.shared
+    private let userModel = UserModelManager.shared
     var inputViewDidLoad: Obsearvable<Void?> = Obsearvable(nil)
     
     var outputSettingList: Obsearvable<[Setting]> = Obsearvable([Setting]())
-    var outputUserData: Obsearvable<UserModel?> = Obsearvable(nil)
+    var outputUserData: Obsearvable<UserModelManager?> = Obsearvable(nil)
     var outputLikeCount = Obsearvable(0)
     init() {
         inputViewDidLoad.loadBind { _ in
@@ -28,6 +28,6 @@ class SettingViewModel {
         self.outputSettingList.value = Setting.allCases
     }
     func getUserData() {
-        self.outputUserData.value = UserModel.shared
+        self.outputUserData.value = UserModelManager.shared
     }
 }

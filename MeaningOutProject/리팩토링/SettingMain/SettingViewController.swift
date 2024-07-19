@@ -19,7 +19,7 @@ final class SettingViewController: BaseViewController {
     private let nextSymbol = UIImageView()
     
     
-    private let userModel = UserModel.shared
+    private let userModel = UserModelManager.shared
     private let searchModel = SearchDataModel()
     private let tableView = UITableView()
     

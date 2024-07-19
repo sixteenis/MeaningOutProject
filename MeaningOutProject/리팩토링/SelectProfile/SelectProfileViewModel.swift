@@ -8,7 +8,7 @@
 import Foundation
 
 final class SelectProfileViewModel {
-    private let userModel = UserModel.shared
+    private let userModel = UserModelManager.shared
     
     var profileImage: [String] {
         return userModel.profileList

@@ -40,6 +40,7 @@ final class LikeRepository {
         return value
     }
     
+    
     func getLikeList() -> [String] {
         let data = fetchAll()
         let result = data.map { $0.productId }
@@ -68,7 +69,7 @@ final class LikeRepository {
     
     
     // MARK: - 폴더로 변경해서 구현중인데 아직 구현 못함
-    func deleteItem(_ item: LikeList) {
+    private func deleteItem(_ item: LikeList) {
             do {
                 let removeItem = realm.objects(LikeList.self).where {
                     $0.productId == item.productId

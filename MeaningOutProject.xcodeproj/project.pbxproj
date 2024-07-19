@@ -14,7 +14,7 @@
 		064914872C1B27D300B05833 /* ProfileSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064914862C1B27D300B05833 /* ProfileSetViewController.swift */; };
 		064914892C1B282200B05833 /* ReuseIdentifier+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064914882C1B282200B05833 /* ReuseIdentifier+.swift */; };
 		064914902C1B325400B05833 /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0649148F2C1B325400B05833 /* ProfileImageView.swift */; };
-		064914922C1B33DC00B05833 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064914912C1B33DC00B05833 /* UserModel.swift */; };
+		064914922C1B33DC00B05833 /* UserModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064914912C1B33DC00B05833 /* UserModelManager.swift */; };
 		064914942C1B508400B05833 /* NickNameFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064914932C1B508400B05833 /* NickNameFilter.swift */; };
 		064914962C1B529500B05833 /* ViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064914952C1B529500B05833 /* ViewController+.swift */; };
 		064914982C1B5D8000B05833 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064914972C1B5D8000B05833 /* SearchViewController.swift */; };
@@ -34,6 +34,7 @@
 		0655AFB32C455A0C007EE66B /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0655AFB22C455A0C007EE66B /* Setting.swift */; };
 		0655AFC12C48042A007EE66B /* FolderListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0655AFC02C48042A007EE66B /* FolderListModel.swift */; };
 		0655AFC42C4808AD007EE66B /* LikeFolderShowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0655AFC32C4808AD007EE66B /* LikeFolderShowViewModel.swift */; };
+		0655AFF52C4A3B7F007EE66B /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0655AFF42C4A3B7F007EE66B /* UserDefault.swift */; };
 		0658AF1D2C1DD98D00C65E3E /* NetworkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0658AF1C2C1DD98D00C65E3E /* NetworkViewController.swift */; };
 		0658AF1F2C1DF55F00C65E3E /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0658AF1E2C1DF55F00C65E3E /* SettingTableViewCell.swift */; };
 		0658AF212C1E12F300C65E3E /* ProfileSetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0658AF202C1E12F300C65E3E /* ProfileSetType.swift */; };
@@ -79,7 +80,7 @@
 		064914862C1B27D300B05833 /* ProfileSetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSetViewController.swift; sourceTree = "<group>"; };
 		064914882C1B282200B05833 /* ReuseIdentifier+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReuseIdentifier+.swift"; sourceTree = "<group>"; };
 		0649148F2C1B325400B05833 /* ProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageView.swift; sourceTree = "<group>"; };
-		064914912C1B33DC00B05833 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		064914912C1B33DC00B05833 /* UserModelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModelManager.swift; sourceTree = "<group>"; };
 		064914932C1B508400B05833 /* NickNameFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NickNameFilter.swift; sourceTree = "<group>"; };
 		064914952C1B529500B05833 /* ViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+.swift"; sourceTree = "<group>"; };
 		064914972C1B5D8000B05833 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -99,6 +100,7 @@
 		0655AFB22C455A0C007EE66B /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 		0655AFC02C48042A007EE66B /* FolderListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderListModel.swift; sourceTree = "<group>"; };
 		0655AFC32C4808AD007EE66B /* LikeFolderShowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeFolderShowViewModel.swift; sourceTree = "<group>"; };
+		0655AFF42C4A3B7F007EE66B /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		0658AF1C2C1DD98D00C65E3E /* NetworkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkViewController.swift; sourceTree = "<group>"; };
 		0658AF1E2C1DF55F00C65E3E /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		0658AF202C1E12F300C65E3E /* ProfileSetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSetType.swift; sourceTree = "<group>"; };
@@ -166,7 +168,6 @@
 				0650C6222C1C6BA400BDC4D1 /* Placeholder.swift */,
 				0650C6302C1CB0FC00BDC4D1 /* FilterButton.swift */,
 				0658AF202C1E12F300C65E3E /* ProfileSetType.swift */,
-				060699392C2D03F60052A80F /* UserDefaultsID.swift */,
 				0655AFB22C455A0C007EE66B /* Setting.swift */,
 			);
 			path = Enum;
@@ -221,6 +222,7 @@
 		0655AFBF2C4803F7007EE66B /* LikeModel */ = {
 			isa = PBXGroup;
 			children = (
+				0655AFF62C4A3B82007EE66B /* User */,
 				06A035D62C3BC81900CAFE3B /* RealmLikeListModel.swift */,
 				06A035DD2C3BD48A00CAFE3B /* FolderModel.swift */,
 				06A035DB2C3BCDA600CAFE3B /* LikeRepository.swift */,
@@ -237,6 +239,16 @@
 				0655AFC32C4808AD007EE66B /* LikeFolderShowViewModel.swift */,
 			);
 			path = LikeFolder;
+			sourceTree = "<group>";
+		};
+		0655AFF62C4A3B82007EE66B /* User */ = {
+			isa = PBXGroup;
+			children = (
+				060699392C2D03F60052A80F /* UserDefaultsID.swift */,
+				0655AFF42C4A3B7F007EE66B /* UserDefault.swift */,
+				064914912C1B33DC00B05833 /* UserModelManager.swift */,
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 		065E51682C3EA74D0079DE64 /* Search */ = {
@@ -372,7 +384,6 @@
 			isa = PBXGroup;
 			children = (
 				0655AFBF2C4803F7007EE66B /* LikeModel */,
-				064914912C1B33DC00B05833 /* UserModel.swift */,
 				0650C6242C1C720700BDC4D1 /* SearchDataModel.swift */,
 				0650C6322C1CB28A00BDC4D1 /* ShoppingModel.swift */,
 			);
@@ -521,8 +532,9 @@
 				06A035E72C3C027000CAFE3B /* LikeFolderShowTableViewCell.swift in Sources */,
 				0655AFB12C4559A3007EE66B /* SettingViewModel.swift in Sources */,
 				06A035EB2C3C0D2600CAFE3B /* AddFolderViewController.swift in Sources */,
-				064914922C1B33DC00B05833 /* UserModel.swift in Sources */,
+				064914922C1B33DC00B05833 /* UserModelManager.swift in Sources */,
 				06A035F52C3D238200CAFE3B /* ProfileSetViewModel.swift in Sources */,
+				0655AFF52C4A3B7F007EE66B /* UserDefault.swift in Sources */,
 				0650C6252C1C720700BDC4D1 /* SearchDataModel.swift in Sources */,
 				06F530952C1B085300487212 /* SceneDelegate.swift in Sources */,
 				0658AF1D2C1DD98D00C65E3E /* NetworkViewController.swift in Sources */,

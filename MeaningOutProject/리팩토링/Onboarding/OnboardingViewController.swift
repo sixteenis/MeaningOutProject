@@ -9,7 +9,7 @@ import UIKit
 
 final class OnboardingViewController: UIViewController {
     private let rootView = OnboardingView()
-    private let userModel = UserModel.shared
+    private let userModel = UserModelManager.shared
     override func loadView() {
         self.view = rootView
     }
