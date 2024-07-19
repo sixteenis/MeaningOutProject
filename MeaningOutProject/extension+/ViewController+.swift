@@ -8,12 +8,6 @@
 import UIKit
 
 extension UIViewController {
-    open override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        view.endEditing(true)
-    }
-}
-
-extension UIViewController {
     func showAlert(title: String, message: String?, okButton: String, completionHandler: @escaping (UIAlertAction) -> Void){
         let alert = UIAlertController(
             title: title,
