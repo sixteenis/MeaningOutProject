@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 extension UIViewController {
     func showAlert(title: String, message: String?, okButton: String, completionHandler: @escaping (UIAlertAction) -> Void){
@@ -50,5 +51,14 @@ extension UIViewController {
         }
         alert.addAction(ok)
         present(alert, animated: true)
+    }
+    func resetUserDefault() {
+        for key in UserDefaults.standard.dictionaryRepresentation().keys {
+            UserDefaults.standard.removeObject(forKey: key.description)
+        }
+        let realm = try! Realm()
+        try! realm.write {
+            realm.deleteAll()
+        }
     }
 }

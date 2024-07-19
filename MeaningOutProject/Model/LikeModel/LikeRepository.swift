@@ -12,6 +12,7 @@ final class LikeRepository {
     private let realm = try! Realm()
     static let shard = LikeRepository()
     private init() {}
+    
     func addFolder(_ folder: FolderModel) {
         let newFolder = Folder(folderName: folder.folderName, image: folder.image, imageColor: folder.imageColor, likeLists: List<LikeList>())
         print(realm.configuration.fileURL ?? "")
@@ -23,6 +24,7 @@ final class LikeRepository {
             print("폴더 생성 error: \(error)")
         }
     }
+    
     func getFolderList() -> [FolderModel] {
         var result = [FolderModel]()
         let allFolder = FolderModel(folderName: "전체", image: "bag.fill", imageColor: "blue", likeList: fetchAll())

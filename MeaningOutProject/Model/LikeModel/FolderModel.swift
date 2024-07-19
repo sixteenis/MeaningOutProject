@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct FolderModel {
+struct FolderModel {    
     var folderName: String
     var image: String
     var imageColor: String

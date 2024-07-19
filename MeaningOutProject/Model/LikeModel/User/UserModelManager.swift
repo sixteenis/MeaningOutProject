@@ -33,11 +33,5 @@ final class UserModelManager {
         myFormatter.dateFormat = "yyyy.MM.dd 가입"
         let dateString = myFormatter.string(from: date)
         self.userJoinDate = dateString
-    }
-    func reset() {
-        for key in UserDefaults.standard.dictionaryRepresentation().keys {
-            UserDefaults.standard.removeObject(forKey: key.description)
-        }
-    }
-    
+    }    
 }
